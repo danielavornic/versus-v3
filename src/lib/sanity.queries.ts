@@ -9,6 +9,10 @@ export async function getPosts(client: SanityClient): Promise<Post[]> {
   return await client.fetch(postsQuery)
 }
 
+export async function getArtists(client: SanityClient): Promise<Post[]> {
+  return await client.fetch(artistQuery)
+}
+
 export const postBySlugQuery = groq`*[_type == "post" && slug.current == $slug][0]`
 
 export async function getPost(
@@ -23,6 +27,8 @@ export async function getPost(
 export const postSlugsQuery = groq`
 *[_type == "post" && defined(slug.current)][].slug.current
 `
+
+export const artistQuery = groq`*[_type == "artist"]`
 
 export interface Post {
   _type: 'post'
