@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import HomeMenu from './HomeMenu'
 
@@ -8,6 +8,10 @@ const menuLineClass =
 
 const HomeHeader = () => {
   const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    document.documentElement.style.position = isOpen ? 'fixed' : 'static'
+  }, [isOpen])
 
   return (
     <>

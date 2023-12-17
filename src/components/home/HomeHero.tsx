@@ -1,7 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
 const HomeHero = () => {
   return (
-    <section className="bg-black text-alm-white h-[calc(100vh-80px)]">
+    <section className="hero bg-black text-alm-white h-[calc(100vh-80px)]">
       <div className="container">
         <div
           className="bg-cover bg-center flex items-center justify-center h-[calc(100vh-80px)] w-full"
@@ -11,9 +10,9 @@ const HomeHero = () => {
           }}
         >
           <img
-            src="/versus-logo.svg "
+            src="/versus-logo.svg"
             alt="Versus Artist"
-            className="w-[200px] h-auto lg:w-[750px]"
+            className="versus-logo w-[200px] h-auto lg:w-[750px]"
           />
         </div>
       </div>

@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
 #__next > div {
   font-family: var(--font-unbounded);
 }
@@ -15,7 +24,7 @@
 
 @screen md {
   .container {
-   padding-left: 40px;
+    padding-left: 40px;
     padding-right: 40px;
   }
 }
@@ -25,4 +34,8 @@
     padding-left: 50px;
     padding-right: 50px;
   }
+}
+
+.mobile-header {
+  @apply text-[43px] font-medium leading-tight
 }

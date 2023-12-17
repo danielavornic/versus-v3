@@ -3,30 +3,9 @@ import type { ImageAsset, Slug } from '@sanity/types'
 import groq from 'groq'
 import { type SanityClient } from 'next-sanity'
 
-export const postsQuery = groq`*[_type == "post" && defined(slug.current)] | order(_createdAt desc)`
-
-export async function getPosts(client: SanityClient): Promise<Post[]> {
-  return await client.fetch(postsQuery)
-}
-
 export async function getArtists(client: SanityClient): Promise<Post[]> {
   return await client.fetch(artistQuery)
 }
-
-export const postBySlugQuery = groq`*[_type == "post" && slug.current == $slug][0]`
-
-export async function getPost(
-  client: SanityClient,
-  slug: string,
-): Promise<Post> {
-  return await client.fetch(postBySlugQuery, {
-    slug,
-  })
-}
-
-export const postSlugsQuery = groq`
-*[_type == "post" && defined(slug.current)][].slug.current
-`
 
 export const artistQuery = groq`*[_type == "artist"]`
 
@@ -39,4 +18,19 @@ export interface Post {
   excerpt?: string
   mainImage?: ImageAsset
   body: PortableTextBlock[]
+}
+
+export interface Artist {
+  _type: 'artist'
+  _id: string
+  _createdAt: string
+  name?: string
+  image?: ImageAsset
+  tiktok?: string
+  instagram?: string
+  facebook?: string
+  youtube?: string
+  spotify?: string
+  appleMusic?: string
+  deezer?: string
 }

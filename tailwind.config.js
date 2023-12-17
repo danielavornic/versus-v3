@@ -14,6 +14,7 @@ module.exports = {
         instagram: '#E1306C',
         facebook: '#1877F2',
         youtube: '#CD201F',
+        black: '#050505',
       },
       screens: {
         '3xl': '1900px',
