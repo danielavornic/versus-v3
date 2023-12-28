@@ -17,6 +17,7 @@ module.exports = {
         black: '#050505',
       },
       screens: {
+        '1.5xl': '1400px',
         '3xl': '1900px',
       },
     },

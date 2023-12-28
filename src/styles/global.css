@@ -37,5 +37,9 @@ body::-webkit-scrollbar {
 }
 
 .mobile-header {
-  @apply text-[43px] font-medium leading-tight
+  @apply text-[43px] font-medium leading-tight lg:text-[72px] xl:text-[93px]
+}
+
+.mobile-subtitle {
+  @apply text-[24px]
 }

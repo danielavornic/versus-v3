@@ -6,6 +6,7 @@ import { useEffect, useLayoutEffect } from 'react'
 import SplitType from 'split-type'
 
 import ArtistsGrid from '~/components/home/ArtistsGrid'
+import BookingSection from '~/components/home/BookingSection'
 import HomeHero from '~/components/home/HomeHero'
 import Layout from '~/components/layout'
 import { readToken } from '~/lib/sanity.api'
@@ -98,8 +99,7 @@ export default function IndexPage(
     <Layout>
       <HomeHero />
       <ArtistsGrid artists={artists} />
-
-      <div className="h-[200px] bg-black"></div>
+      <BookingSection />
     </Layout>
   )
 }
