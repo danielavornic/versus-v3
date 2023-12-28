@@ -129,7 +129,7 @@ const ArtistCard = ({
           'w-full h-full object-cover relative transition-all duration-500',
           { 'filter grayscale': activeArtist === name },
         )}
-        src={urlForImage(image).url()}
+        src={urlForImage(image)?.url()}
         alt={name}
       />
     </div>

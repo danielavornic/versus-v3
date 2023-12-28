@@ -43,3 +43,7 @@ body::-webkit-scrollbar {
 .mobile-subtitle {
   @apply text-[24px]
 }
+
+.mobile-title {
+  @apply text-[38px]
+}

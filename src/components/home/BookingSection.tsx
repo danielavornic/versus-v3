@@ -93,7 +93,7 @@ const BookingSection = () => {
           </div>
 
           <div className="text-center xl:flex xl:space-y-0 3xl:space-y-10 3xl:space-x-0 3xl:flex-col 3xl:items-start xl:space-x-[60px] 2xl:space-x-[85px] xl:items-center lg:text-left uppercase space-y-10">
-            <h3 className="booking-text-line overflow-hidden text-[20px] 3xl:text-[42px] !leading-tight">
+            <h3 className="booking-text-line text-center lg:text-left overflow-hidden text-[20px] 3xl:text-[42px] !leading-tight">
               Discover Your <br />
               Next Headliner
             </h3>

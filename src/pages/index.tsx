@@ -2,25 +2,28 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useLiveQuery } from 'next-sanity/preview'
-import { useEffect, useLayoutEffect } from 'react'
+import { useEffect } from 'react'
 import SplitType from 'split-type'
 
 import ArtistsGrid from '~/components/home/ArtistsGrid'
 import BookingSection from '~/components/home/BookingSection'
 import HomeHero from '~/components/home/HomeHero'
+import ReleasesSection from '~/components/home/ReleasesSection'
 import Layout from '~/components/layout'
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
-import { getArtists } from '~/lib/sanity.queries'
+import { getArtists, getReleases } from '~/lib/sanity.queries'
 import type { SharedPageProps } from '~/pages/_app'
 
 export const getStaticProps: GetStaticProps<
   SharedPageProps & {
     artists: any
+    releases: any
   }
 > = async ({ draftMode = false }) => {
   const client = getClient(draftMode ? { token: readToken } : undefined)
   const artists = await getArtists(client)
+  const releases = await getReleases(client)
 
   artists.sort((a, b) => {
     const aDate = new Date(a._createdAt)
@@ -34,6 +37,7 @@ export const getStaticProps: GetStaticProps<
       draftMode,
       token: draftMode ? readToken : '',
       artists,
+      releases,
     },
   }
 }
@@ -45,6 +49,13 @@ export default function IndexPage(
     props.artists,
     props.draftMode ? readToken : undefined,
   )
+
+  const [releases] = useLiveQuery(
+    props.releases,
+    props.draftMode ? readToken : undefined,
+  )
+
+  console.log('artists', artists)
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -100,6 +111,7 @@ export default function IndexPage(
       <HomeHero />
       <ArtistsGrid artists={artists} />
       <BookingSection />
+      <ReleasesSection releases={releases} />
     </Layout>
   )
 }
