@@ -7,6 +7,7 @@ import SplitType from 'split-type'
 
 import ArtistsGrid from '~/components/home/ArtistsGrid'
 import BookingSection from '~/components/home/BookingSection'
+import ConcertsSection from '~/components/home/ConcertsSection'
 import HomeHero from '~/components/home/HomeHero'
 import ProdSection from '~/components/home/ProdSection'
 import ReleasesSection from '~/components/home/ReleasesSection'
@@ -193,6 +194,7 @@ export default function IndexPage(
       <BookingSection />
       <ReleasesSection releases={releases} />
       <ProdSection />
+      <ConcertsSection />
     </Layout>
   )
 }

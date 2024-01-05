@@ -20,6 +20,7 @@
     "@sanity/vision": "3.20.0",
     "@studio-freight/react-lenis": "^0.0.38",
     "@tailwindcss/typography": "0.5.10",
+    "@uidotdev/usehooks": "^2.4.1",
     "clsx": "^2.0.0",
     "gsap": "^3.12.4",
     "next": "14.0.3",

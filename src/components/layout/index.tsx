@@ -10,7 +10,7 @@ import LeftSocialsBar from './LeftSocialsBar'
 
 const unbounded = Unbounded({
   subsets: ['latin-ext'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['300', '400', '500', '600', '700'],
   variable: '--font-unbounded',
 })
 
