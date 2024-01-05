@@ -1,12 +1,12 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-import { useLiveQuery } from 'next-sanity/preview'
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import SplitType from 'split-type'
 
 import ArtistsGrid from '~/components/home/ArtistsGrid'
 import BookingSection from '~/components/home/BookingSection'
+import Conceptualization from '~/components/home/Conceptualization'
 import ConcertsSection from '~/components/home/ConcertsSection'
 import HomeHero from '~/components/home/HomeHero'
 import ProdSection from '~/components/home/ProdSection'
@@ -27,13 +27,6 @@ export const getStaticProps: GetStaticProps<
   const artists = await getArtists(client)
   const releases = await getReleases(client)
 
-  artists.sort((a, b) => {
-    const aDate = new Date(a._createdAt)
-    const bDate = new Date(b._createdAt)
-
-    return aDate.getTime() - bDate.getTime()
-  })
-
   return {
     props: {
       draftMode,
@@ -47,17 +40,9 @@ export const getStaticProps: GetStaticProps<
 export default function IndexPage(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
-  const [artists] = useLiveQuery(
-    props.artists,
-    props.draftMode ? readToken : undefined,
-  )
+  const { artists, releases } = props
 
-  const [releases] = useLiveQuery(
-    props.releases,
-    props.draftMode ? readToken : undefined,
-  )
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       gsap.registerPlugin(ScrollTrigger)
 
@@ -167,7 +152,7 @@ export default function IndexPage(
             { yPercent: 100 },
             {
               yPercent: 0,
-              duration: 1,
+              duration: 1.5,
               ease: 'power2.out',
               stagger: 0.05,
               delay: 0.05,
@@ -187,6 +172,8 @@ export default function IndexPage(
     return () => ctx?.revert()
   }, [])
 
+  console.log('artists', artists)
+
   return (
     <Layout>
       <HomeHero />
@@ -195,6 +182,7 @@ export default function IndexPage(
       <ReleasesSection releases={releases} />
       <ProdSection />
       <ConcertsSection />
+      <Conceptualization />
     </Layout>
   )
 }

@@ -11,7 +11,7 @@ export async function getReleases(client: SanityClient): Promise<Release[]> {
   return await client.fetch(releasesQuery)
 }
 
-export const artistQuery = groq`*[_type == "artist"]`
+export const artistQuery = groq`*[_type == "artist"] | order(_createdAt asc)`
 export const releasesQuery = groq`*[_type == "release" && isPublished == true] | order(date desc)`
 
 export interface Post {

@@ -28,10 +28,10 @@ function ConcertPicsDesktop() {
                 index !== activeIndex,
             },
           )}
-          onMouseEnter={() =>
-            width && Number(width) >= 1900 ? setActiveIndex(index) : null
-          }
-          onMouseLeave={() => setActiveIndex(2)}
+          // onMouseEnter={() =>
+          //   width && Number(width) >= 1900 ? setActiveIndex(index) : null
+          // }
+          // onMouseLeave={() => setActiveIndex(2)}
         >
           <img
             src={image}

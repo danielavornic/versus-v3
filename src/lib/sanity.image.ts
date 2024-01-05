@@ -1,9 +1,9 @@
-import createImageUrlBuilder from '@sanity/image-url'
+import imageUrlBuilder from '@sanity/image-url'
 import type { Image } from 'sanity'
 
 import { dataset, projectId } from '~/lib/sanity.api'
 
-const imageBuilder = createImageUrlBuilder({
+const imageBuilder = imageUrlBuilder({
   projectId: projectId || '',
   dataset: dataset || '',
 })

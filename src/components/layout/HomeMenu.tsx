@@ -87,9 +87,9 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
         }}
       >
         <ul className="space-y-6 max-w-[250px] md:max-w-none mx-auto mt-[10vh] lg:mt-[60px] 3xl:mt-[80px]">
-          {menuLinks.map((link) => (
+          {menuLinks.map((link, i) => (
             <li
-              key={link.title}
+              key={i}
               className="text-[34px] md:text-[50px] 2xl:text-[64px] link font-medium uppercase text-white text-center"
             >
               <Link href={link.href}>{link.title}</Link>

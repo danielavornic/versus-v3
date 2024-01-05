@@ -5,7 +5,7 @@ import ConcertPicsDesktop from './ConcertPicsDesktop'
 const ConcertsSection = () => {
   return (
     <section className="bg-black text-white pb-[220px]">
-      <h2 className="mobile-header uppercase lg:text-[50px] 1.5xl:text-[64px] 3xl:text-[93px] text-center mb-[42px]">
+      <h2 className="mobile-header revealing-line uppercase lg:text-[50px] 1.5xl:text-[64px] 3xl:text-[93px] text-center mb-[42px]">
         ORGANIZARE CONCERTE
       </h2>
 
@@ -32,7 +32,7 @@ const ConcertsSection = () => {
       <ConcertPicsDesktop />
 
       <div className="container mt-[70px] md:mt-[40px] lg:mt-[70px] 1.5xl:mt-[100px] space-y-[42px]">
-        <p className="mobile-text !leading-normal max-w-[800px] lg:text-[24px] xl:text-[36px] xl:max-w-[940px]">
+        <p className="mobile-text revealing-words !leading-normal max-w-[800px] lg:text-[24px] xl:text-[36px] xl:max-w-[940px]">
           Versus Artist are o echipă care a desfășurat așa evenimente ca: Noroc
           Fest, RAZYOB, DARA Solo la BR Media Group, Lansarea BR Media Group,
           Turneul Satoshi Berserk Fall Tour.
@@ -40,7 +40,7 @@ const ConcertsSection = () => {
 
         <Link
           href="/contact"
-          className="text-[20px] font-bold underline inline-block"
+          className="text-[20px] revealing-line font-bold underline inline-block"
         >
           Te putem ajuta în organizarea concertului tău
         </Link>
