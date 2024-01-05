@@ -8,6 +8,7 @@ import SplitType from 'split-type'
 import ArtistsGrid from '~/components/home/ArtistsGrid'
 import BookingSection from '~/components/home/BookingSection'
 import HomeHero from '~/components/home/HomeHero'
+import ProdSection from '~/components/home/ProdSection'
 import ReleasesSection from '~/components/home/ReleasesSection'
 import Layout from '~/components/layout'
 import { readToken } from '~/lib/sanity.api'
@@ -55,8 +56,6 @@ export default function IndexPage(
     props.draftMode ? readToken : undefined,
   )
 
-  console.log('artists', artists)
-
   useEffect(() => {
     let ctx = gsap.context(() => {
       gsap.registerPlugin(ScrollTrigger)
@@ -101,6 +100,87 @@ export default function IndexPage(
           )
         })
       })
+
+      const titles = document.querySelectorAll('.title')
+      titles.forEach((title) => {
+        const split = new SplitType(title as HTMLElement, {
+          types: 'chars',
+        })
+        split.chars.forEach((line, i) => {
+          gsap.fromTo(
+            line,
+            { yPercent: 100 },
+            {
+              yPercent: 0,
+              duration: 1.2,
+              ease: 'power2.out',
+              stagger: 0.035,
+              delay: i * 0.025,
+              scrollTrigger: {
+                trigger: title,
+                start: 'top 90%',
+                end: 'top 50%',
+                scrub: false,
+                toggleActions: 'play play reverse reverse',
+              },
+            },
+          )
+        })
+      })
+
+      const revealingLines = document.querySelectorAll('.revealing-line')
+      revealingLines.forEach((line) => {
+        const split = new SplitType(line as HTMLElement, {
+          types: 'lines',
+        })
+        split.lines.forEach((line) => {
+          gsap.fromTo(
+            line,
+            { yPercent: 100 },
+            {
+              yPercent: 0,
+              duration: 1,
+              ease: 'power2.out',
+              stagger: 0.05,
+              scrollTrigger: {
+                trigger: line,
+                start: 'top 90%',
+                end: 'top 40%',
+                scrub: false,
+                toggleActions: 'play play reverse reverse',
+              },
+            },
+          )
+        })
+      })
+
+      const revealingWords = document.querySelectorAll('.revealing-words')
+      revealingWords.forEach((text) => {
+        const split = new SplitType(text as HTMLElement, {
+          types: 'words',
+        })
+
+        split.words.forEach((c, i) => {
+          gsap.fromTo(
+            c,
+            { yPercent: 100 },
+            {
+              yPercent: 0,
+              duration: 1,
+              ease: 'power2.out',
+              stagger: 0.05,
+              delay: 0.05,
+              scrollTrigger: {
+                trigger: c,
+                start: 'top 90%',
+                end: 'top 30%',
+                scrub: false,
+                toggleActions: 'play play reverse reverse',
+              },
+            },
+          )
+        })
+      })
     })
 
     return () => ctx?.revert()
@@ -112,6 +192,7 @@ export default function IndexPage(
       <ArtistsGrid artists={artists} />
       <BookingSection />
       <ReleasesSection releases={releases} />
+      <ProdSection />
     </Layout>
   )
 }

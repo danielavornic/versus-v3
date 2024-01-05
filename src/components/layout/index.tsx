@@ -1,9 +1,9 @@
-import { ReactLenis, useLenis } from '@studio-freight/react-lenis'
+import { ReactLenis } from '@studio-freight/react-lenis'
 import clsx from 'clsx'
 import { Unbounded } from 'next/font/google'
 import localFont from 'next/font/local'
 import Head from 'next/head'
-import { PropsWithChildren, useEffect } from 'react'
+import { PropsWithChildren } from 'react'
 
 import HomeHeader from './HomeHeader'
 import LeftSocialsBar from './LeftSocialsBar'

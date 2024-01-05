@@ -13,6 +13,7 @@ body::-webkit-scrollbar {
 
 #__next > div {
   font-family: var(--font-unbounded);
+  font-weight: 400;
 }
 
 .container {
@@ -45,5 +46,13 @@ body::-webkit-scrollbar {
 }
 
 .mobile-title {
-  @apply text-[38px]
+  @apply text-[38px] leading-normal
+}
+
+.mobile-text {
+  @apply text-[18px] leading-[24px]
+}
+
+.title, .revealing-line, .revealing-words {
+  overflow: hidden;
 }

@@ -1,8 +1,5 @@
 import clsx from 'clsx'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import { useEffect, useMemo } from 'react'
-import SplitType from 'split-type'
+import { useMemo } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { Release } from '~/lib/sanity.queries'
@@ -33,43 +30,10 @@ const ReleasesSection = ({ releases }: { releases: Release[] }) => {
     return 500 + (releases.length - 1) * 40
   }, [releases.length])
 
-  useEffect(() => {
-    let ctx = gsap.context(() => {
-      gsap.registerPlugin(ScrollTrigger)
-
-      const title = document.querySelector('.release-title')
-      const split = new SplitType(title as HTMLElement, {
-        types: 'words',
-      })
-      split.words.forEach((line, i) => {
-        gsap.fromTo(
-          line,
-          { yPercent: 100 },
-          {
-            yPercent: 0,
-            duration: 1.2,
-            ease: 'power2.out',
-            stagger: 0.035,
-            delay: i * 0.025,
-            scrollTrigger: {
-              trigger: title,
-              start: 'top 90%',
-              end: 'top 50%',
-              scrub: false,
-              toggleActions: 'play play reverse reverse',
-            },
-          },
-        )
-      })
-    })
-
-    return () => ctx?.revert()
-  }, [])
-
   return (
     <section className="bg-black text-white py-[150px] lg:py-[165px] lg:px-[50px] 3xl:py-[250px]">
       <div className="flex flex-col 3xl:flex-row 3xl:justify-between 3xl:items-center 3xl:space-y-0 space-y-[80px]">
-        <h2 className="release-title overflow-hidden mobile-title text-center lg:text-left lg:text-[62px] container lg:px-0 lg:w-auto !leading-tight">
+        <h2 className="title overflow-hidden mobile-title text-center lg:text-left lg:text-[62px] container lg:px-0 lg:w-auto !leading-tight">
           DON&apos;T STAY <br />
           PRESS PLAY <br />
           NEW TUNES <br />
