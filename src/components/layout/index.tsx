@@ -5,12 +5,13 @@ import localFont from 'next/font/local'
 import Head from 'next/head'
 import { PropsWithChildren } from 'react'
 
+import Footer from './Footer'
 import HomeHeader from './HomeHeader'
 import LeftSocialsBar from './LeftSocialsBar'
 
 const unbounded = Unbounded({
   subsets: ['latin-ext'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['300', '400', '500', '600', '700', '800'],
   variable: '--font-unbounded',
 })
 
@@ -42,6 +43,7 @@ const Layout = ({
           <LeftSocialsBar />
           <HomeHeader />
           <main>{children}</main>
+          <Footer />
         </div>
       </ReactLenis>
     </>

@@ -45,7 +45,6 @@ export default function IndexPage(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
   const { artists, releases, projects } = props
-  console.log('props', projects)
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -176,8 +175,6 @@ export default function IndexPage(
 
     return () => ctx?.revert()
   }, [])
-
-  console.log('artists', artists)
 
   return (
     <Layout>

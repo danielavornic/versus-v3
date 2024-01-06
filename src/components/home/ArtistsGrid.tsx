@@ -8,7 +8,10 @@ const ArtistsGrid = ({ artists }: { artists: Artist[] }) => {
   const [activeArtist, setActiveArtist] = useState('')
 
   return (
-    <div className="artists-grid pt-20 lg:pt-32 bg-black w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+    <section
+      id="artists"
+      className="artists-grid pt-20 lg:pt-32 bg-black w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+    >
       {artists.map((artist) => (
         <ArtistCard
           key={artist._id}
@@ -17,7 +20,7 @@ const ArtistsGrid = ({ artists }: { artists: Artist[] }) => {
           setActiveArtist={setActiveArtist}
         />
       ))}
-    </div>
+    </section>
   )
 }
 

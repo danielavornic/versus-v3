@@ -56,3 +56,9 @@ body::-webkit-scrollbar {
 .title, .revealing-line, .revealing-words {
   overflow: hidden;
 }
+
+
+.footer-bg-text {
+  -webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
