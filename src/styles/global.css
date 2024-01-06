@@ -46,7 +46,7 @@ body::-webkit-scrollbar {
 }
 
 .mobile-title {
-  @apply text-[38px] leading-normal
+  @apply text-[38px] leading-tight
 }
 
 .mobile-text {

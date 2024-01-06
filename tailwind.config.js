@@ -15,6 +15,7 @@ module.exports = {
         facebook: '#1877F2',
         youtube: '#CD201F',
         black: '#050505',
+        gray: '#1E2124',
       },
       screens: {
         '1.5xl': '1400px',

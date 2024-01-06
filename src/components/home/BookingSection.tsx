@@ -97,7 +97,7 @@ const BookingSection = () => {
               Discover Your <br />
               Next Headliner
             </h3>
-            <div className="flex flex-col items-center xl:space-y-0 xl:space-x-[60px] 3xl:space-x-0 xl:flex-row space-y-10 3xl:flex-row-reverse xl:items-center 3xl:space-y-[inherit]">
+            <div className="flex flex-col items-center lg:items-start xl:space-y-0 xl:space-x-[60px] 3xl:space-x-0 xl:flex-row space-y-10 3xl:flex-row-reverse xl:items-center 3xl:space-y-[inherit]">
               <Link
                 href="/booking"
                 className="underline font-medium text-lg block 3xl:ml-10"

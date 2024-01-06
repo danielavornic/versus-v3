@@ -11,8 +11,13 @@ export async function getReleases(client: SanityClient): Promise<Release[]> {
   return await client.fetch(releasesQuery)
 }
 
+export async function getProjects(client: SanityClient): Promise<Project[]> {
+  return await client.fetch(projectsQuery)
+}
+
 export const artistQuery = groq`*[_type == "artist"] | order(_createdAt asc)`
 export const releasesQuery = groq`*[_type == "release" && isPublished == true] | order(date desc)`
+export const projectsQuery = groq`*[_type == "project"] | order(_createdAt asc)`
 
 export interface Post {
   _type: 'post'
@@ -52,4 +57,17 @@ export interface Release {
   appleMusic?: string
   deezer?: string
   isPublished?: boolean
+}
+
+export interface Project {
+  _type: 'project'
+  _id: string
+  _createdAt: string
+  name?: string
+  image?: ImageAsset
+  content?: PortableTextBlock[]
+  tiktok?: string
+  instagram?: string
+  facebook?: string
+  youtube?: string
 }

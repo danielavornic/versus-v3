@@ -32,7 +32,7 @@ const LeftSocialsBar = () => {
               target="_blank"
               rel="noopener noreferrer"
               className={clsx(
-                'w-[18px] h-auto bg-black text-alm-white transition-all',
+                'w-[18px] h-auto bg-transparent text-alm-white transition-all',
                 {
                   'hover:text-tiktok': i === 0,
                   'hover:text-instagram': i === 1,
