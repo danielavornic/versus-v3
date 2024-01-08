@@ -23,11 +23,13 @@ const oktaNeue = localFont({
 interface LayoutProps {
   title?: string
   description?: string
+  hasFooter?: boolean
 }
 
 const Layout = ({
   title,
   description,
+  hasFooter = true,
   children,
 }: PropsWithChildren<LayoutProps>) => {
   return (
@@ -43,7 +45,7 @@ const Layout = ({
           <LeftSocialsBar />
           <HomeHeader />
           <main>{children}</main>
-          <Footer />
+          {hasFooter && <Footer />}
         </div>
       </ReactLenis>
     </>

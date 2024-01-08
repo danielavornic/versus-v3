@@ -21,11 +21,11 @@ const menuLinks = [
   },
   {
     title: 'Booking',
-    href: '#booking',
+    href: '/booking',
   },
   {
     title: 'Prod & Master',
-    href: '#prod-master',
+    href: '/#prod-master',
   },
   {
     title: 'Contact',

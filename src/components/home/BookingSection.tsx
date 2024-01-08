@@ -80,10 +80,13 @@ const BookingSection = () => {
   }, [])
 
   return (
-    <section className="bg-black text-white py-[120px] lg:pt-[80px] lg:pb-0">
+    <section
+      id="booking"
+      className="bg-black text-white py-[120px] lg:pt-[80px] lg:pb-0"
+    >
       <div className="container 3xl:pr-[50px] lg:pr-0 flex flex-col lg:flex-row lg:items-stretch lg:justify-between lg:space-y-0 space-y-[120px]">
         <div className="flex flex-col xl:h-[inherit] xl:pb-[120px] 1.5xl:pb-[145px] justify-center lg:justify-between space-y-[70px] lg:space-y-[100px] lg:pt-[64px]">
-          <div className="text-center lg:text-left space-y-10">
+          <div className="text-center lg:text-left space-y-[42px]">
             <h2 className="booking-text mobile-header uppercase overflow-hidden">
               Booking
             </h2>
@@ -115,7 +118,7 @@ const BookingSection = () => {
         </div>
 
         <div
-          className='booking-img bg-cover bg-center h-[362px] lg:h-[800px] w-full lg:w-[480px] 1.5xl:h-[1000px] 1.5xl:w-[600px] 2xl:w-[800px] 3xl:w-[910px] bg-[url("/images/booking-section.png")]'
+          className='bg-cover bg-center h-[362px] lg:h-[800px] w-full lg:w-[480px] 1.5xl:h-[1000px] 1.5xl:w-[600px] 2xl:w-[800px] 3xl:w-[910px] bg-[url("/images/booking-section.png")]'
           style={{ backgroundImage: 'url("/images/booking-section.png")' }}
         ></div>
       </div>

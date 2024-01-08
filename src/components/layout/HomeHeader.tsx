@@ -1,4 +1,6 @@
 import clsx from 'clsx'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 import HomeMenu from './HomeMenu'
@@ -8,6 +10,7 @@ const menuLineClass =
 
 const HomeHeader = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const { pathname } = useRouter()
 
   useEffect(() => {
     document.documentElement.style.position = isOpen ? 'fixed' : 'static'
@@ -15,7 +18,18 @@ const HomeHeader = () => {
 
   return (
     <>
-      <header className="bg-black h-[80px] text-alm-white flex items-center">
+      <header className="bg-black h-[80px] text-alm-white w-screen flex items-center">
+        {pathname !== '/' && (
+          <div className="pl-[30px] md:pl-[40px] lg:pl-[50px] z-40">
+            <Link href="/">
+              <img
+                src="/versus-logo-text-white.svg"
+                alt="Versus Artist"
+                className="w-[150px]"
+              />
+            </Link>
+          </div>
+        )}
         <div className="container">
           <button
             onClick={() => setIsOpen(!isOpen)}
