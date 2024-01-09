@@ -81,41 +81,45 @@ body::-webkit-scrollbar {
   @apply bg-white rounded-[1px];
 }
 
-
+/* Datepicker */
 .react-datepicker {
-      @apply bg-black rounded-[10px] border border-alm-white absolute top-[50px] z-10
+  @apply bg-black rounded-[10px] border border-alm-white absolute top-[50px] z-10;
 }
 
 .react-datepicker__header {
-  @apply border-none pt-[15px] pb-0 px-[15px]
+  @apply border-none pt-[15px] pb-0 px-[15px];
 }
 
 .react-datepicker__navigation {
-  @apply top-[16px]
+  @apply top-[16px];
 }
 
 .react-datepicker__month {
-  @apply m-0 p-[15px]
+  @apply m-0 p-[15px];
 }
 
 .react-datepicker__current-month {
-  @apply pb-[15px]
+  @apply pb-[15px];
 }
 
 .react-datepicker__week {
-  @apply flex
+  @apply flex;
 }
 
 .react-datepicker__header:not(.react-datepicker__header--has-time-select) {
-      @apply rounded-t-[10px] bg-black 
+  @apply rounded-t-[10px] bg-black;
 }
 
-.react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
-      @apply text-white font-unbounded font-medium
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+  @apply text-white font-unbounded font-medium;
 }
 
-.react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
-  @apply w-[28px] m-[4px] h-[28px] sm:w-[35px] sm:h-[35px] text-[12px] sm:m-[6px] font-unbounded text-white flex items-center justify-center
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  @apply w-[28px] m-[4px] h-[28px] sm:w-[35px] sm:h-[35px] text-[12px] sm:m-[6px] font-unbounded text-white flex items-center justify-center;
 }
 
 .react-datepicker__day-names {
@@ -123,33 +127,50 @@ body::-webkit-scrollbar {
 }
 
 .react-datepicker__day-name {
-  @apply font-medium
+  @apply font-medium;
 }
 
 .react-datepicker__day {
-  @apply font-light
+  @apply font-light;
 }
 
-.react-datepicker__year-read-view--down-arrow, .react-datepicker__month-read-view--down-arrow, .react-datepicker__month-year-read-view--down-arrow, .react-datepicker__navigation-icon::before {
-    border-color: #ccc;
-    border-width: 2px 2px 0 0;
-    height: 6px;
-    top: 6px;
-    width: 6px;
+.react-datepicker__year-read-view--down-arrow,
+.react-datepicker__month-read-view--down-arrow,
+.react-datepicker__month-year-read-view--down-arrow,
+.react-datepicker__navigation-icon::before {
+  border-color: #ccc;
+  border-width: 2px 2px 0 0;
+  height: 6px;
+  top: 6px;
+  width: 6px;
 }
 
-.react-datepicker__day--selected, .react-datepicker__day:hover, .react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range, .react-datepicker__month-text--selected, .react-datepicker__month-text--in-selecting-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--selected, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--selected, .react-datepicker__year-text--in-selecting-range, .react-datepicker__year-text--in-range {
-  @apply bg-white !text-black !font-medium rounded-none
+.react-datepicker__day--selected,
+.react-datepicker__day:hover,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range,
+.react-datepicker__month-text--selected,
+.react-datepicker__month-text--in-selecting-range,
+.react-datepicker__month-text--in-range,
+.react-datepicker__quarter-text--selected,
+.react-datepicker__quarter-text--in-selecting-range,
+.react-datepicker__quarter-text--in-range,
+.react-datepicker__year-text--selected,
+.react-datepicker__year-text--in-selecting-range,
+.react-datepicker__year-text--in-range {
+  @apply bg-white !text-black !font-medium rounded-none;
 }
 
-.react-datepicker__triangle  {
-  @apply hidden
+.react-datepicker__triangle {
+  @apply hidden;
 }
 
 .react-datepicker-popper {
-  @apply !pt-0 
+  @apply !pt-0;
 }
 
-.react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
-  @apply font-[12px]
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+  @apply font-[12px];
 }

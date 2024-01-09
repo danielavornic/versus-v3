@@ -29,7 +29,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     )
 
     if (!leftComponent)
-      return <input ref={ref} className={containerClassNames} {...props} />
+      return (
+        <input
+          ref={ref}
+          className={containerClassNames}
+          autoComplete="nope"
+          {...props}
+        />
+      )
 
     return (
       <div className={clsx('flex items-center', containerClassNames)}>
@@ -37,6 +44,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           className="w-full bg-black ml-[12px] border-l my-[15px] border-alm-white pl-[12px] focus:outline-none"
+          autoComplete="nope"
           {...props}
         />
       </div>

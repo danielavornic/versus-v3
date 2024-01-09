@@ -3,7 +3,13 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import 'react-datepicker/dist/react-datepicker.css'
 import '~/styles/global.css'
+import '~/styles/react-progress-btn.css'
 
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import type { AppProps } from 'next/app'
@@ -23,6 +29,9 @@ export default function App({
   pageProps,
 }: AppProps<SharedPageProps>) {
   const { draftMode, token } = pageProps
+
+  const queryClient = new QueryClient()
+
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       gsap.registerPlugin(ScrollTrigger)
@@ -154,7 +163,7 @@ export default function App({
   }, [])
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       {draftMode ? (
         <PreviewProvider token={token}>
           <Component {...pageProps} />
@@ -162,6 +171,6 @@ export default function App({
       ) : (
         <Component {...pageProps} />
       )}
-    </>
+    </QueryClientProvider>
   )
 }

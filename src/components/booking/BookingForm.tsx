@@ -1,12 +1,14 @@
+import { useMutation } from '@tanstack/react-query'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
 import Checkbox from '../common/Checkbox'
 import DateInput from '../common/DatePicker'
 import Input from '../common/Input'
+import LoadingButton from '../common/LoadingButton'
 import BookingQuestion from './BookingQuestion'
 
 type BookingFormData = {
@@ -31,13 +33,48 @@ const BookingForm = () => {
   })
   const { query } = useRouter()
   const { artist } = query
-  const [isTermsChecked, setIsTermsChecked] = useState(undefined)
 
-  const onSubmit = (data) => {
-    alert(JSON.stringify(data))
-    reset()
-    setIsTermsChecked(undefined)
-  }
+  const [isTermsChecked, setIsTermsChecked] = useState(undefined)
+  const [buttonState, setButtonState] = useState('nothing')
+
+  const isCompleted =
+    !Object.keys(errors).length &&
+    isTermsChecked &&
+    watch('eventInfo') &&
+    watch('name') &&
+    watch('email') &&
+    watch('phone')
+
+  const onSubmit = () => mutate()
+
+  const { mutate } = useMutation({
+    mutationFn: () => {
+      const res = fetch('/api/booking', {
+        method: 'POST',
+        body: JSON.stringify({
+          date: watch('date'),
+          eventInfo: watch('eventInfo'),
+          name: watch('name'),
+          email: watch('email'),
+          phone: watch('phone'),
+        }),
+      })
+      console.log(res)
+      return res
+    },
+    onSuccess: () => {
+      setTimeout(() => {
+        reset()
+        setIsTermsChecked(undefined)
+        setButtonState('success')
+        window.scrollTo(0, 0)
+      }, 3000)
+    },
+  })
+
+  useEffect(() => {
+    setButtonState('nothing')
+  }, [artist])
 
   return (
     <form
@@ -56,13 +93,27 @@ const BookingForm = () => {
           },
         )}
       >
-        <h3 className="title text-[43px] mb-[42px] lg:min-h-[144px] 3xl:min-h-[221px] xl:mb-[57px] font-medium uppercase text-center leading-[48px] 3xl:text-[64px] 3xl:leading-[1] transition-all">
-          <span className="3xl:text-[93px] text-center">Booking</span>
-          <br />
-          {artist ?? 'Satoshi'}
-        </h3>
+        {buttonState === 'success' ? (
+          <h2 className="3xl:pt-[99px] xl:pt-[63px] text-[42px] lg:pt-[100px] xl:mb-[57px] 3xl:text-[62px] text-center leading-[1]">
+            your message is on its way
+          </h2>
+        ) : (
+          <h3 className="title text-[43px] mb-[42px] lg:min-h-[144px] 3xl:min-h-[221px] xl:mb-[57px] font-medium uppercase text-center leading-[48px] 3xl:text-[64px] 3xl:leading-[1] transition-all">
+            <span className="3xl:text-[93px] text-center">Booking</span>
+            <br />
+            {artist ?? 'Satoshi'}
+          </h3>
+        )}
 
-        <div className="space-y-[15px] flex flex-col items-center justify-center w-full sm:!max-w-[450px] md:max-w-none">
+        <div
+          className={clsx(
+            'space-y-[15px] flex flex-col items-center justify-center w-full sm:!max-w-[450px] md:max-w-none',
+            {
+              'hidden lg:flex lg:opacity-0 lg:pointer-events-none':
+                buttonState === 'success',
+            },
+          )}
+        >
           <Controller
             control={control}
             name="date"
@@ -165,27 +216,28 @@ const BookingForm = () => {
           Discover Your <br />
           Next Headliner
         </h3>
-        <button
-          type="submit"
-          form="booking-form"
-          className={clsx(
-            'text-[18px] uppercase py-[24px] lg:!mb-10 px-[35px] font-medium transition-all align-self-start w-fit justify-center border !leading-[14px] border-white inline-block',
-            {
-              'bg-white text-black hover:bg-[#D2D2D2] focus:bg-white active:bg-white ':
-                !Object.keys(errors).length &&
-                isTermsChecked &&
-                watch('eventInfo') &&
-                watch('name') &&
-                watch('email') &&
-                watch('phone'),
-            },
-          )}
-        >
-          Get in touch
-        </button>
+        {isCompleted ? (
+          <LoadingButton
+            text="Get in touch"
+            type="submit"
+            form="booking-form"
+            buttonState={buttonState}
+            setButtonState={setButtonState}
+          />
+        ) : (
+          <button
+            type="submit"
+            form="booking-form"
+            className={clsx(
+              'text-[18px] uppercase h-[64px] w-[240px] font-medium transition-all align-self-start justify-center border !leading-[14px] border-white inline-block',
+            )}
+          >
+            Get in touch
+          </button>
+        )}
         <Link
           href="/booking"
-          className="underline uppercase font-medium text-lg block text-alm-white hover:text-white active:text-alm-white transition-all"
+          className="underline lg:!mt-10 uppercase font-medium text-lg block text-alm-white hover:text-white active:text-alm-white transition-all"
         >
           Close
         </Link>
