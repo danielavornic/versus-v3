@@ -24,6 +24,8 @@ interface LayoutProps {
   title?: string
   description?: string
   hasFooter?: boolean
+  hasOnlyMobileFooter?: boolean
+  className?: string
 }
 
 const Layout = ({
@@ -31,6 +33,8 @@ const Layout = ({
   description,
   hasFooter = true,
   children,
+  hasOnlyMobileFooter = false,
+  className,
 }: PropsWithChildren<LayoutProps>) => {
   return (
     <>
@@ -39,13 +43,12 @@ const Layout = ({
         <meta name="description" content={description} />
       </Head>
 
-      {/* TODO: config lenis */}
       <ReactLenis root>
-        <div className={clsx(unbounded.variable, oktaNeue.variable)}>
+        <div className={clsx(unbounded.variable, oktaNeue.variable, className)}>
           <LeftSocialsBar />
           <HomeHeader />
           <main>{children}</main>
-          {hasFooter && <Footer />}
+          {hasFooter && <Footer desktopHidden={hasOnlyMobileFooter} />}
         </div>
       </ReactLenis>
     </>

@@ -28,7 +28,7 @@ const BookingPage = () => {
                 </li>
                 <li>
                   Asigurarea comunicării între client și echipa artistului,
-                  elaborarea și aprobarea materialelor promoționale.{' '}
+                  elaborarea și aprobarea materialelor promoționale.
                 </li>
                 <li>
                   Asigurarea și gestionarea prezenței și prestației artistului

@@ -16,6 +16,8 @@ module.exports = {
         youtube: '#CD201F',
         black: '#050505',
         gray: '#1E2124',
+        green: '#80ED99',
+        red: '#BD2E50',
       },
       backgroundImage: {
         subscribeGradient:

@@ -1,14 +1,13 @@
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
+import 'react-datepicker/dist/react-datepicker.css'
 import '~/styles/global.css'
-
-import type { AppProps } from 'next/app'
-import { lazy } from 'react'
 
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-
+import type { AppProps } from 'next/app'
+import { lazy } from 'react'
 import { useLayoutEffect } from 'react'
 import SplitType from 'split-type'
 

@@ -1,8 +1,4 @@
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-import { useLayoutEffect } from 'react'
-import SplitType from 'split-type'
 
 import ArtistsGrid from '~/components/home/ArtistsGrid'
 import BookingSection from '~/components/home/BookingSection'

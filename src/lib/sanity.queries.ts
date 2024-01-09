@@ -36,6 +36,7 @@ export interface Artist {
   _createdAt: string
   name?: string
   image?: ImageAsset
+  promoVideo?: string
   tiktok?: string
   instagram?: string
   facebook?: string

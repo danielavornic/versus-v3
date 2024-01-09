@@ -19,6 +19,11 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'promoVideo',
+      title: 'Promo Video',
+      type: 'url',
+    }),
+    defineField({
       name: 'tiktok',
       title: 'TikTok',
       type: 'string',

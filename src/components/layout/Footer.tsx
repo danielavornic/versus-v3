@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 
@@ -28,12 +29,19 @@ const footerLinks = [
 
 const year = new Date().getFullYear()
 
-const Footer = () => {
+const Footer = ({ desktopHidden = false }) => {
   const { register, handleSubmit } = useForm()
   const onSubmit = (data) => console.log(data)
 
   return (
-    <footer className="bg-black text-white pt-[130px] pb-[50px] lg:pt-[100px] lg:pb-[70px]">
+    <footer
+      className={clsx(
+        'bg-black text-white pt-[130px] pb-[50px] lg:pt-[100px] lg:pb-[70px]',
+        {
+          'lg:hidden': desktopHidden,
+        },
+      )}
+    >
       <div className="container 3xl:px-[160px]">
         <div className="flex flex-col space-y-[82px] lg:flex-row justify-between items-center lg:space-y-0">
           <div className="flex flex-col text-center lg:text-left items-center justify-center lg:items-start">
