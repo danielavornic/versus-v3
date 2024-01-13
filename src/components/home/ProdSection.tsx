@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const ProdSection = () => {
   return (
-    <section className="bg-black text-white pb-[220px]">
+    <section id="production" className="bg-black text-white pb-[220px]">
       <div className="container flex flex-col md:flex-row md:items-center md:space-y-0 space-y-[70px] md:space-x-[42px] lg:space-x-[70px] 2xl:space-x-[100px] 3xl:space-x-[220px]">
         <div>
           <img

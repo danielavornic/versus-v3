@@ -81,6 +81,33 @@ body::-webkit-scrollbar {
   @apply bg-white rounded-[1px];
 }
 
+.production-swiper .swiper-wrapper {
+  @apply items-center
+}
+
+.production-swiper .swiper-slide-next,
+.production-swiper .swiper-slide-next + .swiper-slide,
+.production-swiper .swiper-slide-next > div,
+.production-swiper .swiper-slide-next + .swiper-slide > div {
+  @apply items-end
+}
+
+.production-swiper .swiper-slide-active {
+  @apply !items-center
+}
+
+.production-swiper .swiper-slide-active .name {
+  @apply opacity-100 block
+}
+
+.production-swiper .swiper-slide-active .image {
+  @apply !w-[280px] !h-[180px] xl:!w-[300px] xl:!h-[200px]
+}
+
+.production-swiper .swiper-slide-next .image, .production-swiper .swiper-slide-prev .image {
+  @apply !w-[230px] !h-[160px] xl:!w-[250px] xl:!h-[150px]
+}
+
 /* Datepicker */
 .react-datepicker {
   @apply bg-black rounded-[10px] border border-alm-white absolute top-[50px] z-10;

@@ -5,14 +5,11 @@ import 'react-datepicker/dist/react-datepicker.css'
 import '~/styles/global.css'
 import '~/styles/react-progress-btn.css'
 
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import type { AppProps } from 'next/app'
+import { useRouter } from 'next/router'
 import { lazy } from 'react'
 import { useLayoutEffect } from 'react'
 import SplitType from 'split-type'
@@ -31,6 +28,8 @@ export default function App({
   const { draftMode, token } = pageProps
 
   const queryClient = new QueryClient()
+
+  const { pathname } = useRouter()
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -120,7 +119,7 @@ export default function App({
               stagger: 0.05,
               scrollTrigger: {
                 trigger: line,
-                start: 'top 90%',
+                start: 'top 95%',
                 end: 'top 40%',
                 scrub: false,
                 toggleActions: 'play play reverse reverse',
@@ -148,8 +147,8 @@ export default function App({
               delay: 0.05,
               scrollTrigger: {
                 trigger: c,
-                start: 'top 90%',
-                end: 'top 30%',
+                start: 'top 100%',
+                end: 'top 50%',
                 scrub: false,
                 toggleActions: 'play play reverse reverse',
               },
@@ -160,7 +159,7 @@ export default function App({
     })
 
     return () => ctx?.revert()
-  }, [])
+  }, [pathname])
 
   return (
     <QueryClientProvider client={queryClient}>

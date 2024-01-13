@@ -15,9 +15,16 @@ export async function getProjects(client: SanityClient): Promise<Project[]> {
   return await client.fetch(projectsQuery)
 }
 
+export async function getProductionWorks(
+  client: SanityClient,
+): Promise<ProductionWork[]> {
+  return await client.fetch(productionWorksQuery)
+}
+
 export const artistQuery = groq`*[_type == "artist"] | order(_createdAt asc)`
 export const releasesQuery = groq`*[_type == "release" && isPublished == true] | order(date desc)`
 export const projectsQuery = groq`*[_type == "project"] | order(_createdAt asc)`
+export const productionWorksQuery = groq`*[_type == "productionWork"] | order(_createdAt asc)`
 
 export interface Post {
   _type: 'post'
@@ -71,4 +78,14 @@ export interface Project {
   instagram?: string
   facebook?: string
   youtube?: string
+}
+
+export interface ProductionWork {
+  _type: 'productionWork'
+  _id: string
+  _createdAt: string
+  name?: string
+  artists?: string
+  image?: ImageAsset
+  link: string
 }
