@@ -8,6 +8,7 @@ import { PropsWithChildren } from 'react'
 import Footer from './Footer'
 import HomeHeader from './HomeHeader'
 import LeftSocialsBar from './LeftSocialsBar'
+import { useRouter } from 'next/router'
 
 const unbounded = Unbounded({
   subsets: ['latin-ext'],
@@ -36,6 +37,9 @@ const Layout = ({
   hasOnlyMobileFooter = false,
   className,
 }: PropsWithChildren<LayoutProps>) => {
+  const { pathname } = useRouter()
+  const isShop = pathname.includes('shop')
+
   return (
     <>
       <Head>
@@ -45,7 +49,7 @@ const Layout = ({
 
       <ReactLenis root>
         <div className={clsx(unbounded.variable, oktaNeue.variable, className)}>
-          <LeftSocialsBar />
+          {!isShop && <LeftSocialsBar />}
           <HomeHeader />
           <main>{children}</main>
           {hasFooter && <Footer desktopHidden={hasOnlyMobileFooter} />}
