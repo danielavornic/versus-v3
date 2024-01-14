@@ -15,16 +15,39 @@ export async function getProjects(client: SanityClient): Promise<Project[]> {
   return await client.fetch(projectsQuery)
 }
 
+export async function getProductsByArtist(
+  client: SanityClient,
+  artistId: string,
+): Promise<Product[]> {
+  return await client.fetch(productsByArtistQuery, { artistId })
+}
+
 export async function getProductionWorks(
   client: SanityClient,
 ): Promise<ProductionWork[]> {
   return await client.fetch(productionWorksQuery)
 }
 
+export async function getProductVariant(
+  client: SanityClient,
+): Promise<ProductVariant[]> {
+  return await client.fetch(productVariantQuery)
+}
+
+export async function getProductBySlug(
+  client: SanityClient,
+  slug: string,
+): Promise<Product> {
+  return await client.fetch(productBySlugQuery, { slug })
+}
+
 export const artistQuery = groq`*[_type == "artist"] | order(_createdAt asc)`
 export const releasesQuery = groq`*[_type == "release" && isPublished == true] | order(date desc)`
 export const projectsQuery = groq`*[_type == "project"] | order(_createdAt asc)`
 export const productionWorksQuery = groq`*[_type == "productionWork"] | order(_createdAt asc)`
+export const productsByArtistQuery = groq`*[_type == "product" && artist._ref == $artistId]`
+export const productVariantQuery = groq`*[_type == "productVariant"]`
+export const productBySlugQuery = groq`*[_type == "product" && slug.current == $slug][0]`
 
 export interface Post {
   _type: 'post'
@@ -35,6 +58,26 @@ export interface Post {
   excerpt?: string
   mainImage?: ImageAsset
   body: PortableTextBlock[]
+}
+interface ProductVariant {
+  size: 'small' | 'medium' | 'large'
+  color: 'black' | 'green' | 'white' | 'pink'
+  stock: number
+}
+
+export interface Product {
+  _type: 'product'
+  _id: string
+  _createdAt: string
+  title: string
+  slug: Slug
+  artist: Artist
+  mainImage: ImageAsset
+  backImage: ImageAsset
+  price: number
+  variants: ProductVariant[]
+  relatedProducts?: Product[]
+  category: 'tshirt' | 'hoodie' | 'longsleeve'
 }
 
 export interface Artist {

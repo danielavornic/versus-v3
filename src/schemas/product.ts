@@ -21,12 +21,20 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'artist',
+      title: 'Artist',
+      type: 'reference',
+      to: [{ type: 'artist' }],
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'mainImage',
       title: 'Main image',
       type: 'image',
       options: {
         hotspot: true,
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'backImage',
@@ -35,33 +43,39 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'price',
       title: 'Price',
       type: 'number',
-    }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-      rows: 4,
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'category',
       title: 'Category',
       type: 'string',
+      options: {
+        list: [
+          { title: 'T-Shirt', value: 'T-shirt' },
+          { title: 'Hoodie', value: 'Hoodie' },
+          { title: 'Long sleeve', value: 'Long sleeve' },
+        ],
+      },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'tags',
-      title: 'Tags',
+      name: 'variants',
+      title: 'Variants',
       type: 'array',
-      of: [{ type: 'string' }],
+      of: [{ type: 'productVariant' }],
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'body',
-      title: 'Body',
-      type: 'blockContent',
+      name: 'relatedProducts',
+      title: 'Related products',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'product' }] }],
     }),
   ],
   preview: {

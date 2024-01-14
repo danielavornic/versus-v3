@@ -26,7 +26,7 @@ const HomeHeader = () => {
     <>
       <header
         className={clsx('h-[80px] w-screen flex items-center', {
-          'bg-white text-black': isShop,
+          'bg-[#fff] text-black': isShop,
           'bg-black text-alm-white': !isShop,
         })}
       >
