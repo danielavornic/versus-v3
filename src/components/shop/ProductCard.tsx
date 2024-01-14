@@ -5,7 +5,7 @@ import { urlForImage } from '~/lib/sanity.image'
 import { Product } from '~/lib/sanity.queries'
 
 const ProductCard = ({ product }: { product: Product }) => {
-  const { title, slug, category, price, mainImage, backImage } = product
+  const { title, slug, artist, category, price, mainImage, backImage } = product
 
   const [isHovered, setIsHovered] = useState(false)
 
@@ -24,19 +24,21 @@ const ProductCard = ({ product }: { product: Product }) => {
           Adaugă în coș
         </button>
 
-        <img
-          src={
-            isHovered
-              ? urlForImage(backImage)?.url()
-              : urlForImage(mainImage)?.url()
-          }
-          alt={title}
-          className="w-full absolute left-0 right-0 bottom-0 h-[92%] top-1/2 translate-y-[-50%]  object-contain "
-        />
+        <Link href={`/shop/${artist?.toLowerCase()}/${slug.current}`}>
+          <img
+            src={
+              isHovered
+                ? urlForImage(backImage)?.url()
+                : urlForImage(mainImage)?.url()
+            }
+            alt={title}
+            className="w-full absolute left-0 right-0 bottom-0 h-[92%] top-1/2 translate-y-[-50%]  object-contain "
+          />
+        </Link>
       </div>
 
       <Link
-        href={`/shop/satoshi/${slug.current}`}
+        href={`/shop/${artist?.toLowerCase()}/${slug.current}`}
         className="flex flex-col items-center space-y-[12px]"
       >
         <span className="uppercase text-xl font-semibold !leading-tight">

@@ -16,10 +16,7 @@ export const getServerSideProps: GetServerSideProps<
   }
 > = async ({ draftMode = false }) => {
   const client = getClient(draftMode ? { token: readToken } : undefined)
-  const products = await getProductsByArtist(
-    client,
-    'd07da7e2-6ee9-4260-a81b-f53bce1f993b',
-  )
+  const products = await getProductsByArtist(client, 'satoshi')
 
   return {
     props: {
@@ -32,8 +29,8 @@ export const getServerSideProps: GetServerSideProps<
 
 const SatoshiMerch = ({ products }: { products: Product[] }) => {
   return (
-    <Layout title="Satoshi Merch" className="bg-white">
-      <section className="bg-[#fff] pt-[43px] lg:pt-[34px] pb-[220px] md:pb-[120px] lg:pb-[70px]">
+    <Layout title="Satoshi Merch" className="bg-[#fff]">
+      <section>
         <div className="container relative">
           <MerchTitle
             mobileTitle="Merch Satoshi"
@@ -44,10 +41,9 @@ const SatoshiMerch = ({ products }: { products: Product[] }) => {
               <ProductCard key={product._id} product={product} />
             ))}
           </div>
-
-          <RelatedMerchBanners artist="satoshi" />
         </div>
       </section>
+      <RelatedMerchBanners artist="satoshi" />
     </Layout>
   )
 }

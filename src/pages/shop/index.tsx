@@ -24,7 +24,7 @@ const merchCards = [
 const ShopPage = () => {
   return (
     <Layout title="Shop Merch">
-      <section className="bg-white pt-[43px] lg:pt-[34px] pb-[220px] md:pb-[120px]">
+      <section className="bg-[#fff] pt-[43px] lg:pt-[34px] pb-[220px] md:pb-[120px]">
         <div className="container relative md:min-h-[90px]">
           <MerchTitle mobileTitle="Merch" desktopTitle="Versus Merch" />
 

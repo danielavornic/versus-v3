@@ -41,13 +41,21 @@ export async function getProductBySlug(
   return await client.fetch(productBySlugQuery, { slug })
 }
 
+export async function getProductById(
+  client: SanityClient,
+  id: string,
+): Promise<Product> {
+  return await client.fetch(productByIdQuery, { id })
+}
+
 export const artistQuery = groq`*[_type == "artist"] | order(_createdAt asc)`
 export const releasesQuery = groq`*[_type == "release" && isPublished == true] | order(date desc)`
 export const projectsQuery = groq`*[_type == "project"] | order(_createdAt asc)`
 export const productionWorksQuery = groq`*[_type == "productionWork"] | order(_createdAt asc)`
-export const productsByArtistQuery = groq`*[_type == "product" && artist._ref == $artistId]`
+export const productsByArtistQuery = groq`*[_type == "product" && artist == $artistId]`
 export const productVariantQuery = groq`*[_type == "productVariant"]`
 export const productBySlugQuery = groq`*[_type == "product" && slug.current == $slug][0]`
+export const productByIdQuery = groq`*[_type == "product" && _id == $id][0]`
 
 export interface Post {
   _type: 'post'
@@ -71,7 +79,7 @@ export interface Product {
   _createdAt: string
   title: string
   slug: Slug
-  artist: Artist
+  artist: any
   mainImage: ImageAsset
   backImage: ImageAsset
   price: number
@@ -81,6 +89,7 @@ export interface Product {
 }
 
 export interface Artist {
+  toLowerCase(): unknown
   _type: 'artist'
   _id: string
   _createdAt: string

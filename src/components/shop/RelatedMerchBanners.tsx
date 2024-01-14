@@ -48,11 +48,11 @@ const RelatedMerchBanners = ({ artist }: RelatedMerchBannerProps) => {
   const images = artists.filter((a) => a !== artist)
 
   return (
-    <div className="flex flex-col lg:flex-row gap-5 w-full lg:gap-0">
+    <section className="pb-[220px] md:pb-[120px] bg-[#fff] lg:pb-[70px] container flex flex-col lg:flex-row gap-5 w-full lg:gap-0">
       {images.map((img, index) => (
         <Banner artist={img} key={index} />
       ))}
-    </div>
+    </section>
   )
 }
 

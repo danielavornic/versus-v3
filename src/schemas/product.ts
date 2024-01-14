@@ -23,9 +23,14 @@ export default defineType({
     defineField({
       name: 'artist',
       title: 'Artist',
-      type: 'reference',
-      to: [{ type: 'artist' }],
-      validation: (Rule) => Rule.required(),
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Satoshi', value: 'satoshi' },
+          { title: 'Dara', value: 'dara' },
+          { title: "Carla's Dreams", value: 'csd' },
+        ],
+      },
     }),
     defineField({
       name: 'mainImage',
