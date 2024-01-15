@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
