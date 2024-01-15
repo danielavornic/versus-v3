@@ -77,7 +77,7 @@ const ProductVariantsControls = ({
 
   useEffect(() => {
     setQty(1)
-  }, [selectedSize, selectedColor])
+  }, [selectedSize, selectedColor, setQty])
 
   useEffect(() => {
     if (!selectedSize || !selectedColor) {
