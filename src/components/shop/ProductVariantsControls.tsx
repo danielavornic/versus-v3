@@ -2,11 +2,14 @@
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
+import { ProductSize } from 'types/product'
+
 import { Product } from '~/lib/sanity.queries'
 
 interface ProductVariantsControlsProps {
   product: Product
   qty: number
+  artist: string
   setQty: (qty: number) => void
 }
 
@@ -21,10 +24,25 @@ const PropertyOptions = ({ title, options, selectedOption, onClick }) => {
             key={option}
             onClick={() => onClick(option)}
             className={clsx(
-              'border-[1px] px-[10px] flex items-center justify-center h-[30px] border-alm-white text-[12px]',
+              'border-[1px] px-[10px] flex items-center font-medium justify-center h-[30px] border-alm-white text-[12px]',
               {
-                'border-black': option === selectedOption,
+                'border-black':
+                  (option === selectedOption && isSize) || option === 'black',
+
                 'uppercase w-[30px]': isSize,
+
+                'border-green': option === 'green',
+                'bg-green': selectedOption === 'green' && option === 'green',
+
+                'border-alm-white': option === 'white',
+                'bg-alm-white':
+                  selectedOption === 'white' && option === 'white',
+
+                'border-hot-pink': option === 'pink',
+                'bg-hot-pink': selectedOption === 'pink' && option === 'pink',
+
+                'bg-black text-white':
+                  selectedOption === 'black' && option === 'black',
               },
             )}
           >
@@ -40,22 +58,14 @@ const ProductVariantsControls = ({
   product,
   qty,
   setQty,
+  artist,
 }: ProductVariantsControlsProps) => {
-  const { variants } = product
+  const { variants, color: selectedColor } = product
 
-  const { query, push, pathname } = useRouter()
-  const { size: selectedSize, color: selectedColor } = query
+  const { query, push } = useRouter()
+  const { size: selectedSize } = query
 
-  const stock = variants.find(
-    (variant) => variant.size === query.size && variant.color === query.color,
-  )?.stock
-
-  const availableSizes = []
-  variants.forEach((variant) => {
-    if (!availableSizes.includes(variant.size)) {
-      availableSizes.push(variant.size)
-    }
-  })
+  const availableSizes = Object.values(ProductSize)
 
   const availableColors = []
   variants.forEach((variant) => {
@@ -70,10 +80,33 @@ const ProductVariantsControls = ({
     }
   }
 
-  const increaseQty = () => {
-    if (qty < stock) {
-      setQty(qty + 1)
-    }
+  const increaseQty = () => setQty(qty + 1)
+
+  const handleSizeClick = (size) => {
+    push(
+      {
+        pathname: `/shop/${artist}/[...slug]`,
+        query: {
+          ...query,
+          size,
+        },
+      },
+      undefined,
+      { shallow: true },
+    )
+  }
+
+  const handleColorClick = (color) => {
+    const product = variants.find((variant) => variant.color === color).product
+
+    if (!product) return
+
+    push({
+      pathname: `/shop/${artist}/${product.slug.current}`,
+      query: {
+        size: selectedSize,
+      },
+    })
   }
 
   useEffect(() => {
@@ -84,11 +117,10 @@ const ProductVariantsControls = ({
     if (!selectedSize || !selectedColor) {
       push(
         {
-          pathname: '/shop/satoshi/[...slug]',
+          pathname: `/shop/${artist}/[...slug]`,
           query: {
             ...query,
             ...(!selectedSize && { size: availableSizes[0] }),
-            ...(!selectedColor && { color: availableColors[0] }),
           },
         },
         undefined,
@@ -103,38 +135,14 @@ const ProductVariantsControls = ({
         title="Size"
         options={availableSizes}
         selectedOption={selectedSize}
-        onClick={(size) => {
-          push(
-            {
-              pathname: '/shop/satoshi/[...slug]',
-              query: {
-                ...query,
-                size,
-              },
-            },
-            undefined,
-            { shallow: true },
-          )
-        }}
+        onClick={handleSizeClick}
       />
 
       <PropertyOptions
         title="Color"
         options={availableColors}
         selectedOption={selectedColor}
-        onClick={(color) => {
-          push(
-            {
-              pathname: '/shop/satoshi/[...slug]',
-              query: {
-                ...query,
-                color,
-              },
-            },
-            undefined,
-            { shallow: true },
-          )
-        }}
+        onClick={handleColorClick}
       />
 
       <div className="space-y-[15px] flex flex-col items-center lg:items-start">
@@ -150,13 +158,7 @@ const ProductVariantsControls = ({
             {qty}
           </span>
           <button
-            className={clsx(
-              'border-[1px] w-[30px] h-[30px] border-alm-white text-[12px] uppercase',
-              {
-                'cursor-not-allowed': qty === stock,
-              },
-            )}
-            title={qty === stock ? 'No more stock' : undefined}
+            className="border-[1px] w-[30px] h-[30px] border-alm-white text-[12px] uppercase"
             onClick={increaseQty}
           >
             +

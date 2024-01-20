@@ -74,6 +74,19 @@ export default defineType({
       title: 'Variants',
       type: 'array',
       of: [{ type: 'productVariant' }],
+    }),
+    defineField({
+      name: 'color',
+      title: 'Color',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Negru', value: 'black' },
+          { title: 'Verde', value: 'green' },
+          { title: 'Alb', value: 'white' },
+          { title: 'Roz', value: 'pink' },
+        ],
+      },
       validation: (Rule) => Rule.required(),
     }),
     defineField({

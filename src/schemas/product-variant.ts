@@ -6,19 +6,6 @@ export default defineType({
   type: 'object',
   fields: [
     {
-      name: 'size',
-      title: 'Size',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'Small', value: 'small' },
-          { title: 'Medium', value: 'medium' },
-          { title: 'Large', value: 'large' },
-        ],
-      },
-      validation: (Rule) => Rule.required(),
-    },
-    {
       name: 'color',
       title: 'Color',
       type: 'string',
@@ -33,10 +20,16 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     },
     {
-      name: 'stock',
-      title: 'Stock',
-      type: 'number',
-      validation: (Rule) => Rule.required(),
+      name: 'product',
+      title: 'Product',
+      type: 'reference',
+      to: [{ type: 'product' }],
     },
+    // {
+    //   name: 'stock',
+    //   title: 'Stock',
+    //   type: 'number',
+    //   validation: (Rule) => Rule.required(),
+    // },
   ],
 })

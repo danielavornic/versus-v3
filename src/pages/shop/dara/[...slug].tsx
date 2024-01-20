@@ -27,6 +27,21 @@ export const getServerSideProps: GetServerSideProps<
   )
   const relatedProducts = await Promise.all(relatedProductsPromises || [])
 
+  const productVariantsPromises = product?.variants.map(
+    async (variant: any) => {
+      return await getProductById(client, variant.product._ref)
+    },
+  )
+
+  const productVariants = await Promise.all(productVariantsPromises || [])
+
+  product.variants.forEach((variant: any) => {
+    const product = productVariants.find(
+      (product) => product._id === variant.product._ref,
+    )
+    variant.product = product
+  })
+
   return {
     props: {
       draftMode,
@@ -43,30 +58,31 @@ const SatoshiProduct = ({
 }: {
   product: Product
   relatedProducts: Product[]
+  productVariants: Product[]
 }) => {
   const { title } = product
-  console.log(product)
+  console.log(product, relatedProducts)
 
   return (
     <Layout title={title} className="bg-[#fff]">
       <img
-        src="/images/shop/satoshi-name.png"
-        alt="satoshi"
+        src="/images/shop/dara-name.png"
+        alt="dara"
         className="absolute left-0 z-1 hidden 1.5xl:block top-[300px]"
       />
       <section>
         <div className="container relative">
           <MerchTitle
-            mobileTitle="Merch Satoshi"
-            desktopTitle="Merch Satoshi"
+            mobileTitle="Merch Dara"
+            desktopTitle="Merch Dara"
             hideGrayTitles
-            link="/shop/satoshi"
+            link="/shop/dara"
           />
         </div>
       </section>
       <ProductOverview product={product} />
-      <RelatedProducts products={relatedProducts} hasPadding />
-      <RelatedMerchBanners artist="satoshi" />
+      <RelatedProducts products={relatedProducts} />
+      <RelatedMerchBanners artist="dara" />
     </Layout>
   )
 }

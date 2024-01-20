@@ -26,7 +26,7 @@ const MerchTitle = ({
             'text-transparent': hideGrayTitles,
           })}
         >
-          MERCH
+          MERCH MERCH
         </span>
         <div className="flex items-start pr-[18px] xl:pr-[30px] 1.5xl:pr-[24px]">
           <h1 className="text-black">{desktopTitle}</h1>
@@ -41,7 +41,7 @@ const MerchTitle = ({
             'text-transparent': hideGrayTitles,
           })}
         >
-          MERCH
+          MERCH MERCH
         </span>
       </div>
     </div>

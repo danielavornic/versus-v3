@@ -1,7 +1,14 @@
 import { Product } from '~/lib/sanity.queries'
+
 import ProductCard from './ProductCard'
 
-const RelatedProducts = ({ products }: { products: Product[] }) => {
+const RelatedProducts = ({
+  products,
+  hasPadding = false,
+}: {
+  products: Product[]
+  hasPadding?: boolean
+}) => {
   return (
     <section className="pb-[120px]">
       <div className="container">
@@ -11,7 +18,11 @@ const RelatedProducts = ({ products }: { products: Product[] }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[32px] lg:gap-[70px] max-w-[970px] mx-auto">
           {products?.map((product: Product) => (
-            <ProductCard key={product._id} product={product} />
+            <ProductCard
+              key={product._id}
+              product={product}
+              hasPadding={hasPadding}
+            />
           ))}
         </div>
       </div>

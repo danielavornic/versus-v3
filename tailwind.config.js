@@ -18,6 +18,7 @@ module.exports = {
         gray: '#1E2124',
         green: '#80ED99',
         red: '#BD2E50',
+        'hot-pink': '#F883FB',
       },
       backgroundImage: {
         subscribeGradient:

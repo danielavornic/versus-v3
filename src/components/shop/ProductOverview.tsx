@@ -1,10 +1,12 @@
-import { urlForImage } from '~/lib/sanity.image'
-import { Product } from '~/lib/sanity.queries'
-import ProductVariantsControls from './ProductVariantsControls'
 import { useState } from 'react'
 
+import { urlForImage } from '~/lib/sanity.image'
+import { Product } from '~/lib/sanity.queries'
+
+import ProductVariantsControls from './ProductVariantsControls'
+
 const ProductOverview = ({ product }: { product: Product }) => {
-  const { title, price, category, mainImage, backImage } = product
+  const { title, price, category, mainImage, backImage, artist } = product
 
   const [isHovered, setIsHovered] = useState(false)
   const [qty, setQty] = useState(1)
@@ -16,7 +18,7 @@ const ProductOverview = ({ product }: { product: Product }) => {
           <div
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className="pt-[100%] w-full 3xl:px-[57px] 1.5xl:py-[42px] cursor-pointer 1.5xl:h-[650px] relative lg:inline-block lg:h-fit max-w-[650px] lg:min-w-[500px] 1.5xl:min-w-[650px] lg:pt-0 flex items-center justify-center transition-all group-hover:bg-opacity-20"
+            className="pt-[100%] w-full 3xl:px-[57px]  cursor-pointer 1.5xl:h-[650px] relative lg:inline-block lg:h-fit max-w-[650px] lg:min-w-[500px] 1.5xl:min-w-[650px] lg:pt-0 flex items-center justify-center transition-all group-hover:bg-opacity-20"
           >
             <img
               src={
@@ -42,6 +44,7 @@ const ProductOverview = ({ product }: { product: Product }) => {
               product={product}
               qty={qty}
               setQty={setQty}
+              artist={artist}
             />
 
             <div className="space-y-[28px]">

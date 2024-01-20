@@ -68,9 +68,8 @@ export interface Post {
   body: PortableTextBlock[]
 }
 interface ProductVariant {
-  size: 'small' | 'medium' | 'large'
   color: 'black' | 'green' | 'white' | 'pink'
-  stock: number
+  product: Product // slug
 }
 
 export interface Product {
@@ -86,6 +85,7 @@ export interface Product {
   variants: ProductVariant[]
   relatedProducts?: Product[]
   category: 'tshirt' | 'hoodie' | 'longsleeve'
+  color: 'black' | 'green' | 'white' | 'pink'
 }
 
 export interface Artist {

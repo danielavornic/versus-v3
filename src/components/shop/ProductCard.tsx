@@ -1,10 +1,17 @@
+import clsx from 'clsx'
 import Link from 'next/link'
 import { useState } from 'react'
 
 import { urlForImage } from '~/lib/sanity.image'
 import { Product } from '~/lib/sanity.queries'
 
-const ProductCard = ({ product }: { product: Product }) => {
+const ProductCard = ({
+  product,
+  hasPadding = false,
+}: {
+  product: Product
+  hasPadding?: boolean
+}) => {
   const { title, slug, artist, category, price, mainImage, backImage } = product
 
   const [isHovered, setIsHovered] = useState(false)
@@ -32,7 +39,12 @@ const ProductCard = ({ product }: { product: Product }) => {
                 : urlForImage(mainImage)?.url()
             }
             alt={title}
-            className="w-full absolute left-0 right-0 bottom-0 h-[92%] top-1/2 translate-y-[-50%]  object-contain "
+            className={clsx(
+              'w-full absolute left-0 right-0 bottom-0  top-1/2 translate-y-[-50%]  object-contain ',
+              {
+                'h-[92%]': hasPadding,
+              },
+            )}
           />
         </Link>
       </div>
