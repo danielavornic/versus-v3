@@ -3,12 +3,12 @@ import clsx from 'clsx'
 import { Unbounded } from 'next/font/google'
 import localFont from 'next/font/local'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { PropsWithChildren } from 'react'
 
 import Footer from './Footer'
-import HomeHeader from './HomeHeader'
+import Header from './Header'
 import LeftSocialsBar from './LeftSocialsBar'
-import { useRouter } from 'next/router'
 
 const unbounded = Unbounded({
   subsets: ['latin-ext'],
@@ -48,9 +48,12 @@ const Layout = ({
       </Head>
 
       <ReactLenis root>
-        <div className={clsx(unbounded.variable, oktaNeue.variable, className)}>
+        <div
+          className={clsx(unbounded.variable, oktaNeue.variable, className)}
+          id="app"
+        >
           {!isShop && <LeftSocialsBar />}
-          <HomeHeader />
+          <Header />
           <main>{children}</main>
           {hasFooter && <Footer desktopHidden={hasOnlyMobileFooter} />}
         </div>

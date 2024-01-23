@@ -29,7 +29,7 @@ const Banner = ({ artist }: { artist: string }) => {
           }}
         />
         <div
-          className={clsx('flex w-2/3 justify-center', {
+          className={clsx('w-2/3 justify-center hidden lg:flex', {
             'bg-[#A9B0B8] text-white': artist === 'dara',
             'bg-[#454848] text-white': artist === 'csd',
             'bg-[#EDEDEE] text-black': artist === 'satoshi',

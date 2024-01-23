@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import Div100vh from 'react-div-100vh'
 
 import { Facebook, Instagram, TikTok, YouTube } from '~/icons'
 
@@ -23,7 +24,7 @@ const socials = [
 
 const LeftSocialsBar = () => {
   return (
-    <div className="h-screen hidden xl:flex fixed bottom-0 left-[17px] flex-col justify-center">
+    <Div100vh className="hidden xl:flex fixed bottom-0 left-[17px] flex-col justify-center">
       <ul className="space-y-[14px]">
         {socials.map(({ icon, link }, i) => (
           <li key={i} className="flex items-center justify-center">
@@ -46,7 +47,7 @@ const LeftSocialsBar = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </Div100vh>
   )
 }
 

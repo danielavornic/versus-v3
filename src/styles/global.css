@@ -74,12 +74,25 @@ body::-webkit-scrollbar {
 }
 
 .white-scrollbar::-webkit-scrollbar-track {
-  @apply bg-gray;
+  @apply bg-alm-white;
 }
 
 .white-scrollbar::-webkit-scrollbar-thumb {
-  @apply bg-white rounded-[1px];
+  @apply bg-black rounded-[1px];
 }
+
+.black-scrollbar::-webkit-scrollbar {
+  @apply w-[5px];
+}
+
+.black-scrollbar::-webkit-scrollbar-track {
+  @apply bg-alm-white;
+}
+
+.black-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-black rounded-[1px];
+}
+
 
 .production-swiper .swiper-wrapper {
   @apply items-center

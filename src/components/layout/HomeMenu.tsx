@@ -2,7 +2,9 @@
 import clsx from 'clsx'
 import { gsap } from 'gsap'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useLayoutEffect } from 'react'
+import Div100vh from 'react-div-100vh'
 
 import { Facebook, Instagram, YouTube } from '~/icons'
 
@@ -34,6 +36,9 @@ const menuLinks = [
 ]
 
 const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
+  const { pathname } = useRouter()
+  const isShop = pathname.includes('/shop')
+
   useLayoutEffect(() => {
     if (!isOpen) return
 
@@ -69,12 +74,14 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
   }, [isOpen])
 
   return (
-    <div
+    <Div100vh
       className={clsx(
-        'fixed top-0 z-30 h-screen w-full flex bg-black text-alm-white transition-all items-stretch duration-700 ease-out',
+        'fixed top-0 z-30 w-full flex text-alm-white transition-all items-stretch duration-700 ease-out',
         {
           'opacity-100 visible': isOpen,
           'opacity-0 pointer-events-none': !isOpen,
+          'bg-black': !isShop,
+          'bg-[#fff]': isShop,
         },
       )}
     >
@@ -146,7 +153,7 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
         </div>
       </div>
       <div className="w-[30px] lg:w-[50px] h-full" />
-    </div>
+    </Div100vh>
   )
 }
 

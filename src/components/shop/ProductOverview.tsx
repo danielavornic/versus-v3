@@ -35,7 +35,7 @@ const ProductOverview = ({ product }: { product: Product }) => {
             <span className="uppercase text-xl font-bold !leading-[1]">
               {category}
             </span>
-            <h1 className="text-[43px] leading-[1] my-[24px] font-medium">
+            <h1 className="text-[43px] leading-[1] my-[24px] font-medium text-center lg:text-left">
               {title}
             </h1>
             <span className="text-xl leading-[1]">{price}.0 MDL</span>

@@ -4,6 +4,8 @@ import { useState } from 'react'
 
 import { urlForImage } from '~/lib/sanity.image'
 import { Product } from '~/lib/sanity.queries'
+import { addToCart } from '~/store/cartSlice'
+import { useAppDispatch } from '~/store/hooks'
 
 const ProductCard = ({
   product,
@@ -14,6 +16,7 @@ const ProductCard = ({
 }) => {
   const { title, slug, artist, category, price, mainImage, backImage } = product
 
+  const dispatch = useAppDispatch()
   const [isHovered, setIsHovered] = useState(false)
 
   return (
@@ -27,7 +30,10 @@ const ProductCard = ({
           {price} MDL
         </div>
 
-        <button className="z-[1] bg-black hover:bg-opacity-[85%] active:bg-alm-white transition-all opacity-0 group-hover:opacity-100 font-medium bottom-5 absolute mx-auto right-0 left-0 w-[230px] h-[44px] text-white flex items-center justify-center text-lg !leading-[1]">
+        <button
+          onClick={() => dispatch(addToCart({ product, qty: 1, size: 's' }))}
+          className="z-[1] bg-black hover:bg-opacity-[85%] active:bg-alm-white transition-all opacity-0 group-hover:opacity-100 font-medium bottom-5 absolute mx-auto right-0 left-0 w-[230px] h-[44px] text-white flex items-center justify-center text-lg !leading-[1]"
+        >
           Adaugă în coș
         </button>
 

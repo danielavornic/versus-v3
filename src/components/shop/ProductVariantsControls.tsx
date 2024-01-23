@@ -5,6 +5,8 @@ import React, { useEffect } from 'react'
 import { ProductSize } from 'types/product'
 
 import { Product } from '~/lib/sanity.queries'
+import { addToCart } from '~/store/cartSlice'
+import { useAppDispatch } from '~/store/hooks'
 
 interface ProductVariantsControlsProps {
   product: Product
@@ -15,6 +17,7 @@ interface ProductVariantsControlsProps {
 
 const PropertyOptions = ({ title, options, selectedOption, onClick }) => {
   const isSize = title === 'Size'
+
   return (
     <div className="space-y-[15px] flex flex-col items-center lg:items-start">
       <span className="text-xl font-semibold uppercase">{title}</span>
@@ -62,6 +65,8 @@ const ProductVariantsControls = ({
 }: ProductVariantsControlsProps) => {
   const { variants, color: selectedColor } = product
 
+  const dispatch = useAppDispatch()
+
   const { query, push } = useRouter()
   const { size: selectedSize } = query
 
@@ -107,6 +112,10 @@ const ProductVariantsControls = ({
         size: selectedSize,
       },
     })
+  }
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({ product, qty, size: String(selectedSize) }))
   }
 
   useEffect(() => {
@@ -166,7 +175,10 @@ const ProductVariantsControls = ({
         </div>
       </div>
 
-      <button className="bg-black hover:bg-opacity-[85%] active:bg-alm-white transition-all font-medium mx-auto w-[230px] h-[44px] text-white flex items-center justify-center text-lg !leading-[1]">
+      <button
+        onClick={handleAddToCart}
+        className="bg-black hover:bg-opacity-[85%] active:bg-alm-white transition-all font-medium mx-auto w-[230px] h-[44px] text-white flex items-center justify-center text-lg !leading-[1]"
+      >
         Adaugă în coș
       </button>
     </div>

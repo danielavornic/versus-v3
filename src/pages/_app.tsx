@@ -12,7 +12,10 @@ import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { lazy } from 'react'
 import { useLayoutEffect } from 'react'
+import { Provider } from 'react-redux'
 import SplitType from 'split-type'
+
+import { store } from '~/store'
 
 export interface SharedPageProps {
   draftMode: boolean
@@ -163,13 +166,15 @@ export default function App({
 
   return (
     <QueryClientProvider client={queryClient}>
-      {draftMode ? (
-        <PreviewProvider token={token}>
+      <Provider store={store}>
+        {draftMode ? (
+          <PreviewProvider token={token}>
+            <Component {...pageProps} />
+          </PreviewProvider>
+        ) : (
           <Component {...pageProps} />
-        </PreviewProvider>
-      ) : (
-        <Component {...pageProps} />
-      )}
+        )}
+      </Provider>
     </QueryClientProvider>
   )
 }
