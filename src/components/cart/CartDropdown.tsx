@@ -87,7 +87,7 @@ const CartDropdown = ({ isOpen, setIsOpen }: CartDropdownProps) => {
               <span className="text-[20px]">{cart.total}.0 MDL</span>
             </div>
             <Link
-              href="/checkout"
+              href="/shop/checkout"
               className="w-[300px] h-[48px] bg-black text-white hover:bg-opacity-[0.85] focus:bg-alm-white transition-all  text-[18px] font-medium mx-auto mt-[42px] mb-[25px] text-center flex items-center justify-center"
             >
               Finalizează

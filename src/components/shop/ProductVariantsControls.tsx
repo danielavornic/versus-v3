@@ -2,11 +2,11 @@
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
-import { ProductSize } from 'types/product'
 
 import { Product } from '~/lib/sanity.queries'
 import { addToCart } from '~/store/cartSlice'
 import { useAppDispatch } from '~/store/hooks'
+import { ProductSize } from '~/types/product'
 
 interface ProductVariantsControlsProps {
   product: Product
@@ -105,6 +105,8 @@ const ProductVariantsControls = ({
     const product = variants.find((variant) => variant.color === color).product
 
     if (!product) return
+
+    console.log(product)
 
     push({
       pathname: `/shop/${artist}/${product.slug.current}`,

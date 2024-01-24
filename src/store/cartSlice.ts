@@ -1,8 +1,8 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
-import { CartItem } from 'types/product'
 
 import { Product } from '~/lib/sanity.queries'
+import { CartItem } from '~/types/product'
 
 interface CartState {
   items: CartItem[]

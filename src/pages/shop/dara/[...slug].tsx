@@ -61,7 +61,6 @@ const SatoshiProduct = ({
   productVariants: Product[]
 }) => {
   const { title } = product
-  console.log(product, relatedProducts)
 
   return (
     <Layout title={title} className="bg-[#fff]">

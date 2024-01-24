@@ -20,10 +20,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     ref,
   ) => {
     const containerClassNames = clsx(
-      'h-[50px] px-[13px] text-[12px] border border-alm-white rounded-[10px] placeholder:text-alm-white bg-black w-full focus:outline-none text-white',
+      'h-[50px] px-[13px] text-[12px] border rounded-[10px] placeholder:text-alm-white w-full focus:outline-none',
       {
         '!border-red': isError,
         '!border-green': isCompleted,
+        'border-alm-white bg-black text-white': theme === 'dark',
+        'border-black bg-[#fff] text-black': theme === 'light',
       },
       props.className,
     )
@@ -43,7 +45,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         {leftComponent}
         <input
           ref={ref}
-          className="w-full bg-black ml-[12px] border-l my-[15px] border-alm-white pl-[12px] focus:outline-none"
+          className={clsx(
+            'w-full  ml-[12px] border-l my-[15px]  pl-[12px] focus:outline-none',
+            {
+              'bg-black border-alm-white': theme === 'dark',
+              'bg-[#fff] border-black': theme === 'light',
+            },
+          )}
           autoComplete="nope"
           {...props}
         />

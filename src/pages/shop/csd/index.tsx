@@ -33,8 +33,8 @@ const SatoshiMerch = ({ products }: { products: Product[] }) => {
       <section>
         <div className="container relative">
           <MerchTitle
-            mobileTitle="Carla's Dreams"
-            desktopTitle="Carla's Dreams"
+            mobileTitle="Merch Carla's Dreams"
+            desktopTitle="Merch Carla's Dreams"
           />
           <div className="mb-[120px] 3xl:mb-[320px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 1.5xl:gap-[70px] max-w-[1490px] mx-auto">
             {products?.map((product: Product) => (

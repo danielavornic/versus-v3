@@ -2,11 +2,11 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { useState } from 'react'
 import { useSwipeable } from 'react-swipeable'
-import { CartItem } from 'types/product'
 
 import { urlForImage } from '~/lib/sanity.image'
 import { removeFromCart } from '~/store/cartSlice'
 import { useAppDispatch } from '~/store/hooks'
+import { CartItem } from '~/types/product'
 
 const CartItem = ({ item }: { item: CartItem }) => {
   const { product, quantity, size } = item

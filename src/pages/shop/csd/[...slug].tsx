@@ -27,6 +27,21 @@ export const getServerSideProps: GetServerSideProps<
   )
   const relatedProducts = await Promise.all(relatedProductsPromises || [])
 
+  const productVariantsPromises = product?.variants.map(
+    async (variant: any) => {
+      return await getProductById(client, variant.product._ref)
+    },
+  )
+
+  const productVariants = await Promise.all(productVariantsPromises || [])
+
+  product.variants.forEach((variant: any) => {
+    const product = productVariants.find(
+      (product) => product._id === variant.product._ref,
+    )
+    variant.product = product
+  })
+
   return {
     props: {
       draftMode,
@@ -37,7 +52,7 @@ export const getServerSideProps: GetServerSideProps<
   }
 }
 
-const SatoshiProduct = ({
+const CSDProduct = ({
   product,
   relatedProducts,
 }: {
@@ -45,7 +60,6 @@ const SatoshiProduct = ({
   relatedProducts: Product[]
 }) => {
   const { title } = product
-  console.log(product)
 
   return (
     <Layout title={title} className="bg-[#fff]">
@@ -71,4 +85,4 @@ const SatoshiProduct = ({
   )
 }
 
-export default SatoshiProduct
+export default CSDProduct
