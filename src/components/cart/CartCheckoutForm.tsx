@@ -1,5 +1,6 @@
+import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { clearCart } from '~/store/cartSlice'
@@ -7,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '~/store/hooks'
 
 import Checkbox from '../common/Checkbox'
 import Input from '../common/Input'
+import LoadingButton from '../common/LoadingButton'
 
 type CheckoutFormData = {
   firstName: string
@@ -26,10 +28,14 @@ const CartCheckoutForm = () => {
   const [isPickupChecked, setIsPickupChecked] = useState(false)
   const [isPaymentChecked, setIsPaymentChecked] = useState(false)
   const [isTermsChecked, setIsTermsChecked] = useState(false)
+  const [buttonState, setButtonState] = useState('')
+  const [showLoadingBtn, setShowLoadingBtn] = useState(false)
 
   const {
     register,
     watch,
+    reset,
+    handleSubmit,
     formState: { errors },
   } = useForm<CheckoutFormData>({
     mode: 'onChange',
@@ -41,15 +47,50 @@ const CartCheckoutForm = () => {
     watch('lastName') &&
     watch('email') &&
     watch('phone') &&
-    watch('isPickupChecked') &&
-    watch('isPaymentChecked') &&
-    watch('isTermsChecked')
+    isPaymentChecked &&
+    isPickupChecked &&
+    isTermsChecked
 
-  const onSubmit = () => {
-    console.log('submit')
-    dispatch(clearCart())
-    push('/shop/checkout-sucess')
-  }
+  const onSubmit = () => mutate()
+
+  const { mutate } = useMutation({
+    mutationFn: () => {
+      const res = fetch('/api/checkout', {
+        method: 'POST',
+        body: JSON.stringify({
+          firstName: watch('firstName'),
+          lastName: watch('lastName'),
+          email: watch('email'),
+          phone: watch('phone'),
+          isPickupChecked,
+          isPaymentChecked,
+          isTermsChecked,
+        }),
+      })
+      console.log(res)
+      return res
+    },
+    onSuccess: () => {
+      setTimeout(() => {
+        reset()
+        setIsTermsChecked(undefined)
+        setIsPickupChecked(undefined)
+        setIsPaymentChecked(undefined)
+        setButtonState('success')
+        dispatch(clearCart())
+      }, 3000)
+
+      setTimeout(() => {
+        push('/shop/checkout-sucess')
+      }, 4000)
+    },
+  })
+
+  useEffect(() => {
+    if (isCompleted) {
+      setShowLoadingBtn(true)
+    }
+  }, [isCompleted])
 
   return (
     <div className="lg:w-[450px]">
@@ -57,7 +98,7 @@ const CartCheckoutForm = () => {
         Detalii Personale
       </h2>
       <form
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         noValidate
         className="space-y-[15px]"
         id="checkout-form"
@@ -130,14 +171,14 @@ const CartCheckoutForm = () => {
           label="Cash/Card la ridicare"
         />
 
-        <div className="!mt-[42px]">
+        <div className="!mt-[42px] flex flex-col items-center">
           <h4 className="text-center text-[28px] mb-[28px] lg:text-[43px]">
             Total comandă
           </h4>
           <p className="text-[20px] text-center mb-[42px]">
             {cart.total}.0 MDL
           </p>
-          <div className="w-full mx-auto flex justify-center">
+          <div className="w-full mx-auto flex justify-center !mb-[34px]">
             <Checkbox
               {...register('isTermsChecked', {
                 onChange: (e) => setIsTermsChecked(e.target.checked),
@@ -149,13 +190,24 @@ const CartCheckoutForm = () => {
             />
           </div>
 
-          <button
-            type="submit"
-            form="checkout-form"
-            className="w-[132px] font-medium uppercase mx-auto mt-[34px] transition-full hover:bg-opacity-[0.85] h-[48px] bg-black text-white flex items-center justify-center"
-          >
-            Trimite
-          </button>
+          {showLoadingBtn ? (
+            <LoadingButton
+              text="Trimite"
+              type="submit"
+              form="checkout-form"
+              className="mx-auto black"
+              buttonState={buttonState}
+              setButtonState={setButtonState}
+            />
+          ) : (
+            <button
+              type="submit"
+              form="checkout-form"
+              className="h-[64px] w-[240px] border-[2px] border-black font-medium uppercase mx-auto transition-full hover:bg-opacity-[0.85] text-[18px] bg-black text-white flex items-center justify-center"
+            >
+              Trimite
+            </button>
+          )}
         </div>
       </form>
     </div>

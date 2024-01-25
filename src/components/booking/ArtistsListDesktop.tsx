@@ -18,7 +18,7 @@ const ArtistsListDesktop = ({ artists }: { artists: Artist[] }) => {
             className="absolute top-[30px] 1.5xl:top-[40px] 3xl:top-[50px] opacity-0 group-hover:opacity-100 z-10 transition-all ease-in-out duration-500 w-[160px] xl:w-[200px] 1.5xl:w-[210px] 1.5xl:left-[65%] 3xl:w-[280px] left-[65%] transform -translate-x-1/2"
           />
           <Link
-            href={`/booking/artists/?artist=${name}`}
+            href={`/booking?artist=${name}`}
             className={clsx(
               'text-[43px] xl:text-[56px] relative group-hover:text-white xl:leading-[60px] 1.5xl:text-[64px] 1.5xl:leading-[1.1] 2xl:leading-[1] 3xl:text-[92px] hover:text-white font-medium uppercase text-center leading-[48px] transition-all',
               { 'text-gray': artist !== name },

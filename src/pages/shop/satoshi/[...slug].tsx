@@ -45,7 +45,6 @@ const SatoshiProduct = ({
   relatedProducts: Product[]
 }) => {
   const { title } = product
-  console.log(product)
 
   return (
     <Layout title={title} className="bg-[#fff]">

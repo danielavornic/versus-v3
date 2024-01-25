@@ -1,8 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import clsx from 'clsx'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 
 import ArtistsListDesktop from '~/components/booking/ArtistsListDesktop'
 import ArtistsListMobile from '~/components/booking/ArtistsListMobile'
@@ -12,7 +10,7 @@ import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
 import { getArtists } from '~/lib/sanity.queries'
 
-import { SharedPageProps } from '../_app'
+import { SharedPageProps } from './_app'
 
 export const getStaticProps: GetStaticProps<
   SharedPageProps & {
@@ -35,8 +33,6 @@ const BookingArtistsPage = (
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) => {
   const { artists } = props
-  const { query } = useRouter()
-  const { artist } = query
 
   return (
     <Layout

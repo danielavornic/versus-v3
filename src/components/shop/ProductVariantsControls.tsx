@@ -106,8 +106,6 @@ const ProductVariantsControls = ({
 
     if (!product) return
 
-    console.log(product)
-
     push({
       pathname: `/shop/${artist}/${product.slug.current}`,
       query: {

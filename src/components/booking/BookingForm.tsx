@@ -32,10 +32,11 @@ const BookingForm = () => {
     mode: 'onChange',
   })
   const { query } = useRouter()
-  const { artist } = query
 
+  const [artist, setArtist] = useState(query.artist as string)
   const [isTermsChecked, setIsTermsChecked] = useState(undefined)
-  const [buttonState, setButtonState] = useState('nothing')
+  const [buttonState, setButtonState] = useState('')
+  const [showLoadingBtn, setShowLoadingBtn] = useState(false)
 
   const isCompleted =
     !Object.keys(errors).length &&
@@ -69,12 +70,23 @@ const BookingForm = () => {
         setButtonState('success')
         window.scrollTo(0, 0)
       }, 3000)
+
+      setTimeout(() => {
+        setShowLoadingBtn(false)
+      }, 6000)
     },
   })
 
   useEffect(() => {
-    setButtonState('nothing')
-  }, [artist])
+    setArtist(query.artist as string)
+    setButtonState('')
+  }, [query])
+
+  useEffect(() => {
+    if (isCompleted) {
+      setShowLoadingBtn(true)
+    }
+  }, [isCompleted])
 
   return (
     <form
@@ -188,6 +200,7 @@ const BookingForm = () => {
               })}
               checked={isTermsChecked}
               id="terms"
+              theme="dark"
               label="Sunt de acord ca datele personale să fie prelucrate"
             />
           </div>
@@ -216,7 +229,7 @@ const BookingForm = () => {
           Discover Your <br />
           Next Headliner
         </h3>
-        {isCompleted ? (
+        {showLoadingBtn ? (
           <LoadingButton
             text="Get in touch"
             type="submit"

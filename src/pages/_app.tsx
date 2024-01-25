@@ -10,6 +10,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
+import NextProgress from 'next-progress'
 import { lazy } from 'react'
 import { useLayoutEffect } from 'react'
 import { Provider } from 'react-redux'
@@ -172,7 +173,10 @@ export default function App({
             <Component {...pageProps} />
           </PreviewProvider>
         ) : (
-          <Component {...pageProps} />
+          <>
+            <NextProgress color="#80ED99" options={{ showSpinner: false }} />
+            <Component {...pageProps} />
+          </>
         )}
       </Provider>
     </QueryClientProvider>

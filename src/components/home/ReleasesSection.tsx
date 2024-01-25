@@ -33,7 +33,7 @@ const ReleasesSection = ({ releases }: { releases: Release[] }) => {
   return (
     <section className="bg-black text-white py-[150px] lg:py-[165px] lg:px-[50px] 3xl:py-[250px]">
       <div className="flex flex-col 3xl:flex-row 3xl:justify-between 3xl:items-center 3xl:space-y-0 space-y-[80px]">
-        <h2 className="title overflow-hidden mobile-title text-center lg:text-left lg:text-[62px] container lg:px-0 lg:w-auto !leading-tight">
+        <h2 className="revealing-line overflow-hidden mobile-title text-center lg:text-left lg:text-[62px] container lg:px-0 lg:w-auto !leading-tight">
           DON&apos;T STAY <br />
           PRESS PLAY <br />
           NEW TUNES <br />

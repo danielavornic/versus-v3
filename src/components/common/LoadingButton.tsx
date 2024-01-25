@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import ProgressButton from 'react-progress-button'
 
 interface LoadingButtonProps
@@ -5,12 +6,14 @@ interface LoadingButtonProps
   text: string
   buttonState: string
   setButtonState: (state: string) => void
+  theme?: 'black' | 'white'
 }
 
 const LoadingButton = ({
   text,
   buttonState,
   setButtonState,
+  theme = 'white',
   ...props
 }: LoadingButtonProps) => {
   const handleClick = (e) => {

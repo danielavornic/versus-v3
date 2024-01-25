@@ -13,7 +13,7 @@ const ArtistsListMobile = ({ artists }: { artists: Artist[] }) => {
       {artists?.map(({ name }) => (
         <li key={name}>
           <Link
-            href={`/booking/artists/?artist=${name}`}
+            href={`/booking/?artist=${name}`}
             className={clsx(
               'text-[43px] font-medium uppercase text-center leading-[48px] transition-all',
               { 'text-gray': artist !== name },

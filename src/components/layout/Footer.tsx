@@ -1,8 +1,12 @@
+import { useMutation } from '@tanstack/react-query'
 import clsx from 'clsx'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Facebook, Instagram, YouTube } from '~/icons'
+
+import LoadingButton from '../common/LoadingButton'
 
 const footerLinks = [
   {
@@ -19,7 +23,7 @@ const footerLinks = [
   },
   {
     name: 'Prod & Master',
-    link: '/prod-master',
+    link: '/production',
   },
   {
     name: 'Contact',
@@ -30,8 +34,57 @@ const footerLinks = [
 const year = new Date().getFullYear()
 
 const Footer = ({ desktopHidden = false }) => {
-  const { register, handleSubmit } = useForm()
-  const onSubmit = (data) => console.log(data)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+    reset,
+    trigger,
+  } = useForm({
+    mode: 'onChange',
+  })
+  const email = watch('email')
+
+  const [buttonState, setButtonState] = useState('')
+  const [showLoadingBtn, setShowLoadingBtn] = useState(false)
+
+  const onSubmit = () => mutate()
+
+  const { mutate } = useMutation({
+    mutationFn: () => {
+      const res = fetch('/api/subscribe', {
+        method: 'POST',
+        body: JSON.stringify({
+          email,
+        }),
+      })
+      console.log(res)
+      return res
+    },
+    onSuccess: () => {
+      setTimeout(() => {
+        reset()
+        setButtonState('success')
+      }, 3000)
+
+      setTimeout(() => {
+        setShowLoadingBtn(false)
+        setButtonState('')
+      }, 6000)
+    },
+  })
+
+  useEffect(() => {
+    if (errors.email === undefined && email) {
+      setShowLoadingBtn(true)
+    }
+  }, [errors, email])
+
+  useEffect(() => {
+    trigger()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <footer
@@ -66,6 +119,7 @@ const Footer = ({ desktopHidden = false }) => {
           <form
             className="flex flex-col items-center text-center justify-center lg:justify-start md:max-w-[450px] 1.5xl:max-w-[500px]"
             onSubmit={handleSubmit(onSubmit)}
+            id="subscribe-form"
           >
             <h3 className="title text-[43px] lg:text-[56px] 1.5xl:text-[62px] font-medium uppercase leading-[1.15] bg-subscribeGradient bg-clip-text mb-[28px]">
               SUBSCRIBE <br />
@@ -78,12 +132,34 @@ const Footer = ({ desktopHidden = false }) => {
             <input
               placeholder="your email"
               type="email"
-              className="w-[100%] mt-[24px] p-[15px] rounded-[10px] text-xs bg-black border border-white text-white focus:outline-none max-w-[300px] md:max-w-[400px]"
-              {...register('email')}
+              className="w-[100%] mt-[24px] mb-[42px] p-[15px] rounded-[10px] text-xs bg-black border border-white text-white focus:outline-none max-w-[300px] md:max-w-[400px]"
+              {...register('email', {
+                required: true,
+                pattern: {
+                  value: /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/,
+                  message: 'Email-ul este invalid',
+                },
+              })}
             />
-            <button className="uppercase mt-[42px] bg-white py-[20px] px-[48px] text-black text-[18px] leading-[14px] font-medium">
-              Subscribe
-            </button>
+            {showLoadingBtn ? (
+              <LoadingButton
+                text="Subscribe"
+                type="submit"
+                form="subscribe-form"
+                buttonState={buttonState}
+                setButtonState={setButtonState}
+              />
+            ) : (
+              <button
+                type="submit"
+                form="subscribe-form"
+                className={clsx(
+                  'text-[18px] cursor-not-allowed uppercase h-[64px] w-[240px] font-medium transition-all align-self-start justify-center border !leading-[14px] border-white inline-block',
+                )}
+              >
+                Subscribe
+              </button>
+            )}
           </form>
         </div>
 
