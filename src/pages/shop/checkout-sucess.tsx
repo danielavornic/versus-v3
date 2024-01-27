@@ -1,8 +1,18 @@
 import Link from 'next/link'
+import { useEffect } from 'react'
 
 import Layout from '~/components/layout'
+import { clearCart } from '~/store/cartSlice'
+import { useAppDispatch } from '~/store/hooks'
 
 const CheckoutSuccess = () => {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(clearCart())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <Layout title="Comanda plasata">
       <section className="bg-[#fff] pt-[50px] md:pt-[100px] xl:pt-[150px] pb-[220px]">

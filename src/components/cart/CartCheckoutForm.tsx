@@ -3,8 +3,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { clearCart } from '~/store/cartSlice'
-import { useAppDispatch, useAppSelector } from '~/store/hooks'
+import { useAppSelector } from '~/store/hooks'
 
 import Checkbox from '../common/Checkbox'
 import Input from '../common/Input'
@@ -22,7 +21,6 @@ type CheckoutFormData = {
 
 const CartCheckoutForm = () => {
   const cart = useAppSelector((state) => state.cart)
-  const dispatch = useAppDispatch()
   const { push } = useRouter()
 
   const [isPickupChecked, setIsPickupChecked] = useState(false)
@@ -69,7 +67,6 @@ const CartCheckoutForm = () => {
         setIsPickupChecked(undefined)
         setIsPaymentChecked(undefined)
         setButtonState('success')
-        dispatch(clearCart())
       }, 3000)
 
       setTimeout(() => {

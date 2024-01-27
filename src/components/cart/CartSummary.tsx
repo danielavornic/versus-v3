@@ -1,9 +1,22 @@
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+
 import { useAppSelector } from '~/store/hooks'
 
 import CartItem from './CartItem'
 
 const CartSummary = () => {
   const cart = useAppSelector((state) => state.cart)
+  const { push } = useRouter()
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (cart.items.length === 0) {
+        push('/shop')
+      }
+    }, 1000)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cart.items.length])
 
   return (
     <div className="mb-[92px] lg:mb-0 lg:pt-[42px]">
