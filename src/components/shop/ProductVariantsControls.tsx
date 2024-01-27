@@ -15,7 +15,13 @@ interface ProductVariantsControlsProps {
   setQty: (qty: number) => void
 }
 
-const PropertyOptions = ({ title, options, selectedOption, onClick }) => {
+const PropertyOptions = ({
+  title,
+  options,
+  selectedOption,
+  onClick,
+  isOnlyOption,
+}) => {
   const isSize = title === 'Size'
 
   return (
@@ -45,7 +51,9 @@ const PropertyOptions = ({ title, options, selectedOption, onClick }) => {
                 'bg-hot-pink': selectedOption === 'pink' && option === 'pink',
 
                 'bg-black text-white':
-                  selectedOption === 'black' && option === 'black',
+                  selectedOption === 'black' &&
+                  option === 'black' &&
+                  !isOnlyOption,
               },
             )}
           >
@@ -145,6 +153,7 @@ const ProductVariantsControls = ({
         options={availableSizes}
         selectedOption={selectedSize}
         onClick={handleSizeClick}
+        isOnlyOption={availableSizes.length === 1}
       />
 
       <PropertyOptions
@@ -152,6 +161,7 @@ const ProductVariantsControls = ({
         options={availableColors}
         selectedOption={selectedColor}
         onClick={handleColorClick}
+        isOnlyOption={availableColors.length === 1}
       />
 
       <div className="space-y-[15px] flex flex-col items-center lg:items-start">

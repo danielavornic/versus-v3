@@ -1,20 +1,16 @@
 const HomeHero = () => {
   return (
     <section className="hero bg-black text-alm-white h-[calc(100vh-80px)]">
-      <div className="container">
-        <div
-          className="bg-cover bg-center flex items-center justify-center h-[calc(100vh-80px)] w-full"
-          style={{
-            backgroundImage:
-              'url(https://cdn.sanity.io/images/ny7niosc/production/e3c51799517babd4aeb8328763c42212a58a2f6b-1820x1000.png)',
-          }}
+      <div className="container relative">
+        <video
+          autoPlay
+          muted
+          loop
+          poster="/images/home-video-poster.png"
+          className="absolute bottom-0 left-0 right-0 top-0 z-0 w-[calc(100vw-60px)] md:w-[calc(100vw-80px)] lg:w-[calc(100vw-100px)] block mx-auto h-screen object-cover"
         >
-          <img
-            src="/versus-logo.svg"
-            alt="Versus Artist"
-            className="versus-logo w-[200px] h-auto lg:w-[750px]"
-          />
-        </div>
+          <source src="/videos/home-video.mp4" type="video/mp4" />
+        </video>
       </div>
     </section>
   )

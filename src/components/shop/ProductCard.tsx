@@ -52,6 +52,7 @@ const ProductCard = ({
               },
             )}
           />
+          <div className="absolute top-0 left-0 right-0 bottom-0 bg-black opacity-0 group-hover:opacity-20 transition-all"></div>
         </Link>
       </div>
 

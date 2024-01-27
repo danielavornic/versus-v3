@@ -100,6 +100,10 @@ export interface Artist {
   instagram?: string
   facebook?: string
   youtube?: string
+  tiktok2?: string
+  instagram2?: string
+  facebook2?: string
+  youtube2?: string
   spotify?: string
   appleMusic?: string
   deezer?: string

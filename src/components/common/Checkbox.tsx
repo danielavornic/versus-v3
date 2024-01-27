@@ -11,7 +11,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     return (
       <label className="flex items-center cursor-pointer" htmlFor={props.id}>
         <input
-          type="checkbox"
+          type="radio"
           className="absolute h-0 w-0 m-0 p-0"
           checked={checked}
           {...props}

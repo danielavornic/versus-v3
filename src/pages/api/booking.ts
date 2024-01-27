@@ -1,18 +1,27 @@
+import SubscribeEmail from 'emails/Subscribe'
 import { NextApiRequest, NextApiResponse } from 'next'
+import { Resend } from 'resend'
 
-// mock the database
-const bookings = []
+const resend = new Resend(process.env.RESEND_API_KEY)
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  // check if the request method is POST
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (req.method === 'POST') {
-    // get the data from the request body
-    const data = req.body
+    const emailData = JSON.parse(req.body)
 
-    // add the data to the mock database
-    bookings.push(data)
+    const { data, error } = await resend.emails.send({
+      from: 'Versus <onboarding@resend.dev>',
+      to: 'daniela.vornic@gmail.com',
+      subject: 'Versus New Booking',
+      react: SubscribeEmail(emailData),
+    })
 
-    // send the data back to the client
+    if (error) {
+      return res.status(400).json(error)
+    }
+
     res.status(200).json(data)
   } else {
     // if the request method is not POST

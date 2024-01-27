@@ -36,20 +36,12 @@ const CartCheckoutForm = () => {
     watch,
     reset,
     handleSubmit,
+    setValue,
+    clearErrors,
     formState: { errors },
   } = useForm<CheckoutFormData>({
     mode: 'onChange',
   })
-
-  const isCompleted =
-    !Object.keys(errors).length &&
-    watch('firstName') &&
-    watch('lastName') &&
-    watch('email') &&
-    watch('phone') &&
-    isPaymentChecked &&
-    isPickupChecked &&
-    isTermsChecked
 
   const onSubmit = () => mutate()
 
@@ -87,10 +79,21 @@ const CartCheckoutForm = () => {
   })
 
   useEffect(() => {
-    if (isCompleted) {
+    if (
+      !Object.keys(errors).length &&
+      watch('firstName') &&
+      watch('lastName') &&
+      watch('email') &&
+      watch('phone') &&
+      watch('isPickupChecked') &&
+      watch('isPaymentChecked') &&
+      watch('isTermsChecked')
+    ) {
       setShowLoadingBtn(true)
     }
-  }, [isCompleted])
+  }, [errors, isPickupChecked, isPaymentChecked, isTermsChecked, watch])
+
+  console.log(errors)
 
   return (
     <div className="lg:w-[450px]">
@@ -153,7 +156,12 @@ const CartCheckoutForm = () => {
         <h4 className="text-[20px] !mt-[28px]">Livrarea comenzii prin</h4>
         <Checkbox
           {...register('isPickupChecked', {
-            onChange: (e) => setIsPickupChecked(e.target.checked),
+            required: true,
+            onChange: (e) => {
+              setIsPickupChecked(e.target.checked)
+              setValue('isPickupChecked', e.target.checked)
+              clearErrors('isPickupChecked')
+            },
           })}
           checked={isPickupChecked}
           id="pickup"
@@ -163,7 +171,12 @@ const CartCheckoutForm = () => {
         <h4 className="text-[20px] !mt-[28px]">Metoda de plată</h4>
         <Checkbox
           {...register('isPaymentChecked', {
-            onChange: (e) => setIsPaymentChecked(e.target.checked),
+            required: true,
+            onChange: (e) => {
+              setIsPaymentChecked(e.target.checked)
+              setValue('isPaymentChecked', e.target.checked)
+              clearErrors('isPaymentChecked')
+            },
           })}
           checked={isPaymentChecked}
           id="payment"
@@ -181,7 +194,12 @@ const CartCheckoutForm = () => {
           <div className="w-full mx-auto flex justify-center !mb-[34px]">
             <Checkbox
               {...register('isTermsChecked', {
-                onChange: (e) => setIsTermsChecked(e.target.checked),
+                required: true,
+                onChange: (e) => {
+                  setIsTermsChecked(e.target.checked)
+                  setValue('isTermsChecked', e.target.checked)
+                  clearErrors('isTermsChecked')
+                },
               })}
               checked={isTermsChecked}
               id="terms"

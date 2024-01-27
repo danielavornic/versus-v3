@@ -35,6 +35,8 @@ const menuLinks = [
   },
 ]
 
+const year = new Date().getFullYear()
+
 const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
   const { pathname } = useRouter()
   const isShop = pathname.includes('/shop')
@@ -104,9 +106,9 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
           ))}
         </ul>
 
-        <div className="flex flex-col lg:flex-row space-y-[50px] menu-footer absolute bottom-[30px] md:bottom-[60px] 2xl:bottom-[70px] left-0 right-0 lg:space-x-[57px] justify-center lg:space-y-0 items-center">
+        <div className="flex flex-col lg:flex-row space-y-[5px] menu-footer absolute bottom-[30px] md:bottom-[60px] 2xl:bottom-[70px] left-0 right-0 lg:space-x-[57px] justify-center lg:space-y-0 items-center">
           <p className="text-[10px] lg:text-[13px]">
-            © 2023 VERSUSARTIST All Rights Reserved.
+            © {year} VERSUSARTIST All Rights Reserved.
           </p>
 
           <div className="flex lg:text items-center">

@@ -37,6 +37,10 @@ const ArtistCard = ({
     facebook,
     instagram,
     youtube,
+    tiktok2,
+    facebook2,
+    instagram2,
+    youtube2,
     spotify,
     appleMusic,
     deezer,
@@ -69,39 +73,79 @@ const ArtistCard = ({
             'opacity-100': activeArtist === name,
           })}
         >
-          <div className="flex space-x-[42px] lg:space-x-[14px] items-center">
-            <a
-              href={tiktok}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 lg:w-[14px] text-white hover:text-tiktok transition-all duration-500"
-            >
-              <TikTok />
-            </a>
-            <a
-              href={instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 lg:w-[16px] text-white hover:text-instagram transition-all duration-500"
-            >
-              <Instagram />
-            </a>
-            <a
-              href={facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-[23px] lg:w-[10px] text-white hover:text-facebook transition-all duration-500"
-            >
-              <Facebook />
-            </a>
-            <a
-              href={youtube}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 lg:w-[17px] text-white hover:text-youtube transition-all duration-500"
-            >
-              <YouTube />
-            </a>
+          <div className="flex justify-between">
+            <div className="flex space-x-[42px] lg:space-x-[14px] items-center">
+              <a
+                href={tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 lg:w-[14px] text-white hover:text-tiktok transition-all duration-500"
+              >
+                <TikTok />
+              </a>
+              <a
+                href={instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 lg:w-[16px] text-white hover:text-instagram transition-all duration-500"
+              >
+                <Instagram />
+              </a>
+              <a
+                href={facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-[23px] lg:w-[10px] text-white hover:text-facebook transition-all duration-500"
+              >
+                <Facebook />
+              </a>
+              <a
+                href={youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 lg:w-[17px] text-white hover:text-youtube transition-all duration-500"
+              >
+                <YouTube />
+              </a>
+            </div>
+
+            {(tiktok2 || instagram2 || facebook2 || youtube2) && (
+              <div className="flex space-x-[42px] lg:space-x-[14px] items-center">
+                {}
+                <a
+                  href={tiktok2}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 lg:w-[14px] text-white hover:text-tiktok transition-all duration-500"
+                >
+                  <TikTok />
+                </a>
+                <a
+                  href={instagram2}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 lg:w-[16px] text-white hover:text-instagram transition-all duration-500"
+                >
+                  <Instagram />
+                </a>
+                <a
+                  href={facebook2}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-[23px] lg:w-[10px] text-white hover:text-facebook transition-all duration-500"
+                >
+                  <Facebook />
+                </a>
+                <a
+                  href={youtube2}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 lg:w-[17px] text-white hover:text-youtube transition-all duration-500"
+                >
+                  <YouTube />
+                </a>
+              </div>
+            )}
           </div>
 
           <div className="flex space-x-5 flex-wrap items-center">
@@ -132,6 +176,15 @@ const ArtistCard = ({
         src={urlForImage(image)?.url()}
         alt={name}
       />
+      <div
+        className={clsx(
+          'absolute w-full h-full top-0 left-0 bg-black bg-opacity-20 transition-all duration-500',
+          {
+            'opacity-0 pointer-events-none': activeArtist !== name,
+            'opacity-100 pointer-events-auto': activeArtist === name,
+          },
+        )}
+      ></div>
     </div>
   )
 }

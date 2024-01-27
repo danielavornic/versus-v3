@@ -28,23 +28,17 @@ const BookingForm = () => {
     watch,
     reset,
     formState: { errors },
+    setValue,
+    clearErrors,
   } = useForm<BookingFormData>({
     mode: 'onChange',
   })
   const { query } = useRouter()
 
-  const [artist, setArtist] = useState(query.artist as string)
+  const [artist, setArtist] = useState('')
   const [isTermsChecked, setIsTermsChecked] = useState(undefined)
   const [buttonState, setButtonState] = useState('')
   const [showLoadingBtn, setShowLoadingBtn] = useState(false)
-
-  const isCompleted =
-    !Object.keys(errors).length &&
-    isTermsChecked &&
-    watch('eventInfo') &&
-    watch('name') &&
-    watch('email') &&
-    watch('phone')
 
   const onSubmit = () => mutate()
 
@@ -58,6 +52,8 @@ const BookingForm = () => {
           name: watch('name'),
           email: watch('email'),
           phone: watch('phone'),
+          currentTime: new Date(),
+          artist,
         }),
       })
       console.log(res)
@@ -83,10 +79,17 @@ const BookingForm = () => {
   }, [query])
 
   useEffect(() => {
-    if (isCompleted) {
+    if (
+      !Object.keys(errors).length &&
+      watch('terms') &&
+      watch('eventInfo') &&
+      watch('name') &&
+      watch('email') &&
+      watch('phone')
+    ) {
       setShowLoadingBtn(true)
     }
-  }, [isCompleted])
+  }, [errors, isTermsChecked, watch])
 
   return (
     <form
@@ -133,6 +136,7 @@ const BookingForm = () => {
               <DateInput
                 onChange={(date) => field.onChange(date)}
                 selected={field.value}
+                minDate={new Date()}
               />
             )}
           />
@@ -196,7 +200,12 @@ const BookingForm = () => {
           <div className="w-full !pt-[10px]">
             <Checkbox
               {...register('terms', {
-                onChange: (e) => setIsTermsChecked(e.target.checked),
+                required: true,
+                onChange: (e) => {
+                  setIsTermsChecked(e.target.checked)
+                  setValue('terms', e.target.checked)
+                  clearErrors('terms')
+                },
               })}
               checked={isTermsChecked}
               id="terms"
@@ -218,7 +227,7 @@ const BookingForm = () => {
                 : errors.phone?.type === 'minLength' ||
                     errors.phone?.type === 'pattern'
                   ? 'Numărul de telefon este invalid'
-                  : !isTermsChecked && isTermsChecked !== undefined
+                  : errors.terms?.type === 'required'
                     ? 'Vă rugăm să acceptați prelucrarea datelor personale'
                     : null}
         </p>
