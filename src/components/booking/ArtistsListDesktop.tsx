@@ -10,7 +10,7 @@ const ArtistsListDesktop = ({ artists }: { artists: Artist[] }) => {
   const { artist } = query
 
   return (
-    <ul className="hidden space-y-[10px] 3xl:space-y-[8px] text-center lg:block max-w-[500px] xl:max-w-[620px] 1.5xl:max-w-[710px] 3xl:max-w-[1045px]">
+    <ul className="hidden space-y-[10px] w-[70vw] 3xl:space-y-[28px] h-[calc(100vh-80px)] overflow-y-auto artists-scrollbar text-center lg:block mx-auto pb-[80px]">
       {artists?.map(({ name }) => (
         <li key={name} className="relative group">
           <img
@@ -20,7 +20,7 @@ const ArtistsListDesktop = ({ artists }: { artists: Artist[] }) => {
           <Link
             href={`/booking?artist=${name}`}
             className={clsx(
-              'text-[43px] xl:text-[56px] relative group-hover:text-white xl:leading-[60px] 1.5xl:text-[64px] 1.5xl:leading-[1.1] 2xl:leading-[1] 3xl:text-[92px] hover:text-white font-medium uppercase text-center leading-[48px] transition-all',
+              'text-[43px] lg:text-[50px] xl:text-[56px] relative group-hover:text-white xl:leading-[60px] 1.5xl:text-[64px] 1.5xl:leading-[1.1] 2xl:leading-[1] 3xl:text-[92px] hover:text-white font-medium uppercase text-center leading-[48px] transition-all',
               { 'text-gray': artist !== name },
             )}
           >

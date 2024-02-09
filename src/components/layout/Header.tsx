@@ -2,9 +2,11 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
+import Headroom from 'react-headroom'
 
 import useClickOutside from '~/hooks/useClickOutside'
-import { useAppSelector } from '~/store/hooks'
+import { useAppDispatch, useAppSelector } from '~/store/hooks'
+import { hideMenu, toggleMenu } from '~/store/menuSlice'
 
 import CartDropdown from '../cart/CartDropdown'
 import HomeMenu from './HomeMenu'
@@ -12,13 +14,16 @@ import HomeMenu from './HomeMenu'
 const menuLineBaseClass = 'block h-[4px] w-[26px] transition-all duration-500'
 
 const Header = () => {
-  const { pathname } = useRouter()
+  const { pathname, asPath } = useRouter()
   const isShop = pathname.includes('/shop')
 
   const cart = useAppSelector((state) => state.cart)
+  const menu = useAppSelector((state) => state.menu)
+  const isMenuOpen = menu.isOpen
+
+  const dispatch = useAppDispatch()
 
   const [isShopOpen, setIsShopOpen] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const dropdownRef = useRef<HTMLDivElement>(null)
 
@@ -37,29 +42,41 @@ const Header = () => {
     document.documentElement.style.position = isShopOpen ? 'fixed' : 'static'
   }, [isShopOpen])
 
+  useEffect(() => {
+    dispatch(hideMenu())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [asPath])
+
   return (
-    <>
+    <Headroom
+      style={{
+        webkitTransition: 'all .5s ease-in-out',
+        mozTransition: 'all .5s ease-in-out',
+        oTransition: 'all .5s ease-in-out',
+        transition: 'all .5s ease-in-out',
+        zIndex: 100,
+      }}
+    >
       <header
         className={clsx('h-[80px] w-screen flex items-center', {
           'bg-[#fff] text-black': isShop,
           'bg-black text-alm-white': !isShop,
         })}
       >
-        {pathname !== '/' && (
-          <div className="pl-[30px] md:pl-[40px] lg:pl-[50px] z-40">
-            <Link href="/">
-              <img
-                src={
-                  isShop
-                    ? '/versus-logo-text-black.svg'
-                    : '/versus-logo-text-white.svg'
-                }
-                alt="Versus Artist"
-                className="w-[150px]"
-              />
-            </Link>
-          </div>
-        )}
+        <div className="pl-[30px] md:pl-[40px] lg:pl-[50px] z-40">
+          <Link href="/">
+            <img
+              src={
+                isShop
+                  ? '/versus-logo-text-black.svg'
+                  : '/versus-logo-text-white.svg'
+              }
+              alt="Versus Artist"
+              className="w-[150px]"
+            />
+          </Link>
+        </div>
+
         <div className="container flex items-center relative justify-end">
           {isShop && (
             <div ref={dropdownRef} className="relative">
@@ -94,7 +111,7 @@ const Header = () => {
             </div>
           )}
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={() => dispatch(toggleMenu())}
             className={clsx('space-y-1 block z-40 relative', {
               'ml-auto': !isShop,
               'ml-[53px] lg:ml-[29px]': isShop,
@@ -121,9 +138,8 @@ const Header = () => {
           </button>
         </div>
       </header>
-
       <HomeMenu isOpen={isMenuOpen} />
-    </>
+    </Headroom>
   )
 }
 

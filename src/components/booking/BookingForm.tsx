@@ -88,6 +88,8 @@ const BookingForm = () => {
       watch('phone')
     ) {
       setShowLoadingBtn(true)
+    } else {
+      setShowLoadingBtn(false)
     }
   }, [errors, isTermsChecked, watch])
 
@@ -95,26 +97,30 @@ const BookingForm = () => {
     <form
       onSubmit={handleSubmit(onSubmit)}
       className={clsx(
-        'w-full max-w-[380px] md:max-w-none lg:max-w-[400px] xl:w-[540px] 3xl:max-w-none 3xl:w-[546px] flex flex-col items-center',
+        'w-full max-w-[380px] md:max-w-none lg:absolute lg:h-[calc(100vh-80px)] lg:left-0 lg:right-0 relative lg:w-[800px] 3xl:w-[1000px] mx-auto lg:px-10  flex flex-col items-center',
+        { 'bg-black z-20': artist },
       )}
       id="booking-form"
       noValidate
     >
       <div
         className={clsx(
-          'w-full mb-[30px] 1.5xl:mb-[50px] flex flex-col items-center transition-all duration-500',
+          'w-full flex flex-col items-center transition-all duration-500',
           {
-            'hidden lg:block lg:opacity-0 lg:pointer-events-none': !artist,
+            'hidden lg:block lg:opacity-0 lg:pointer-events-none -z-10':
+              !artist,
+            'z-20': artist,
           },
         )}
       >
         {buttonState === 'success' ? (
-          <h2 className="3xl:pt-[99px] xl:pt-[63px] text-[42px] lg:pt-[100px] xl:mb-[57px] 3xl:text-[62px] text-center leading-[1]">
-            your message is on its way
+          <h2 className="text-[43px] xl:mb-[57px] lg:translate-y-[100px] text-center leading-[48px] 3xl:text-[64px] 3xl:leading-[1]">
+            your message <br />
+            is on its way
           </h2>
         ) : (
-          <h3 className="title text-[43px] mb-[42px] lg:min-h-[144px] 3xl:min-h-[221px] xl:mb-[57px] font-medium uppercase text-center leading-[48px] 3xl:text-[64px] 3xl:leading-[1] transition-all">
-            <span className="3xl:text-[93px] text-center">Booking</span>
+          <h3 className="title text-[43px] mb-[42px] xl:mb-[57px] font-medium uppercase text-center leading-[48px] 3xl:text-[64px] 3xl:leading-[1.1] transition-all">
+            <span className="text-center">Booking</span>
             <br />
             {artist ?? 'Satoshi'}
           </h3>
@@ -171,7 +177,7 @@ const BookingForm = () => {
             {...register('email', {
               required: true,
               pattern: {
-                value: /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/,
+                value: /^[a-zA-Z0-9.]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/,
                 message: 'Email-ul este invalid',
               },
             })}
@@ -233,7 +239,7 @@ const BookingForm = () => {
         </p>
       </div>
 
-      <div className="flex flex-col items-center space-y-10 lg:space-y-0 pb-20 md:pb-0">
+      <div className="z-10 mt-[30px] 1.5xl:mt-[50px] flex flex-col items-center space-y-10 lg:flex-row lg:items-center lg:space-y-0 pb-20 md:pb-0">
         <h3 className="booking-text-line text-center uppercase lg:hidden overflow-hidden text-[20px] !leading-tight">
           Discover Your <br />
           Next Headliner
@@ -245,13 +251,19 @@ const BookingForm = () => {
             form="booking-form"
             buttonState={buttonState}
             setButtonState={setButtonState}
+            className={clsx({
+              'opacity-0 !w-0': buttonState === 'success',
+            })}
           />
         ) : (
           <button
             type="submit"
             form="booking-form"
             className={clsx(
-              'text-[18px] uppercase h-[64px] w-[240px] font-medium transition-all align-self-start justify-center border !leading-[14px] border-white inline-block',
+              'text-[18px] uppercase outline-btn h-[64px] w-[240px] font-medium transition-all align-self-start justify-center border !leading-[14px] inline-block',
+              {
+                'opacity-0 !w-0': buttonState === 'success',
+              },
             )}
           >
             Get in touch
@@ -259,7 +271,12 @@ const BookingForm = () => {
         )}
         <Link
           href="/booking"
-          className="underline lg:!mt-10 uppercase font-medium text-lg block text-alm-white hover:text-white active:text-alm-white transition-all"
+          className={clsx(
+            'underline uppercase font-medium duration-1000 text-lg block lg:ml-10 text-alm-white hover:text-white active:text-alm-white transition-all',
+            {
+              'lg:!ml-0': buttonState === 'success',
+            },
+          )}
         >
           Close
         </Link>

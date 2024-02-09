@@ -6,12 +6,12 @@ import { useRouter } from 'next/router'
 import { useLayoutEffect } from 'react'
 import Div100vh from 'react-div-100vh'
 
-import { Facebook, Instagram, YouTube } from '~/icons'
+import { Facebook, Instagram, TikTok, YouTube } from '~/icons'
 
 const menuLinks = [
   {
     title: 'Artists',
-    href: '#artists',
+    href: '/#artists',
   },
   {
     title: 'Shop',
@@ -23,11 +23,11 @@ const menuLinks = [
   },
   {
     title: 'Booking',
-    href: '/booking',
+    href: '/#booking',
   },
   {
-    title: 'Prod & Master',
-    href: '/production',
+    title: 'Production & Master',
+    href: '/#production',
   },
   {
     title: 'Contact',
@@ -78,28 +78,41 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
   return (
     <Div100vh
       className={clsx(
-        'fixed top-0 z-30 w-full flex text-alm-white transition-all items-stretch duration-700 ease-out',
+        'fixed top-0 z-30 w-screen flex text-alm-white transition-all items-stretch duration-700 ease-out',
         {
           'opacity-100 visible': isOpen,
           'opacity-0 pointer-events-none': !isOpen,
-          'bg-black': !isShop,
           'bg-[#fff]': isShop,
         },
       )}
     >
       <div className="w-[30px] lg:w-[50px] h-full" />
       <div
-        className="w-full bg-opacity-100 h-[calc(100vh-80px)] flex flex-col mt-[80px] bg-cover bg-center"
-        style={{
-          backgroundImage:
-            'url(https://cdn.sanity.io/images/ny7niosc/production/c63856b8621d8e5c86758780dcd333825d3e9d9c-1820x1000.png)',
-        }}
+        className={clsx(
+          'w-[calc(100vw-60px)] lg:w-[calc(100vw-100px)] bg-black backdrop-blur-sm bg-opacity-70 h-[calc(100vh-80px)] flex flex-col mt-[80px] bg-cover bg-center',
+          {
+            '!bg-opacity-100': isShop,
+          },
+        )}
       >
-        <ul className="space-y-6 max-w-[250px] md:max-w-none mx-auto mt-[10vh] lg:mt-[60px] 3xl:mt-[80px]">
+        {isShop && (
+          <div className="container relative">
+            <video
+              autoPlay
+              muted
+              loop
+              poster="/images/home-video-poster.png"
+              className="absolute bottom-0 left-0 right-0 top-0 z-0 w-[calc(100vw-60px)] md:w-[calc(100vw-80px)] lg:w-[calc(100vw-100px)] block mx-auto h-screen object-cover"
+            >
+              <source src="/videos/home-video-bw.mp4" type="video/mp4" />
+            </video>
+          </div>
+        )}
+        <ul className="space-y-6 max-w-[280px] md:max-w-none mx-auto mt-[10vh] lg:mt-[30px] 3xl:mt-[80px]">
           {menuLinks.map((link, i) => (
             <li
               key={i}
-              className="text-[34px] md:text-[50px] 2xl:text-[64px] link font-medium uppercase text-white text-center"
+              className="text-[34px] md:text-[50px] md:mx-10 lg:mx-0 md:leading-[1.25] 2xl:text-[64px] link font-medium uppercase text-white hover:text-[#CBD2DC] transition-all text-center"
             >
               <Link href={link.href}>{link.title}</Link>
             </li>
@@ -107,11 +120,11 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
         </ul>
 
         <div className="flex flex-col lg:flex-row space-y-[5px] menu-footer absolute bottom-[30px] md:bottom-[60px] 2xl:bottom-[70px] left-0 right-0 lg:space-x-[57px] justify-center lg:space-y-0 items-center">
-          <p className="text-[10px] lg:text-[13px]">
+          <p className="text-[10px] lg:text-[13px] mb-5 lg:mb-0">
             © {year} VERSUSARTIST All Rights Reserved.
           </p>
 
-          <div className="flex lg:text items-center">
+          <div className="flex lg:text items-center text-alm-white">
             <img
               src="/versus-icon.svg"
               alt="versus icon"
@@ -136,11 +149,19 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
             </a>
             <a
               href="https://www.youtube.com/c/soundversus"
-              className="w-[17px] h-auto hover:text-youtube transition-all"
+              className="w-[17px] h-auto mr-[18px] hover:text-youtube transition-all"
               target="_blank"
               rel="noreferrer"
             >
               <YouTube />
+            </a>
+            <a
+              href="https://www.tiktok.com/@versusartist_musiclabel"
+              className="w-[15px] h-auto hover:text-tiktok transition-all"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <TikTok />
             </a>
 
             <a

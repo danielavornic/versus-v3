@@ -71,13 +71,13 @@ const CartCheckoutForm = () => {
 
       setTimeout(() => {
         push('/shop/checkout-sucess')
-      }, 4000)
+      }, 3500)
     },
   })
 
   useEffect(() => {
-    if (
-      !Object.keys(errors).length &&
+    const isFormValid =
+      Object.keys(errors).length === 0 &&
       watch('firstName') &&
       watch('lastName') &&
       watch('email') &&
@@ -85,9 +85,7 @@ const CartCheckoutForm = () => {
       watch('isPickupChecked') &&
       watch('isPaymentChecked') &&
       watch('isTermsChecked')
-    ) {
-      setShowLoadingBtn(true)
-    }
+    setShowLoadingBtn(isFormValid)
   }, [errors, isPickupChecked, isPaymentChecked, isTermsChecked, watch])
 
   console.log(errors)
@@ -123,7 +121,7 @@ const CartCheckoutForm = () => {
           {...register('email', {
             required: true,
             pattern: {
-              value: /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/,
+              value: /^[a-zA-Z0-9.]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/,
               message: 'Email-ul este invalid',
             },
           })}
@@ -204,6 +202,23 @@ const CartCheckoutForm = () => {
               label="Sunt de acord ca datele personale să fie prelucrate"
             />
           </div>
+
+          <p className="text-[12px] text-red text-center min-h-[18px] mb-[28px]">
+            {Object.keys(errors).some((key) => errors[key].type === 'required')
+              ? 'Vă rugăm să completați toate câmpurile'
+              : errors.email?.type === 'pattern'
+                ? 'E-mailul este invalid. Verificați să conțină @'
+                : errors.phone?.type === 'minLength' ||
+                    errors.phone?.type === 'pattern'
+                  ? 'Numărul de telefon este invalid'
+                  : errors.isTermsChecked?.type === 'required'
+                    ? 'Vă rugăm să confirmați metoda de livrare'
+                    : errors.isPaymentChecked?.type === 'required'
+                      ? 'Vă rugăm să confirmați metoda de plată'
+                        ? 'Vă rugăm să acceptați prelucrarea datelor personale'
+                        : errors.isPickupChecked?.type === 'required'
+                      : null}
+          </p>
 
           {showLoadingBtn ? (
             <LoadingButton

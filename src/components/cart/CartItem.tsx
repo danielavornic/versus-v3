@@ -4,13 +4,15 @@ import { useState } from 'react'
 import { useSwipeable } from 'react-swipeable'
 
 import { urlForImage } from '~/lib/sanity.image'
-import { removeFromCart } from '~/store/cartSlice'
-import { useAppDispatch } from '~/store/hooks'
+import { decreaseQty, increaseQty, removeFromCart } from '~/store/cartSlice'
+import { useAppDispatch, useAppSelector } from '~/store/hooks'
 import { CartItem } from '~/types/product'
 
 const CartItem = ({ item }: { item: CartItem }) => {
   const { product, quantity, size } = item
   const { title, slug, artist, category, mainImage } = product
+
+  const cart = useAppSelector((state) => state.cart)
 
   const [isMobileDeleteOpen, setIsMobileDeleteOpen] = useState(false)
 
@@ -63,8 +65,22 @@ const CartItem = ({ item }: { item: CartItem }) => {
           <span className="text-[9px] font-bold my-[10px] block">
             Cantitatea
           </span>
-          <div className="w-[30px] text-[12px] font-medium h-[30px] uppercase border border-alm-white flex items-center justify-center">
-            {quantity}
+          <div className="flex space-x-[5px]">
+            <button
+              className="border-[1px] w-[30px] h-[30px] border-alm-white text-[12px] uppercase"
+              onClick={() => dispatch(decreaseQty({ product, size }))}
+            >
+              -
+            </button>
+            <div className="w-[30px] text-[12px] font-medium h-[30px] uppercase border border-alm-white flex items-center justify-center">
+              {quantity}
+            </div>
+            <button
+              className="border-[1px] w-[30px] h-[30px] border-alm-white text-[12px] uppercase"
+              onClick={() => dispatch(increaseQty({ product, size }))}
+            >
+              +
+            </button>
           </div>
         </div>
       </div>

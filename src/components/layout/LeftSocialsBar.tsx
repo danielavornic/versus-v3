@@ -6,19 +6,19 @@ import { Facebook, Instagram, TikTok, YouTube } from '~/icons'
 const socials = [
   {
     icon: <TikTok />,
-    link: 'https://tiktok.com',
+    link: 'https://www.tiktok.com/@versusartist_musiclabel',
   },
   {
     icon: <Instagram />,
-    link: 'https://instagram.com',
+    link: 'https://www.instagram.com/versusartist/',
   },
   {
     icon: <Facebook />,
-    link: 'https://facebook.com',
+    link: 'https://www.facebook.com/VersusArtistsLabel/',
   },
   {
     icon: <YouTube />,
-    link: 'https://youtube.com',
+    link: 'https://www.youtube.com/@versusartists',
   },
 ]
 

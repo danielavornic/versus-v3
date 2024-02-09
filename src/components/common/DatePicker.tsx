@@ -4,24 +4,44 @@ import DatePicker, { ReactDatePickerProps } from 'react-datepicker'
 
 import useClickOutside from '~/hooks/useClickOutside'
 
+const MONTHS = [
+  'Ianuarie',
+  'Februarie',
+  'Martie',
+  'Aprilie',
+  'Mai',
+  'Iunie',
+  'Iulie',
+  'August',
+  'Septembrie',
+  'Octombrie',
+  'Noiembrie',
+  'Decembrie',
+]
+
 const DateInputButton = ({
   value,
   placeholder,
+  isMonth,
 }: {
   value: string
   placeholder: string
+  isMonth?: boolean
 }) => {
   return (
     <div
       className={clsx(
-        'rounded-[10px] items-center space-x-[5px] px-[12px] h-[50px] border  text-alm-white text-[12px] placeholder:text-alm-white bg-black w-[80px] flex justify-center focus:outline-none',
+        'rounded-[10px] items-center space-x-[5px] px-[12px] h-[50px] border  text-alm-white text-[12px] placeholder:text-alm-white bg-black w-[80px] flex justify-between focus:outline-none',
         {
           'border-green': value,
           'border-alm-white': !value,
+          '!w-[120px]': isMonth,
         },
       )}
     >
-      <span className="text-[12px]">{value ?? placeholder}</span>
+      <span className="text-[12px] block text-center flex-1">
+        {value ? (isMonth ? MONTHS[Number(value) - 1] : value) : placeholder}
+      </span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="9"
@@ -67,7 +87,7 @@ const DateInput = (props: ReactDatePickerProps) => {
         onClick={handleClick}
       >
         <DateInputButton value={day} placeholder="Zi" />
-        <DateInputButton value={month} placeholder="Lună" />
+        <DateInputButton value={month} placeholder="Lună" isMonth />
         <DateInputButton value={year} placeholder="An" />
       </div>
       {isOpen && (

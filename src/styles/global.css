@@ -21,6 +21,10 @@ body::-webkit-scrollbar {
   font-weight: 400;
 }
 
+.outline-btn {
+  @apply border hover:bg-[#D2D2D2] hover:text-black transition-all focus:bg-white focus:text-black border-white
+}
+
 .container {
   width: 100%;
   max-width: none !important;
@@ -67,6 +71,22 @@ body::-webkit-scrollbar {
 .footer-bg-text {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.artists-scrollbar {
+  @apply pr-[16px]
+}
+.artists-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.artists-scrollbar::-webkit-scrollbar-track {
+  @apply bg-[#0C1116] rounded-sm;
+}
+.artists-scrollbar::-webkit-scrollbar-thumb {
+  @apply  bg-alm-white rounded-sm;
+}
+.artists-scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-white
 }
 
 .white-scrollbar::-webkit-scrollbar {

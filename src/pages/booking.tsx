@@ -40,18 +40,17 @@ const BookingArtistsPage = (
       hasOnlyMobileFooter
       title="Discover your next headliner"
       className="bg-black"
+      fullHeight
     >
       <section className="bg-black text-white pt-[42px] lg:pt-0 min-h-[calc(100vh-80px)] md:min-h-0 lg:min-h-[calc(100vh-80px)]">
         <div
           className={clsx(
-            'container flex flex-col lg:flex-row lg:justify-between lg:space-y-0 space-y-[85px]',
+            'container relative flex flex-col lg:flex-row lg:justify-between lg:space-y-0 space-y-[85px]',
           )}
         >
           <ArtistsListMobile artists={artists} />
 
-          <div className="xl:pl-[60px] 2xl:pl-[100px] 3xl:pl-[126px] xl:h-[inherit] lg:w-full lg:max-w-[400px] 1.5xl:min-w-[550px] 3xl:max-w-[600px]">
-            <BookingForm />
-          </div>
+          <BookingForm />
 
           <ArtistsListDesktop artists={artists} />
         </div>

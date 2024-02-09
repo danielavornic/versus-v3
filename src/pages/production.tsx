@@ -33,7 +33,7 @@ const BookingPage = ({
   productionWorks: ProductionWork[]
 }) => {
   return (
-    <Layout hasFooter={false} title="Prod & Mastering">
+    <Layout hasFooter={false} title="Production & Master">
       <section className="bg-black text-white pt-[42px] lg:pt-0 lg:pb-[70px]">
         <div className="container">
           <div className="max-w-[600px] 1.5xl:max-w-[720px] space-y-[42px]">

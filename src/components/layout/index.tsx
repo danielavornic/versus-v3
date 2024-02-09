@@ -27,6 +27,7 @@ interface LayoutProps {
   hasFooter?: boolean
   hasOnlyMobileFooter?: boolean
   className?: string
+  fullHeight?: boolean
 }
 
 const Layout = ({
@@ -36,9 +37,22 @@ const Layout = ({
   children,
   hasOnlyMobileFooter = false,
   className,
+  fullHeight = false,
 }: PropsWithChildren<LayoutProps>) => {
   const { pathname } = useRouter()
   const isShop = pathname.includes('shop')
+
+  const innerDiv = (
+    <div
+      className={clsx(unbounded.variable, oktaNeue.variable, className)}
+      id="app"
+    >
+      {!isShop && <LeftSocialsBar />}
+      <Header />
+      <main>{children}</main>
+      {hasFooter && <Footer desktopHidden={hasOnlyMobileFooter} />}
+    </div>
+  )
 
   return (
     <>
@@ -47,17 +61,7 @@ const Layout = ({
         <meta name="description" content={description} />
       </Head>
 
-      <ReactLenis root>
-        <div
-          className={clsx(unbounded.variable, oktaNeue.variable, className)}
-          id="app"
-        >
-          {!isShop && <LeftSocialsBar />}
-          <Header />
-          <main>{children}</main>
-          {hasFooter && <Footer desktopHidden={hasOnlyMobileFooter} />}
-        </div>
-      </ReactLenis>
+      {!fullHeight ? <ReactLenis root>{innerDiv}</ReactLenis> : innerDiv}
     </>
   )
 }

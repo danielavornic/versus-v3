@@ -38,6 +38,37 @@ export const shopSlice = createSlice({
       }
       state.total += product.price * qty
     },
+    increaseQty: (
+      state,
+      action: PayloadAction<{ product: Product; size: string }>,
+    ) => {
+      const { product, size } = action.payload
+      const item = state.items.find(
+        (item) => item.product._id === product._id && item.size === size,
+      )
+      if (item) {
+        item.quantity += 1
+        state.total += product.price
+      }
+    },
+    decreaseQty: (
+      state,
+      action: PayloadAction<{ product: Product; size: string }>,
+    ) => {
+      const { product, size } = action.payload
+      const item = state.items.find(
+        (item) => item.product._id === product._id && item.size === size,
+      )
+      if (item && item.quantity > 1) {
+        item.quantity -= 1
+        state.total -= product.price
+      } else {
+        state.items = state.items.filter(
+          (item) => item.product._id !== product._id || item.size !== size,
+        )
+        state.total -= product.price * item.quantity
+      }
+    },
     removeFromCart: (
       state,
       action: PayloadAction<{ product: Product; size: string }>,
@@ -60,6 +91,12 @@ export const shopSlice = createSlice({
   },
 })
 
-export const { addToCart, removeFromCart, clearCart } = shopSlice.actions
+export const {
+  addToCart,
+  removeFromCart,
+  clearCart,
+  increaseQty,
+  decreaseQty,
+} = shopSlice.actions
 
 export default shopSlice.reducer
