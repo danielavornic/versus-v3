@@ -124,16 +124,13 @@ export interface Release {
 }
 
 export interface Project {
-  _type: 'project'
-  _id: string
-  _createdAt: string
   name?: string
-  image?: ImageAsset
-  content?: PortableTextBlock[]
-  tiktok?: string
-  instagram?: string
-  facebook?: string
-  youtube?: string
+  image?: string
+  video?: string
+  videoMobile?: string
+  content?: string | React.ReactNode
+  content2?: string | React.ReactNode
+  color?: string
 }
 
 export interface ProductionWork {

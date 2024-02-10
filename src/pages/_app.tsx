@@ -124,7 +124,7 @@ export default function App({
               scrollTrigger: {
                 trigger: line,
                 start: 'top 95%',
-                end: 'top 40%',
+                end: 'top 80%',
                 scrub: false,
                 toggleActions: 'play play reverse reverse',
               },

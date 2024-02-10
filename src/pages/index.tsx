@@ -18,13 +18,11 @@ export const getStaticProps: GetStaticProps<
   SharedPageProps & {
     artists: any
     releases: any
-    projects: any
   }
 > = async ({ draftMode = false }) => {
   const client = getClient(draftMode ? { token: readToken } : undefined)
   const artists = await getArtists(client)
   const releases = await getReleases(client)
-  const projects = await getProjects(client)
 
   return {
     props: {
@@ -32,7 +30,6 @@ export const getStaticProps: GetStaticProps<
       token: draftMode ? readToken : '',
       artists,
       releases,
-      projects,
     },
   }
 }
@@ -40,7 +37,7 @@ export const getStaticProps: GetStaticProps<
 export default function IndexPage(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
-  const { artists, releases, projects } = props
+  const { artists, releases } = props
 
   return (
     <Layout>
@@ -51,7 +48,7 @@ export default function IndexPage(
       <ProdSection />
       <ConcertsSection />
       <Conceptualization />
-      <ProjectsSection projects={projects} />
+      <ProjectsSection />
     </Layout>
   )
 }

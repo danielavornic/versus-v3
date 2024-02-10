@@ -1,92 +1,76 @@
-import BlockContent from '@sanity/block-content-to-react'
+import clsx from 'clsx'
 
-import { Facebook, Instagram, TikTok, YouTube } from '~/icons'
-import { urlForImage } from '~/lib/sanity.image'
 import { Project as IProject } from '~/lib/sanity.queries'
 
-const serializers = {
-  list: (props) => {
-    const { type } = props
-    const bullet = type === 'bullet'
-    return bullet ? (
-      <ul className="list-disc list-inside mb-[20px] revealing-words">
-        {props.children}
-      </ul>
-    ) : (
-      <ol className="list-decimal">{props.children}</ol>
-    )
-  },
-
-  types: {
-    block: (props) => {
-      switch (props.node.style) {
-        case 'h1':
-          return <h1>{props.children}</h1>
-        case 'h2':
-          return <h2>{props.children}</h2>
-        default:
-          return <p className="mb-[20px] revealing-words">{props.children}</p>
-      }
-    },
-  },
-}
-
 const Project = ({ project }: { project: IProject }) => {
-  const { name, content, image, tiktok, facebook, instagram, youtube } = project
+  const { name, content, image, content2, video, videoMobile, color } = project
 
   return (
-    <div className="flex flex-col space-y-[70px] lg:flex-row lg:space-x-[42px] lg:space-y-0 xl:space-x-[70px]">
-      <div className="relative">
-        <div className="mb-[42px] z-[1] lg:absolute lg:top-[26px] lg:left-[26px] flex justify-center items-center space-x-[42px] lg:space-x-[14px]">
-          <a
-            href={tiktok}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-[34px] lg:w-[15px]"
-          >
-            <TikTok />
-          </a>
-          <a
-            href={instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-[38px] lg:w-[16px]"
-          >
-            <Instagram />
-          </a>
-          <a
-            href={facebook}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-[23px] lg:w-[10px]"
-          >
-            <Facebook />
-          </a>
-          <a
-            href={youtube}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-[40px] lg:w-[17px]"
-          >
-            <YouTube />
-          </a>
+    <div className="flex flex-col space-y-[70px] lg:space-y-[100px] 1.5xl:space-y-[120px]">
+      <div className="relative flex flex-col lg:flex-row w-full">
+        <div
+          style={{ backgroundColor: color }}
+          className="flex items-center justify-center lg:h-[500px] 1.5xl:h-[700px]"
+        >
+          <img
+            src={image}
+            alt={name}
+            className="w-full object-contain md:max-w-[50%] lg:max-w-none lg:w-[400px] 1.5xl:w-[520px] md:mx-auto"
+          />
         </div>
-
-        <img
-          src={urlForImage(image)?.url()}
-          alt={name}
-          className="w-full object-contain md:max-w-[50%] lg:max-w-none lg:min-w-[400px] 1.5xl:min-w-[450px] md:mx-auto"
-        />
+        <video autoPlay loop muted playsInline className="block md:hidden">
+          <source src={videoMobile} type="video/mp4" />
+        </video>
+        <div className="flex-1 relative hidden md:block">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="object-cover h-full"
+          >
+            <source src={video} type="video/mp4" />
+          </video>
+        </div>
       </div>
-      <div>
-        <h3 className="text-[42px] revealing-line !leading-tight uppercase mb-[42px]">
+      <div
+        className={clsx({
+          'xl:flex xl:items-center': !content2,
+        })}
+      >
+        <h3
+          className={clsx(
+            'text-[33px] md:text-[42px] revealing-line !leading-tight mb-[42px] xl:w-[80%] 1.5xl:w-[50%]',
+            {
+              'xl:mb-0': !content2,
+            },
+          )}
+        >
           {name}
         </h3>
-        <BlockContent
-          blocks={content}
-          serializers={serializers}
-          className="lg:max-w-[707px]"
-        />
+        <div
+          className={clsx(
+            'flex flex-col 2xl:flex-row 2xl:space-x-[100px] justify-between',
+            {
+              'xl:max-w-[700px] 2xl:max-w-none': !!content2,
+            },
+          )}
+        >
+          {typeof content === 'string' ? (
+            <p className="flex-1 2xl:text-justify">{content}</p>
+          ) : (
+            <div className="flex-1 2xl:text-justify">{content}</div>
+          )}
+          {content2 && (
+            <div className="mt-[42px] 2xl:mt-0 flex-1 2xl:pr-[10%] 2xl:text-justify">
+              {typeof content2 === 'string' ? (
+                <p>{content2}</p>
+              ) : (
+                <>{content2}</>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
