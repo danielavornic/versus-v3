@@ -61,7 +61,8 @@ const Layout = ({
         <meta name="description" content={description} />
       </Head>
 
-      {!fullHeight ? <ReactLenis root>{innerDiv}</ReactLenis> : innerDiv}
+      {/* {!fullHeight ? <ReactLenis root>{innerDiv}</ReactLenis> : innerDiv} */}
+      {innerDiv}
     </>
   )
 }
