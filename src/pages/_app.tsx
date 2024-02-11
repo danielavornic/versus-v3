@@ -9,13 +9,13 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import type { AppProps } from 'next/app'
-import { useRouter } from 'next/router'
-import NextProgress from 'next-progress'
-import { lazy } from 'react'
+import { Router, useRouter } from 'next/router'
+import { lazy, useEffect, useState } from 'react'
 import { useLayoutEffect } from 'react'
 import { Provider } from 'react-redux'
 import SplitType from 'split-type'
 
+import Loader from '~/components/common/Loader'
 import { store } from '~/store'
 
 export interface SharedPageProps {
@@ -151,6 +151,20 @@ export default function App({
     return () => ctx?.revert()
   }, [pathname])
 
+  const [loading, setLoading] = useState(false)
+  useEffect(() => {
+    Router.events.on('routeChangeStart', () => setLoading(true))
+    Router.events.on('routeChangeComplete', () => setLoading(false))
+    Router.events.on('routeChangeError', () => setLoading(false))
+    return () => {
+      Router.events.off('routeChangeStart', () => setLoading(true))
+      Router.events.off('routeChangeComplete', () => setLoading(false))
+      Router.events.off('routeChangeError', () => setLoading(false))
+    }
+  }, [])
+
+  if (loading) return <Loader />
+
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
@@ -160,7 +174,6 @@ export default function App({
           </PreviewProvider>
         ) : (
           <>
-            <NextProgress color="#80ED99" options={{ showSpinner: false }} />
             <Component {...pageProps} />
           </>
         )}
