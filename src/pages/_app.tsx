@@ -39,20 +39,6 @@ export default function App({
     let ctx = gsap.context(() => {
       gsap.registerPlugin(ScrollTrigger)
 
-      gsap.to('.versus-logo', {
-        yPercent: -20,
-        duration: 1,
-        delay: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.versus-logo',
-          start: 'top 80%',
-          end: 'top 20%',
-          scrub: false,
-          toggleActions: 'play play reverse reverse',
-        },
-      })
-
       const artistNames = document.querySelectorAll('.artist-name')
       artistNames.forEach((char) => {
         const split = new SplitType(char as HTMLElement, {
@@ -73,7 +59,7 @@ export default function App({
                 start: 'top 90%',
                 end: 'top 50%',
                 scrub: false,
-                toggleActions: 'play play reverse reverse',
+                // toggleActions: 'play play reverse reverse',
               },
             },
           )
@@ -100,7 +86,7 @@ export default function App({
                 start: 'top 90%',
                 end: 'top 50%',
                 scrub: false,
-                toggleActions: 'play play reverse reverse',
+                // toggleActions: 'play play reverse reverse',
               },
             },
           )
@@ -126,7 +112,7 @@ export default function App({
                 start: 'top 95%',
                 end: 'top 80%',
                 scrub: false,
-                toggleActions: 'play play reverse reverse',
+                // toggleActions: 'play play reverse reverse',
               },
             },
           )
@@ -154,7 +140,7 @@ export default function App({
                 start: 'top 100%',
                 end: 'top 50%',
                 scrub: false,
-                toggleActions: 'play play reverse reverse',
+                // toggleActions: 'play play reverse reverse',
               },
             },
           )

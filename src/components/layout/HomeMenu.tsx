@@ -31,7 +31,7 @@ const menuLinks = [
   },
   {
     title: 'Contact',
-    href: '#contact',
+    href: '/contact',
   },
 ]
 
@@ -86,7 +86,12 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
         },
       )}
     >
-      <div className="w-[30px] lg:w-[50px] h-full" />
+      <div
+        className={clsx('w-[30px] lg:w-[50px] h-ful', {
+          'bg-black': !isShop,
+          'bg-white': isShop,
+        })}
+      />
       <div
         className={clsx(
           'w-[calc(100vw-60px)] lg:w-[calc(100vw-100px)] bg-black backdrop-blur-sm bg-opacity-70 h-[calc(100vh-80px)] flex flex-col mt-[80px] bg-cover bg-center',
@@ -95,7 +100,7 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
           },
         )}
       >
-        {isShop && (
+        {pathname !== '/' && (
           <div className="container relative">
             <video
               autoPlay
@@ -175,7 +180,12 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
           </div>
         </div>
       </div>
-      <div className="w-[30px] lg:w-[50px] h-full" />
+      <div
+        className={clsx('w-[30px] lg:w-[50px] h-ful', {
+          'bg-black': !isShop,
+          'bg-white': isShop,
+        })}
+      />
     </Div100vh>
   )
 }

@@ -42,7 +42,7 @@ const BookingArtistsPage = (
       className="bg-black"
       fullHeight
     >
-      <section className="bg-black text-white pt-[42px] lg:pt-0 min-h-[calc(100vh-80px)] md:min-h-0 lg:min-h-[calc(100vh-80px)]">
+      <section className="bg-black text-white pt-[42px] lg:pt-0 h-[calc(100vh-80px)] md:min-h-0 lg:h-[calc(100vh-80px)]">
         <div
           className={clsx(
             'container relative flex flex-col lg:flex-row lg:justify-between lg:space-y-0 space-y-[85px]',

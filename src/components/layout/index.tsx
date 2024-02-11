@@ -28,6 +28,7 @@ interface LayoutProps {
   hasOnlyMobileFooter?: boolean
   className?: string
   fullHeight?: boolean
+  hideDesktopLinks?: boolean
 }
 
 const Layout = ({
@@ -38,6 +39,7 @@ const Layout = ({
   hasOnlyMobileFooter = false,
   className,
   fullHeight = false,
+  hideDesktopLinks,
 }: PropsWithChildren<LayoutProps>) => {
   const { pathname } = useRouter()
   const isShop = pathname.includes('shop')
@@ -50,7 +52,12 @@ const Layout = ({
       {!isShop && <LeftSocialsBar />}
       <Header />
       <main>{children}</main>
-      {hasFooter && <Footer desktopHidden={hasOnlyMobileFooter} />}
+      {hasFooter && (
+        <Footer
+          desktopHidden={hasOnlyMobileFooter}
+          hideDesktopLinks={hideDesktopLinks}
+        />
+      )}
     </div>
   )
 

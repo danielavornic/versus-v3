@@ -28,7 +28,7 @@ const footerLinks = [
 
 const year = new Date().getFullYear()
 
-const Footer = ({ desktopHidden = false }) => {
+const Footer = ({ desktopHidden = false, hideDesktopLinks = false }) => {
   return (
     <footer
       className={clsx(
@@ -39,7 +39,14 @@ const Footer = ({ desktopHidden = false }) => {
       )}
     >
       <div className="container 3xl:px-[160px]">
-        <div className="flex flex-col space-y-[82px] lg:flex-row justify-between lg:justify-center items-center lg:space-y-0">
+        <div
+          className={clsx(
+            'flex flex-col space-y-[82px] lg:flex-row justify-between lg:justify-center items-center lg:space-y-0',
+            {
+              'lg:hidden': hideDesktopLinks,
+            },
+          )}
+        >
           <div className="flex flex-col text-center items-center justify-center">
             <h2 className="text uppercase title text-[52px] leading-[1] font-extrabold mb-[24px] lg:mb-[70px]">
               versus <br />
@@ -61,7 +68,14 @@ const Footer = ({ desktopHidden = false }) => {
         </div>
 
         <div className="flex flex-col items-center justify-center mt-[120px] md:mt-[95px] lg:flex-col-reverse 1.5xl:justify-between">
-          <div className="space-y-[34px] text-center md:flex md:space-y-0 md:space-x-[28px] 3xl:space-x-[64px] lg:mt-[70px]">
+          <div
+            className={clsx(
+              'space-y-[34px] text-center md:flex md:space-y-0 md:space-x-[28px] 3xl:space-x-[64px] lg:mt-[70px]',
+              {
+                'lg:hidden': hideDesktopLinks,
+              },
+            )}
+          >
             <a
               href="https://maps.app.goo.gl/D6X7mPgLgAtyg9H56"
               target="_blank"
