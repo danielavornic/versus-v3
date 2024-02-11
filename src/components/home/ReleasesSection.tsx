@@ -80,7 +80,7 @@ const ReleasesSection = ({ releases }: { releases: Release[] }) => {
   return (
     <section
       id="releases"
-      className="bg-black relative text-white my-[150px] lg:h-screen lg:min-h-screen lg:my-[165px] lg:px-[50px] 3xl:my-[250px]"
+      className="relative text-white my-[150px] lg:h-screen lg:min-h-screen lg:my-[165px] lg:px-[50px] 3xl:my-[230px]"
     >
       <h2 className="lg:top-[90px] lg:absolute overflow-hidden mb-[42px] lg:mb-0 mobile-title text-center lg:text-left lg:text-[57px] xl:text-[62px] container lg:px-0 lg:w-auto !leading-tight">
         DON&apos;T STAY <br />

@@ -73,6 +73,16 @@ body::-webkit-scrollbar {
   -webkit-text-fill-color: transparent;
 }
 
+.hidden-scrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.hidden-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 .artists-scrollbar {
   @apply pr-[16px]
 }
