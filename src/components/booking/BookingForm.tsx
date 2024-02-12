@@ -33,7 +33,7 @@ const BookingForm = () => {
   } = useForm<BookingFormData>({
     mode: 'onChange',
   })
-  const { query } = useRouter()
+  const { query, push } = useRouter()
 
   const [artist, setArtist] = useState('')
   const [isTermsChecked, setIsTermsChecked] = useState(undefined)
@@ -239,14 +239,21 @@ const BookingForm = () => {
         </p>
       </div>
 
-      <div className="z-10 mt-[30px] 1.5xl:mt-[50px] flex flex-col items-center space-y-10 lg:flex-row lg:items-center lg:space-y-0 pb-20 md:pb-0">
+      <div
+        className={clsx(
+          'z-10 mt-[30px] 1.5xl:mt-[50px] flex flex-col items-center space-y-10 lg:flex-row lg:items-center lg:space-y-0 pb-20 md:pb-0',
+          {
+            'lg:opacity-0 lg:pointer-events-none': !artist,
+          },
+        )}
+      >
         <h3 className="booking-text-line text-center uppercase lg:hidden overflow-hidden text-[20px] !leading-tight">
           Discover Your <br />
           Next Headliner
         </h3>
         {showLoadingBtn ? (
           <LoadingButton
-            text="Get in touch"
+            text="Send"
             type="submit"
             form="booking-form"
             buttonState={buttonState}
@@ -266,11 +273,11 @@ const BookingForm = () => {
               },
             )}
           >
-            Get in touch
+            Send
           </button>
         )}
-        <Link
-          href="/booking"
+        <button
+          onClick={() => push({ query: {} }, undefined, { shallow: true })}
           className={clsx(
             'underline uppercase font-medium duration-1000 text-lg block lg:ml-10 text-alm-white hover:text-white active:text-alm-white transition-all',
             {
@@ -279,7 +286,7 @@ const BookingForm = () => {
           )}
         >
           Close
-        </Link>
+        </button>
       </div>
     </form>
   )
