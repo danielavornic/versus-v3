@@ -202,6 +202,7 @@ body::-webkit-scrollbar {
 
 .react-datepicker__day {
   @apply font-light;
+  border-radius: 9px;
 }
 
 .react-datepicker__year-read-view--down-arrow,
@@ -243,4 +244,10 @@ body::-webkit-scrollbar {
 .react-datepicker-time__header,
 .react-datepicker-year-header {
   @apply font-[12px];
+}
+
+.react-datepicker__day--disabled, .react-datepicker__month-text--disabled, .react-datepicker__quarter-text--disabled, .react-datepicker__year-text--disabled {
+  pointer-events: none;
+  background-color: #0C1116;
+  @apply text-alm-white text-opacity-30;
 }
