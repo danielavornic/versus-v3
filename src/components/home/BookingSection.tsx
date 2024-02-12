@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import Link from 'next/link'
@@ -85,10 +86,15 @@ const BookingSection = () => {
   return (
     <Div100vh
       id="booking"
-      className="bg-black text-white flex items-center justify-center my-[120px] lg:mt-[200px]"
+      className={clsx(
+        'bg-black text-white flex items-center justify-center my-[120px] lg:mt-[200px]',
+        {
+          '!h-full md:!h-screen': isReadMore,
+        },
+      )}
     >
       <div className="container">
-        <div className="relative flex items-center justify-center">
+        <div className="relative flex items-center justify-center md:px-12 lg:p-0">
           {!isReadMore ? (
             <>
               <video
@@ -120,10 +126,10 @@ const BookingSection = () => {
               </video>
             </>
           ) : (
-            <div className="absolute top-[50%] -translate-y-1/2 left-0 right-0 h-[95vh] w-full bg-cover bg-[url('/images/booking-bg.png')] object-cover" />
+            <div className="hidden md:block absolute md:top-[50%] md:-translate-y-1/2 left-0 right-0 h-[95vh] w-full bg-cover bg-[url('/images/booking-bg.png')] object-cover" />
           )}
 
-          <div className="flex flex-col  z-10 items-center justify-center -mt-[150px] lg:-mt-[80px]">
+          <div className="flex flex-col z-10 items-center justify-center md:-mt-[150px] lg:-mt-[80px]">
             {!isReadMore ? (
               <>
                 <h2 className="booking-text mobile-header md:text-[70px] mb-[42px] xl:text-[93px] text-center uppercase overflow-hidden">
@@ -135,27 +141,26 @@ const BookingSection = () => {
                 </h3>
               </>
             ) : (
-              <div className="mb-[31px] xl:mb-[65px]  3xl:mb-[122px] space-y-[42px] flex flex-col lg:flex-row z-10 lg:justify-center lg:space-y-0 lg:space-x-[42px] xl:space-x-[80px] lg:max-w-[90%] 1.5xl:max-w-[80%]">
-                <p className="font-light leading-[1.1] overflow-hidden text-lg md:text-[28px] flex-1 lg:text-[32px] 1.5xl:text-[36px] 3xl:text-[42px]">
+              <div className="mb-[31px] xl:mb-[65px]  3xl:mb-[122px] space-y-[42px] flex flex-col lg:flex-row z-10 lg:justify-center lg:space-y-0 lg:max-w-[90%] 1.5xl:max-w-[80%]">
+                <div className="md:hidden bg-cover h-[400px] bg-[url('/images/event.png')]"></div>
+
+                <p className="uppercase leading-[1.1] overflow-hidden text-[24px] md:text-[28px] flex-1 lg:text-[32px] 1.5xl:text-[36px] 3xl:text-[42px] lg:mr-[42px] xl:mr-[80px] lg:normal-case">
                   Booking pentru Artiștii Versus cât și outsource pentru clienți
                   din sau din afara Republicii Moldova.
                 </p>
-                <ul className="font-okta list-inside list-disc text-sm xl:text-[16px] flex-1 !leading-tight">
+                <ul className="font-okta font-light space-y-[16px] list-outside list-disc text-lg xl:text-[20px] flex-1 !leading-tight">
                   <li>
                     Crearea și adaptarea ofertelor pentru artiști (format cu
                     band, cu DJ, acoustic, la festivale, evnimente private sau
                     publice) care cuprind riderul tehnic și cel de ospitalitate
-                    + stabilirea tuturor costurilor suportate de câtre
+                    + stabilirea tuturor costurilor suportate de către
                     beneficiar.
                   </li>
                   <li>
-                    Crearea și adaptarea ofertelor pentru artiști (format cu
-                    band, Gestionarea procesului legal și contabil: întocmirea
-                    contractelor, încasări și plăți.
-                  </li>
-                  <li>
-                    Asigurarea comunicării între client și echipa artistului,
-                    elaborarea și aprobarea materialelor promoționale.
+                    Gestionarea procesului legal și contabil: întocmirea
+                    contractelor, încasări și plăți.Asigurarea comunicării între
+                    client și echipa artistului, elaborarea și aprobarea
+                    materialelor promoționale.
                   </li>
                   <li>
                     Asigurarea și gestionarea prezenței și prestației artistului
