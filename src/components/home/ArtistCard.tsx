@@ -159,12 +159,7 @@ const ArtistCard = ({
         </div>
 
         <h3 className="overflow-hidden lg:max-w-[300px] artist-name mobile-header lg:text-[28px] text-white z-10 uppercase 2xl:text-[43px]">
-          {name.split(' ').map((word, i) => (
-            <span key={i}>
-              {word}
-              <br />
-            </span>
-          ))}
+          {name}
         </h3>
       </div>
 

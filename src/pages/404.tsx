@@ -4,7 +4,7 @@ import Layout from '~/components/layout'
 
 const ErrorPage = () => {
   return (
-    <Layout title="404 Error" hasOnlyMobileFooter>
+    <Layout title="Page not found" hasOnlyMobileFooter>
       <section className="pt-[140px] pb-[220px] bg-black text-white lg:h-[calc(100vh-80px)] lg:p-0 lg:flex lg:items-center">
         <div className="container lg:w-[90%] lg:mx-auto flex flex-col 1.5xl:w-[1250px] 2xl:w-[1400px]">
           <p className="text-xl md:text-[48px] xl:text-[64px] 1.5xl:text-[80px] 2xl:text-[93px]">

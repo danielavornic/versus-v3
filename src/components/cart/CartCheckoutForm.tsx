@@ -52,9 +52,7 @@ const CartCheckoutForm = () => {
           lastName: watch('lastName'),
           email: watch('email'),
           phone: watch('phone'),
-          isPickupChecked,
-          isPaymentChecked,
-          isTermsChecked,
+          cart,
         }),
       })
       console.log(res)

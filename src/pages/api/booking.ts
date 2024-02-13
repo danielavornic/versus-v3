@@ -12,8 +12,8 @@ export default async function handler(
     const emailData = JSON.parse(req.body)
 
     const { data, error } = await resend.emails.send({
-      from: 'Versus <onboarding@resend.dev>',
-      to: 'daniela.vornic@gmail.com',
+      from: 'Versus Artist <contact@versusartist.com>',
+      to: 'contact@versusartist.com',
       subject: 'Versus New Booking',
       react: SubscribeEmail(emailData),
     })

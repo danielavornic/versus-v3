@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { Product } from '~/lib/sanity.queries'
 import { CartItem } from '~/types/product'
 
-interface CartState {
+export interface CartState {
   items: CartItem[]
   total: number
 }

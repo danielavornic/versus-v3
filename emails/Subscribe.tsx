@@ -20,6 +20,7 @@ interface SubscribeEmailProps {
   currentTime?: Date
 }
 
+// TODO: Update src url for images, font
 export const SubscribeEmail = ({
   artist,
   date,
@@ -53,11 +54,15 @@ export const SubscribeEmail = ({
           {`a {
             color: #fff !important;
             text-decoration: none;
-          }`}
+          }
+            html, body {
+              background-color: #050505;
+            }
+          `}
         </style>
       </Head>
       <Tailwind>
-        <Container className="bg-[#050505] max-w-[768px] px-[6vw] pt-10 pb-[60px]">
+        <Container className="bg-[#050505] max-w-[768px] w-full px-[6vw] pt-10 pb-[60px]">
           <Img
             src="https://versus-v3.vercel.app/versus-logo-text-white.png"
             alt="Versus Logo"
@@ -92,7 +97,7 @@ export const SubscribeEmail = ({
 
           <Text className="text-[12px] text-white mb-1 mt-6">Email</Text>
           <Text className="text-[14px] !text-white mt-0">
-            {email.toString()}
+            {email?.toString()}
           </Text>
 
           <Text className="text-[12px] text-white mb-1 mt-6">

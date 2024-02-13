@@ -1,21 +1,41 @@
+import OrderClientEmail from 'emails/OrderClient'
+import OrderNew from 'emails/OrderNew'
 import { NextApiRequest, NextApiResponse } from 'next'
+import { Resend } from 'resend'
 
-// mock the database
-const orders = []
+const resend = new Resend(process.env.RESEND_API_KEY)
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  // check if the request method is POST
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (req.method === 'POST') {
-    // get the data from the request body
-    const data = req.body
+    const emailData = JSON.parse(req.body)
 
-    // add the data to the mock database
-    orders.push(data)
+    const { data: data2, error: error2 } = await resend.emails.send({
+      from: 'Versus Artist <shop@versusartist.com>',
+      to: 'contact@versusartist.com',
+      subject: 'Versus New Order',
+      react: OrderNew(emailData),
+    })
 
-    // send the data back to the client
-    res.status(200).json(data)
+    if (error2) {
+      return res.status(400).json(error2)
+    }
+
+    const { data, error } = await resend.emails.send({
+      from: 'Versus Artist <contact@versusartist.com>',
+      to: emailData.email,
+      subject: 'Versus Artist Merch',
+      react: OrderClientEmail(emailData),
+    })
+
+    if (error) {
+      return res.status(400).json(error)
+    }
+
+    res.status(200).json({ data, data2 })
   } else {
-    // if the request method is not POST
     res.setHeader('Allow', ['POST'])
     res.status(405).json({ message: `Method ${req.method} is not allowed` })
   }
