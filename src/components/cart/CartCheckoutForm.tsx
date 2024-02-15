@@ -65,11 +65,11 @@ const CartCheckoutForm = () => {
         setIsPickupChecked(undefined)
         setIsPaymentChecked(undefined)
         setButtonState('success')
-      }, 3000)
+      }, 1000)
 
       setTimeout(() => {
         push('/shop/checkout-sucess')
-      }, 3500)
+      }, 1500)
     },
   })
 

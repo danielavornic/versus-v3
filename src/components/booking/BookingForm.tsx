@@ -65,11 +65,11 @@ const BookingForm = () => {
         setIsTermsChecked(undefined)
         setButtonState('success')
         window.scrollTo(0, 0)
-      }, 3000)
+      }, 2000)
 
       setTimeout(() => {
         setShowLoadingBtn(false)
-      }, 6000)
+      }, 5000)
     },
   })
 
