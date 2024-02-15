@@ -48,20 +48,15 @@ const Header = () => {
   }, [asPath])
 
   return (
-    <Headroom
-      style={{
-        webkitTransition: 'all .5s ease-in-out',
-        mozTransition: 'all .5s ease-in-out',
-        oTransition: 'all .5s ease-in-out',
-        transition: 'all .5s ease-in-out',
-        zIndex: 100,
-      }}
-    >
+    <>
       <header
-        className={clsx('h-[80px] w-screen flex items-center', {
-          'bg-[#fff] text-black': isShop,
-          'bg-black text-alm-white': !isShop,
-        })}
+        className={clsx(
+          'h-[80px] mb-[80px] top-0 fixed w-screen flex items-center',
+          {
+            'bg-[#fff] text-black': isShop,
+            'bg-black text-alm-white': !isShop,
+          },
+        )}
       >
         <div className="pl-[30px] md:pl-[40px] lg:pl-[50px] z-40">
           <Link href="/">
@@ -139,7 +134,7 @@ const Header = () => {
         </div>
       </header>
       <HomeMenu isOpen={isMenuOpen} />
-    </Headroom>
+    </>
   )
 }
 
