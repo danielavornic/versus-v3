@@ -78,6 +78,21 @@ export default defineType({
       title: 'Deezer',
       type: 'string',
     }),
+    defineField({
+      name: 'spotify2',
+      title: 'Spotify 2',
+      type: 'string',
+    }),
+    defineField({
+      name: 'appleMusic2',
+      title: 'Apple Music 2',
+      type: 'string',
+    }),
+    defineField({
+      name: 'deezer2',
+      title: 'Deezer 2',
+      type: 'string',
+    }),
   ],
   preview: {
     select: {

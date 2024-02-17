@@ -67,10 +67,10 @@ const Footer = ({ desktopHidden = false, hideDesktopLinks = false }) => {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-center mt-[120px] md:mt-[95px] lg:flex-col-reverse 1.5xl:justify-between">
+        <div className="flex flex-col items-center justify-center mt-[120px] md:mt-[95px] 2xl:flex-row-reverse lg:flex-col-reverse 1.5xl:justify-between">
           <div
             className={clsx(
-              'space-y-[34px] text-center md:flex md:space-y-0 md:space-x-[28px] 3xl:space-x-[64px] lg:mt-[70px]',
+              'space-y-[34px] text-center md:flex md:space-y-0 md:space-x-[28px] 3xl:space-x-[64px] lg:mt-[70px] 2xl:mt-0',
               {
                 'lg:hidden': hideDesktopLinks,
               },

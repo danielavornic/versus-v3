@@ -1,6 +1,6 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import { useLayoutEffect } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 import Div100vh from 'react-div-100vh'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -9,7 +9,7 @@ import { Release } from '~/lib/sanity.queries'
 import ReleaseCard from './ReleaseCard'
 
 const ReleasesSection = ({ releases }: { releases: Release[] }) => {
-  useLayoutEffect(() => {
+  useEffect(() => {
     const windowSize = window.innerWidth
     if (windowSize < 1024) return
 
@@ -21,14 +21,14 @@ const ReleasesSection = ({ releases }: { releases: Release[] }) => {
           pin: '#releases',
           start: 'top top',
           end: 'bottom top-=' + window.innerHeight,
-          scrub: 2,
-          toggleActions: 'play play reverse reverse',
+          scrub: 3,
           invalidateOnRefresh: true,
+          toggleActions: 'play none none none',
         },
       })
 
       tl.to('#release-0', {
-        top: '-50px',
+        top: '0px',
       })
 
       tl.to('#release-1', {

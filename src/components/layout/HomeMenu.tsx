@@ -7,6 +7,8 @@ import { useLayoutEffect } from 'react'
 import Div100vh from 'react-div-100vh'
 
 import { Facebook, Instagram, TikTok, YouTube } from '~/icons'
+import { useAppDispatch } from '~/store/hooks'
+import { hideMenu } from '~/store/menuSlice'
 
 const menuLinks = [
   {
@@ -38,8 +40,10 @@ const menuLinks = [
 const year = new Date().getFullYear()
 
 const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
-  const { pathname } = useRouter()
+  const { pathname, asPath, query } = useRouter()
   const isShop = pathname.includes('/shop')
+
+  const dispatch = useAppDispatch()
 
   useLayoutEffect(() => {
     if (!isOpen) return
@@ -119,7 +123,9 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
               key={i}
               className="text-[34px] md:text-[50px] md:mx-10 lg:mx-0 md:leading-[1.25] 2xl:text-[64px] link font-medium uppercase text-white hover:text-[#CBD2DC] transition-all text-center"
             >
-              <Link href={link.href}>{link.title}</Link>
+              <Link href={link.href} onClick={() => dispatch(hideMenu())}>
+                {link.title}
+              </Link>
             </li>
           ))}
         </ul>

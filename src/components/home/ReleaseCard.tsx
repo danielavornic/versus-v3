@@ -40,7 +40,7 @@ const sizesDict = {
 }
 
 const horizontalPositions = [
-  'lg:left-[80vw] 1.5xl:right-[35vw]',
+  'lg:left-[80vw] 1.5xl:right-[45vw]',
   'lg:left-[400px]',
   'lg:left-[55vw] 1.5xl:right-[40vw]',
   'lg:right-[-50px]',
@@ -69,7 +69,7 @@ const ReleaseCard = ({
   return (
     <div
       className={clsx(
-        'release bg-cover top-[110vh] w-[300px] h-[300px] bg-no-repeat bg-center lg:absolute',
+        'release bg-cover top-[110vh] w-[300px] h-[300px] bg-no-repeat bg-center lg:absolute lg:hover:transform duration-500 lg:hover:scale-105 transition-all',
         sizeClassName,
         horizontalPositions[index],
       )}

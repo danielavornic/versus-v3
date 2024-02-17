@@ -55,7 +55,6 @@ const CartCheckoutForm = () => {
           cart,
         }),
       })
-      console.log(res)
       return res
     },
     onSuccess: () => {
@@ -85,8 +84,6 @@ const CartCheckoutForm = () => {
       watch('isTermsChecked')
     setShowLoadingBtn(isFormValid)
   }, [errors, isPickupChecked, isPaymentChecked, isTermsChecked, watch])
-
-  console.log(errors)
 
   return (
     <div className="lg:w-[450px]">

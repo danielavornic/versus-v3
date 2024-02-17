@@ -46,7 +46,6 @@ export default function IndexPage(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
   const { artists, releases, productionWorks } = props
-  console.log(productionWorks)
 
   return (
     <Layout>

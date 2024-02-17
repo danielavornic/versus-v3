@@ -7,8 +7,8 @@ const projects: IProject[] = [
   {
     name: 'UNSESSION',
     image: '/images/unsession.png',
-    video: '/videos/home-video.mp4',
-    videoMobile: '/videos/home-video-mobile.mp4',
+    video: '/videos/unsession.mp4',
+    videoMobile: '/videos/unsession.mp4',
     color: '#D7FF55',
     content: (
       <>
@@ -30,9 +30,16 @@ const projects: IProject[] = [
   {
     name: 'Versus Music Camp',
     image: '/images/vmc.png',
-    video: '/videos/home-video.mp4',
     color: '#80ED99',
-    videoMobile: '/videos/home-video-mobile.mp4',
+    images: [
+      '/images/vmc/s1.png',
+      '/images/vmc/s2.png',
+      '/images/vmc/s3.png',
+      '/images/vmc/s4.png',
+      '/images/vmc/s5.png',
+      '/images/vmc/s6.png',
+      '/images/vmc/s7.png',
+    ],
     content:
       'Un camp muzical este un eveniment non-formal în care participă mai mulți producători muzicali și songwriteri, care timp de câteva zile, pornind de la improvizație, crează idei de piese, instrumentale, versuri și linii melodice.',
     content2:

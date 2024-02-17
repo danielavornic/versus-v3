@@ -56,7 +56,6 @@ const BookingForm = () => {
           artist,
         }),
       })
-      console.log(res)
       return res
     },
     onSuccess: () => {
@@ -243,11 +242,16 @@ const BookingForm = () => {
         className={clsx(
           'z-10 mt-[30px] 1.5xl:mt-[50px] flex flex-col items-center space-y-10 lg:flex-row lg:items-center lg:space-y-0 pb-20 md:pb-0',
           {
-            'lg:opacity-0 lg:pointer-events-none': !artist,
+            // 'lg:opacity-0 lg:pointer-events-none': !artist,
           },
         )}
       >
-        <h3 className="booking-text-line text-center uppercase lg:hidden overflow-hidden text-[20px] !leading-tight">
+        <h3
+          className={clsx(
+            'booking-text-line text-center uppercase lg:hidden overflow-hidden text-[20px] !leading-tight',
+            { 'lg:opacity-0 lg:pointer-events-none': !artist },
+          )}
+        >
           Discover Your <br />
           Next Headliner
         </h3>
@@ -260,6 +264,7 @@ const BookingForm = () => {
             setButtonState={setButtonState}
             className={clsx({
               'opacity-0 !w-0': buttonState === 'success',
+              'lg:opacity-0 lg:pointer-events-none lg:!w-0': !artist,
             })}
           />
         ) : (
@@ -270,6 +275,7 @@ const BookingForm = () => {
               'text-[18px] uppercase outline-btn h-[64px] w-[240px] font-medium transition-all align-self-start justify-center border !leading-[14px] inline-block',
               {
                 'opacity-0 !w-0': buttonState === 'success',
+                'lg:opacity-0 lg:pointer-events-none lg:!w-0': !artist,
               },
             )}
           >
@@ -282,11 +288,23 @@ const BookingForm = () => {
             'underline uppercase font-medium duration-1000 text-lg block lg:ml-10 text-alm-white hover:text-white active:text-alm-white transition-all',
             {
               'lg:!ml-0': buttonState === 'success',
+              'lg:opacity-0 lg:pointer-events-none lg:!w-0 lg:!ml-0': !artist,
             },
           )}
         >
           Close
         </button>
+        <a
+          href={`${process.env.NEXT_PUBLIC_HOST}/#booking`}
+          className={clsx(
+            'underline uppercase font-medium duration-1000 text-lg hidden text-alm-white hover:text-white active:text-alm-white transition-all',
+            {
+              'lg:block': !artist,
+            },
+          )}
+        >
+          Close
+        </a>
       </div>
     </form>
   )

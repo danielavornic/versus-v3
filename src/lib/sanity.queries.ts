@@ -107,6 +107,8 @@ export interface Artist {
   spotify?: string
   appleMusic?: string
   deezer?: string
+  spotify2?: string
+  appleMusic2?: string
 }
 
 export interface Release {
@@ -131,6 +133,7 @@ export interface Project {
   content?: string | React.ReactNode
   content2?: string | React.ReactNode
   color?: string
+  images?: string[]
 }
 
 export interface ProductionWork {

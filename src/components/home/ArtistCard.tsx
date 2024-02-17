@@ -44,6 +44,8 @@ const ArtistCard = ({
     spotify,
     appleMusic,
     deezer,
+    spotify2,
+    appleMusic2,
   } = artist
 
   const isTouchDevice = () => {
@@ -148,13 +150,18 @@ const ArtistCard = ({
             )}
           </div>
 
-          <div className="flex space-x-5 flex-wrap items-center">
+          <div className="grid grid-cols-2 gap-5 xl:grid-cols-4">
             <StreamingButton link={spotify} icon="/images/spotify-logo.svg" />
             <StreamingButton
               link={appleMusic}
               icon="/images/apple-music-logo.svg"
             />
             <StreamingButton link={deezer} icon="/images/deezer-logo.svg" />
+            <StreamingButton link={spotify2} icon="/images/spotify-logo.svg" />
+            <StreamingButton
+              link={appleMusic2}
+              icon="/images/apple-music-logo.svg"
+            />
           </div>
         </div>
 

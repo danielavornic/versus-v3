@@ -22,7 +22,7 @@ body::-webkit-scrollbar {
 }
 
 .outline-btn {
-  @apply border hover:bg-[#D2D2D2] hover:text-black transition-all focus:bg-white focus:text-black border-white
+  @apply border hover:bg-[#D2D2D2] hover:border-[#D2D2D2] hover:text-black transition-all focus:bg-white focus:text-black border-white
 }
 
 .container {
@@ -47,7 +47,7 @@ body::-webkit-scrollbar {
 }
 
 .mobile-header {
-  @apply text-[43px] font-medium leading-tight lg:text-[72px] xl:text-[93px];
+  @apply text-[42px] font-medium leading-tight lg:text-[72px] xl:text-[93px];
 }
 
 .mobile-subtitle {
@@ -250,4 +250,30 @@ body::-webkit-scrollbar {
   pointer-events: none;
   background-color: #0C1116;
   @apply text-alm-white text-opacity-30;
+}
+
+.image-gallery {
+  height: inherit;
+}
+
+@screen lg {
+  .image-gallery {
+    height: 500px;
+  }
+}
+
+@screen 1.5xl {
+  .image-gallery {
+    height: inherit;
+  }
+}
+
+
+.image-gallery-content, .image-gallery-slide-wrapper, .image-gallery-swipe, .image-gallery-slides, .image-gallery-slide  , .image-gallery-slide img {
+  height: 100%;
+}
+
+.image-gallery-slide .image-gallery-image {
+  object-fit: cover !important;
+  max-height: none !important;
 }

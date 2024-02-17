@@ -2,6 +2,7 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import 'react-datepicker/dist/react-datepicker.css'
+import 'react-image-gallery/styles/css/image-gallery.css'
 import '~/styles/global.css'
 import '~/styles/react-progress-btn.css'
 
@@ -17,6 +18,8 @@ import SplitType from 'split-type'
 
 import Loader from '~/components/common/Loader'
 import { store } from '~/store'
+import { useAppDispatch } from '~/store/hooks'
+import { reset } from '~/store/socialsSlice'
 
 export interface SharedPageProps {
   draftMode: boolean
@@ -33,7 +36,8 @@ export default function App({
 
   const queryClient = new QueryClient()
 
-  const { pathname } = useRouter()
+  const router = useRouter()
+  const [loading, setLoading] = useState(false)
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -149,19 +153,36 @@ export default function App({
     })
 
     return () => ctx?.revert()
-  }, [pathname])
+  }, [router.pathname])
 
-  const [loading, setLoading] = useState(false)
   useEffect(() => {
-    Router.events.on('routeChangeStart', () => setLoading(true))
-    Router.events.on('routeChangeComplete', () => setLoading(false))
-    Router.events.on('routeChangeError', () => setLoading(false))
-    return () => {
-      Router.events.off('routeChangeStart', () => setLoading(true))
-      Router.events.off('routeChangeComplete', () => setLoading(false))
-      Router.events.off('routeChangeError', () => setLoading(false))
+    if (typeof window !== 'undefined') {
+      const loader = document.getElementById('global-loader')
+      if (loader) {
+        setTimeout(() => {
+          loader.remove()
+        }, 3000)
+      }
     }
   }, [])
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      setLoading(true)
+    }
+
+    const handleRouteChangeComplete = () => {
+      setLoading(false)
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange)
+    router.events.on('routeChangeComplete', handleRouteChangeComplete)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+      router.events.off('routeChangeComplete', handleRouteChangeComplete)
+    }
+  }, [router.events])
 
   if (loading) return <Loader />
 

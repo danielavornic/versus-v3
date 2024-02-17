@@ -1,13 +1,28 @@
 import clsx from 'clsx'
+import ImageGallery from 'react-image-gallery'
 
 import { Project as IProject } from '~/lib/sanity.queries'
 
 const Project = ({ project }: { project: IProject }) => {
-  const { name, content, image, content2, video, videoMobile, color } = project
+  const {
+    name,
+    content,
+    image,
+    content2,
+    video,
+    videoMobile,
+    color,
+    images: imagesLinks,
+  } = project
+
+  const images = imagesLinks?.map((src, i) => ({
+    original: src,
+    thumbnail: src,
+  }))
 
   return (
     <div className="flex flex-col space-y-[70px] lg:space-y-[100px] 1.5xl:space-y-[120px]">
-      <div className="relative flex flex-col lg:flex-row w-full">
+      <div className="relative flex flex-col lg:flex-row w-full lg:items-stretch">
         <div
           style={{ backgroundColor: color }}
           className="flex items-center justify-center lg:h-[500px] 1.5xl:h-[700px]"
@@ -18,20 +33,35 @@ const Project = ({ project }: { project: IProject }) => {
             className="w-full object-contain md:max-w-[50%] lg:max-w-none lg:w-[400px] 1.5xl:w-[520px] md:mx-auto"
           />
         </div>
-        <video autoPlay loop muted playsInline className="block md:hidden">
-          <source src={videoMobile} type="video/mp4" />
-        </video>
-        <div className="flex-1 relative hidden md:block">
-          <video
+        {video && (
+          <>
+            <video autoPlay loop muted playsInline className="block md:hidden">
+              <source src={videoMobile} type="video/mp4" />
+            </video>
+            <div className="flex-1 relative hidden md:block">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="object-cover h-full"
+              >
+                <source src={video} type="video/mp4" />
+              </video>
+            </div>
+          </>
+        )}
+        {images && (
+          <ImageGallery
+            items={images}
             autoPlay
-            loop
-            muted
-            playsInline
-            className="object-cover h-full"
-          >
-            <source src={video} type="video/mp4" />
-          </video>
-        </div>
+            showPlayButton={false}
+            showFullscreenButton={false}
+            showThumbnails={false}
+            showNav={false}
+            slideInterval={100000}
+          />
+        )}
       </div>
       <div
         className={clsx({

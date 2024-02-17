@@ -1,13 +1,18 @@
 /* eslint-disable jsx-a11y/alt-text */
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { Artist } from '~/lib/sanity.queries'
+import { useAppDispatch } from '~/store/hooks'
+import { reset, updateSocials } from '~/store/socialsSlice'
 
 const ArtistsListDesktop = ({ artists }: { artists: Artist[] }) => {
   const { query, push } = useRouter()
   const { artist } = query
+  const currentArtist = artists.find((a) => a.name === artist)
+
+  const dispatch = useAppDispatch()
 
   const handleArtistClick = (artist: string) => {
     push({ query: { artist } }, undefined, { shallow: true })
@@ -18,6 +23,21 @@ const ArtistsListDesktop = ({ artists }: { artists: Artist[] }) => {
   const handleMouseEnter = () => {
     videRef.current?.play()
   }
+
+  useEffect(() => {
+    if (currentArtist) {
+      dispatch(
+        updateSocials({
+          tiktok: currentArtist?.tiktok || '',
+          insta: currentArtist?.instagram || '',
+          fb: currentArtist?.facebook || '',
+          yt: currentArtist?.youtube || '',
+        }),
+      )
+    } else {
+      dispatch(reset())
+    }
+  }, [currentArtist, dispatch])
 
   return (
     <ul className="hidden space-y-[10px] w-[70vw] 3xl:space-y-[28px] h-[calc(100vh-80px)] overflow-y-auto artists-scrollbar text-center lg:block mx-auto">
@@ -60,3 +80,6 @@ const ArtistsListDesktop = ({ artists }: { artists: Artist[] }) => {
 }
 
 export default ArtistsListDesktop
+function resetSocials(): any {
+  throw new Error('Function not implemented.')
+}

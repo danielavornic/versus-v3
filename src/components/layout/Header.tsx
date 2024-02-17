@@ -14,7 +14,7 @@ import HomeMenu from './HomeMenu'
 const menuLineBaseClass = 'block h-[4px] w-[26px] transition-all duration-500'
 
 const Header = () => {
-  const { pathname, asPath } = useRouter()
+  const { pathname, asPath, events, query } = useRouter()
   const isShop = pathname.includes('/shop')
 
   const cart = useAppSelector((state) => state.cart)
@@ -42,16 +42,11 @@ const Header = () => {
     document.documentElement.style.position = isShopOpen ? 'fixed' : 'static'
   }, [isShopOpen])
 
-  useEffect(() => {
-    dispatch(hideMenu())
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [asPath])
-
   return (
     <>
       <header
         className={clsx(
-          'h-[80px] mb-[80px] top-0 fixed w-screen flex items-center',
+          'h-[80px] mb-[80px] top-0 z-[80] fixed w-screen flex items-center',
           {
             'bg-[#fff] text-black': isShop,
             'bg-black text-alm-white': !isShop,

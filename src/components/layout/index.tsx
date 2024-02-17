@@ -1,10 +1,12 @@
-import { ReactLenis } from '@studio-freight/react-lenis'
 import clsx from 'clsx'
 import { Unbounded } from 'next/font/google'
 import localFont from 'next/font/local'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, useEffect } from 'react'
+
+import { useAppDispatch } from '~/store/hooks'
+import { reset } from '~/store/socialsSlice'
 
 import Footer from './Footer'
 import Header from './Header'
@@ -38,11 +40,17 @@ const Layout = ({
   children,
   hasOnlyMobileFooter = false,
   className,
-  fullHeight = false,
   hideDesktopLinks,
 }: PropsWithChildren<LayoutProps>) => {
   const { pathname } = useRouter()
   const isShop = pathname.includes('shop')
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    if (pathname !== '/booking') {
+      dispatch(reset())
+    }
+  }, [pathname, dispatch])
 
   const innerDiv = (
     <div
@@ -68,7 +76,6 @@ const Layout = ({
         <meta name="description" content={description} />
       </Head>
 
-      {/* {!fullHeight ? <ReactLenis root>{innerDiv}</ReactLenis> : innerDiv} */}
       {innerDiv}
     </>
   )
