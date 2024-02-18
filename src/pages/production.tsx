@@ -40,7 +40,7 @@ const BookingPage = ({
             <h1 className="!leading-[1.05] title lg:text-[56px] 1.5xl:text-[64px] 3xl:text-[93px] uppercase font-medium">
               prod & <br /> MASTERING
             </h1>
-            <p className="lg:text-lg revealing-words 1.5xl:text-xl">
+            <p className="lg:text-lg revealing-line 1.5xl:text-xl">
               Nu este neapărat să fii semnat la Versus Artist pentru a lucra cu
               noi. Oferim servicii contra-cost: PRODUCȚIE - SONGWRITING - REC -
               MIX - MASTER. Avem totul, de la oameni, la tehnică, pentru a aduce

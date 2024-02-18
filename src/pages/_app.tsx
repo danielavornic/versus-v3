@@ -61,9 +61,9 @@ export default function App({
               scrollTrigger: {
                 trigger: char,
                 start: 'top 90%',
-                end: 'top 50%',
+                end: 'top 80%',
                 scrub: false,
-                // toggleActions: 'play play reverse reverse',
+                toggleActions: 'play play reverse reverse',
               },
             },
           )
@@ -88,9 +88,9 @@ export default function App({
               scrollTrigger: {
                 trigger: title,
                 start: 'top 90%',
-                end: 'top 50%',
+                end: 'top 80%',
                 scrub: false,
-                // toggleActions: 'play play reverse reverse',
+                toggleActions: 'play play reverse reverse',
               },
             },
           )
@@ -116,7 +116,7 @@ export default function App({
                 start: 'top 95%',
                 end: 'top 80%',
                 scrub: false,
-                // toggleActions: 'play play reverse reverse',
+                toggleActions: 'play play reverse reverse',
               },
             },
           )
@@ -142,9 +142,9 @@ export default function App({
               scrollTrigger: {
                 trigger: c,
                 start: 'top 100%',
-                end: 'top 50%',
+                end: 'top 80%',
                 scrub: false,
-                // toggleActions: 'play play reverse reverse',
+                toggleActions: 'play play reverse reverse',
               },
             },
           )

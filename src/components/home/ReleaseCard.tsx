@@ -40,7 +40,7 @@ const sizesDict = {
 }
 
 const horizontalPositions = [
-  'lg:left-[80vw] 1.5xl:right-[45vw]',
+  'lg:left-[80vw] 1.5xl:left-[75vw]',
   'lg:left-[400px]',
   'lg:left-[55vw] 1.5xl:right-[40vw]',
   'lg:right-[-50px]',

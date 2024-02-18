@@ -40,7 +40,7 @@ const Loader = () => {
         <source src="/videos/loader-mobile.mp4" type="video/mp4" />
       </video>
 
-      <p className="text-[10px] text-center text-alm-white">
+      <p className="text-[10px] font-unbounded text-center text-alm-white">
         © {year} VERSUSARTIST All Rights Reserved.
       </p>
     </Div100vh>

@@ -59,7 +59,8 @@ const Project = ({ project }: { project: IProject }) => {
             showFullscreenButton={false}
             showThumbnails={false}
             showNav={false}
-            slideInterval={100000}
+            duration={1000}
+            slideInterval={2000}
           />
         )}
       </div>
@@ -87,14 +88,16 @@ const Project = ({ project }: { project: IProject }) => {
           )}
         >
           {typeof content === 'string' ? (
-            <p className="flex-1 2xl:text-justify">{content}</p>
+            <p className="flex-1 2xl:text-justify revealing-words">{content}</p>
           ) : (
-            <div className="flex-1 2xl:text-justify">{content}</div>
+            <div className="flex-1 2xl:text-justify revealing-words">
+              {content}
+            </div>
           )}
           {content2 && (
-            <div className="mt-[42px] 2xl:mt-0 flex-1 2xl:pr-[10%] 2xl:text-justify">
+            <div className="mt-[42px] 2xl:mt-0 flex-1 2xl:pr-[10%] revealing-words 2xl:text-justify">
               {typeof content2 === 'string' ? (
-                <p>{content2}</p>
+                <p className="revealing-words">{content2}</p>
               ) : (
                 <>{content2}</>
               )}

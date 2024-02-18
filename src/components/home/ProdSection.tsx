@@ -18,7 +18,7 @@ const ProdSection = ({
           prod<span className="hidden lg:inline-block">uction</span>
           <br className="hidden lg:block" />& MASTERING
         </h2>
-        <p className="mobile-text max-w-[750px] 2xl:max-w-[650px] text-alm-white lg:text-[20px] lg:mb-[80px] 1.5xl:max-w-[746px]">
+        <p className="mobile-text revealing-words max-w-[750px] 2xl:max-w-[650px] text-alm-white lg:text-[20px] lg:mb-[80px] 1.5xl:max-w-[746px]">
           Nu este neapărat să fii semnat la Versus Artist pentru a lucra cu noi.
           Oferim servicii contra-cost: PRODUCȚIE - SONGWRITING - REC - MIX -
           MASTER. <br />

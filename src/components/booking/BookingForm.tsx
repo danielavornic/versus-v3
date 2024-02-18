@@ -118,7 +118,7 @@ const BookingForm = () => {
             is on its way
           </h2>
         ) : (
-          <h3 className="title text-[43px] mb-[42px] xl:mb-[57px] font-medium uppercase text-center leading-[48px] 3xl:text-[64px] 3xl:leading-[1.1] transition-all">
+          <h3 className="text-[43px] mb-[42px] xl:mb-[57px] font-medium uppercase text-center leading-[48px] 3xl:text-[64px] 3xl:leading-[1.1] transition-all">
             <span className="text-center">Booking</span>
             <br />
             {artist ?? 'Satoshi'}

@@ -6,7 +6,7 @@ interface ProducerCardProps {
 const ProducerCard = ({ name, image }: ProducerCardProps) => {
   return (
     <div
-      className="w-full h-[376px] md:h-[400px] md:w-[320px] xl:w-[420px] xl:h-[500px] 1.5xl:w-[454px] 1.5xl:h-[520px] 2xl:w-[550px] 2xl:h-[631px] bg-cover bg-center bg-no-repeat flex text-alm-white flex-col justify-end items-center text-center py-[18px] px-[14px]"
+      className="lag-img  w-full h-[376px] md:h-[400px] md:w-[320px] xl:w-[420px] xl:h-[500px] 1.5xl:w-[454px] 1.5xl:h-[520px] 2xl:w-[550px] 2xl:h-[631px] bg-cover bg-center bg-no-repeat flex text-alm-white flex-col justify-end items-center text-center py-[18px] px-[14px]"
       style={{ backgroundImage: `url(${image})` }}
     >
       <div>

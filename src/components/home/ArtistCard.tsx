@@ -113,7 +113,6 @@ const ArtistCard = ({
 
             {(tiktok2 || instagram2 || facebook2 || youtube2) && (
               <div className="flex space-x-[42px] lg:space-x-[14px] items-center">
-                {}
                 <a
                   href={tiktok2}
                   target="_blank"

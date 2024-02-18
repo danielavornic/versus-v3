@@ -5,11 +5,13 @@
 html,
 body {
   @apply bg-black overflow-x-hidden;
+  scroll-behavior: smooth;
 }
 
 body {
   scrollbar-width: none;
   -ms-overflow-style: none;
+  height: 100vh;
 }
 
 body::-webkit-scrollbar {
