@@ -20,7 +20,7 @@ type BookingFormData = {
   terms: boolean
 }
 
-const BookingForm = () => {
+const BookingForm = ({ artist, setArtist }) => {
   const {
     register,
     handleSubmit,
@@ -35,7 +35,6 @@ const BookingForm = () => {
   })
   const { query, push } = useRouter()
 
-  const [artist, setArtist] = useState('')
   const [isTermsChecked, setIsTermsChecked] = useState(undefined)
   const [buttonState, setButtonState] = useState('')
   const [showLoadingBtn, setShowLoadingBtn] = useState(false)
@@ -73,7 +72,6 @@ const BookingForm = () => {
   })
 
   useEffect(() => {
-    setArtist(query.artist as string)
     setButtonState('')
   }, [query])
 

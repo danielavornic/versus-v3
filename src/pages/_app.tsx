@@ -10,17 +10,13 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import type { AppProps } from 'next/app'
-import { Router, useRouter } from 'next/router'
-import { lazy, useEffect, useState } from 'react'
-import { useLayoutEffect } from 'react'
+import { useRouter } from 'next/router'
+import { lazy, useEffect, useLayoutEffect, useState } from 'react'
 import { Provider } from 'react-redux'
 import SplitType from 'split-type'
 
 import Loader from '~/components/common/Loader'
 import { store } from '~/store'
-import { useAppDispatch } from '~/store/hooks'
-import { reset } from '~/store/socialsSlice'
-
 export interface SharedPageProps {
   draftMode: boolean
   token: string
@@ -38,6 +34,20 @@ export default function App({
 
   const router = useRouter()
   const [loading, setLoading] = useState(false)
+  useEffect(() => {
+    // Define a function that will handle the onload event
+    const handleLoad = () => {
+      ScrollTrigger.refresh()
+    }
+
+    // Add the event listener when the component mounts
+    window.addEventListener('load', handleLoad)
+
+    // Remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('load', handleLoad)
+    }
+  }, [])
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -161,7 +171,7 @@ export default function App({
       if (loader) {
         setTimeout(() => {
           loader.remove()
-        }, 3000)
+        }, 4000)
       }
     }
   }, [])
@@ -194,9 +204,7 @@ export default function App({
             <Component {...pageProps} />
           </PreviewProvider>
         ) : (
-          <>
-            <Component {...pageProps} />
-          </>
+          <Component {...pageProps} />
         )}
       </Provider>
     </QueryClientProvider>

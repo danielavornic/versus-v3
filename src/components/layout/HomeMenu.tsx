@@ -40,7 +40,7 @@ const menuLinks = [
 const year = new Date().getFullYear()
 
 const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
-  const { pathname, asPath, query } = useRouter()
+  const { pathname } = useRouter()
   const isShop = pathname.includes('/shop')
 
   const dispatch = useAppDispatch()
@@ -123,9 +123,12 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
               key={i}
               className="text-[34px] md:text-[50px] md:mx-10 lg:mx-0 md:leading-[1.25] 2xl:text-[64px] link font-medium uppercase text-white hover:text-[#CBD2DC] transition-all text-center"
             >
-              <Link href={link.href} onClick={() => dispatch(hideMenu())}>
+              <a
+                href={`${process.env.NEXT_PUBLIC_HOST}/${link.href}`}
+                onClick={() => dispatch(hideMenu())}
+              >
                 {link.title}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>

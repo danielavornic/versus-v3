@@ -1,14 +1,8 @@
 import clsx from 'clsx'
-import { useRouter } from 'next/router'
 
-import { Artist } from '~/lib/sanity.queries'
-
-const ArtistsListMobile = ({ artists }: { artists: Artist[] }) => {
-  const { query, push } = useRouter()
-  const { artist } = query
-
+const ArtistsListMobile = ({ artists, artist, setArtist }) => {
   const handleArtistClick = (artist: string) => {
-    push({ query: { artist } }, undefined, { shallow: true })
+    setArtist(artist)
   }
 
   return (

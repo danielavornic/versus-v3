@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import clsx from 'clsx'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
+import { useState } from 'react'
 
 import ArtistsListDesktop from '~/components/booking/ArtistsListDesktop'
 import ArtistsListMobile from '~/components/booking/ArtistsListMobile'
@@ -34,6 +35,8 @@ const BookingArtistsPage = (
 ) => {
   const { artists } = props
 
+  const [artist, setArtist] = useState('')
+
   return (
     <Layout
       hasFooter
@@ -48,11 +51,19 @@ const BookingArtistsPage = (
             'container relative flex flex-col lg:flex-row lg:justify-between lg:space-y-0 space-y-[85px]',
           )}
         >
-          <ArtistsListMobile artists={artists} />
+          <ArtistsListMobile
+            artists={artists}
+            artist={artist}
+            setArtist={setArtist}
+          />
 
-          <BookingForm />
+          <BookingForm artist={artist} setArtist={setArtist} />
 
-          <ArtistsListDesktop artists={artists} />
+          <ArtistsListDesktop
+            artists={artists}
+            artist={artist}
+            setArtist={setArtist}
+          />
         </div>
       </section>
     </Layout>

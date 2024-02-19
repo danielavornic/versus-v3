@@ -1,21 +1,17 @@
 /* eslint-disable jsx-a11y/alt-text */
 import clsx from 'clsx'
-import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 
-import { Artist } from '~/lib/sanity.queries'
 import { useAppDispatch } from '~/store/hooks'
 import { reset, updateSocials } from '~/store/socialsSlice'
 
-const ArtistsListDesktop = ({ artists }: { artists: Artist[] }) => {
-  const { query, push } = useRouter()
-  const { artist } = query
+const ArtistsListDesktop = ({ artists, artist, setArtist }) => {
   const currentArtist = artists.find((a) => a.name === artist)
 
   const dispatch = useAppDispatch()
 
   const handleArtistClick = (artist: string) => {
-    push({ query: { artist } }, undefined, { shallow: true })
+    setArtist(artist)
   }
 
   const videRef = useRef<HTMLVideoElement>(null)

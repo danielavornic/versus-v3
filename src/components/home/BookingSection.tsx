@@ -1,15 +1,32 @@
+import { useWindowSize } from '@uidotdev/usehooks'
 import clsx from 'clsx'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import Div100vh from 'react-div-100vh'
 import SplitType from 'split-type'
 
 const BookingSection = () => {
   const [isReadMore, setIsReadMore] = useState(false)
+  const { width: windowWidth } = useWindowSize()
 
   useEffect(() => {
+    // Define a function that will handle the onload event
+    const handleLoad = () => {
+      ScrollTrigger.refresh()
+    }
+
+    // Add the event listener when the component mounts
+    window.addEventListener('load', handleLoad)
+
+    // Remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('load', handleLoad)
+    }
+  }, [])
+
+  useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       gsap.registerPlugin(ScrollTrigger)
 
@@ -67,11 +84,12 @@ const BookingSection = () => {
     })
 
     return () => ctx?.revert()
-  }, [])
+  }, [windowWidth])
 
   return (
     <Div100vh
       id="booking"
+      data-scroll-section
       className={clsx(
         'bg-black text-white flex items-center justify-center my-[120px] lg:mt-[200px]',
         {
@@ -118,10 +136,16 @@ const BookingSection = () => {
           <div className="flex flex-col z-10 items-center justify-center md:-mt-[150px] lg:-mt-[80px]">
             {!isReadMore ? (
               <>
-                <h2 className="booking-text mobile-header md:text-[70px] mb-[42px] xl:text-[93px] text-center uppercase overflow-hidden">
+                <h2
+                  data-scroll
+                  className="booking-text mobile-header md:text-[70px] mb-[42px] xl:text-[93px] text-center uppercase overflow-hidden"
+                >
                   Booking
                 </h2>
-                <h3 className="booking-text-line text-center mb-[42px] uppercase overflow-hidden text-[20px] md:text-[28px] xl:text-[42px] !leading-tight">
+                <h3
+                  data-scroll
+                  className="booking-text-line text-center mb-[42px] uppercase overflow-hidden text-[20px] md:text-[28px] xl:text-[42px] !leading-tight"
+                >
                   Discover Your <br />
                   Next Headliner
                 </h3>

@@ -69,7 +69,7 @@ const ReleaseCard = ({
   return (
     <div
       className={clsx(
-        'release bg-cover top-[110vh] w-[300px] h-[300px] bg-no-repeat bg-center lg:absolute lg:hover:transform duration-500 lg:hover:scale-105 transition-all',
+        'release bg-cover top-[120vh] w-[300px] h-[300px] bg-no-repeat bg-center lg:absolute lg:hover:transform duration-500 lg:hover:scale-105 transition-all',
         sizeClassName,
         horizontalPositions[index],
       )}
