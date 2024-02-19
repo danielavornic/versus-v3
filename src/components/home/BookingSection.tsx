@@ -13,20 +13,6 @@ const BookingSection = () => {
     let ctx = gsap.context(() => {
       gsap.registerPlugin(ScrollTrigger)
 
-      gsap.to('.booking-img', {
-        yPercent: 5,
-        duration: 1,
-        delay: 0.5,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.booking-img',
-          start: 'top 80%',
-          end: 'top 20%',
-          scrub: false,
-          toggleActions: 'play play reverse reverse',
-        },
-      })
-
       const bookingTexts = document.querySelectorAll('.booking-text')
       bookingTexts.forEach((text, textIdx) => {
         const split = new SplitType(text as HTMLElement, {

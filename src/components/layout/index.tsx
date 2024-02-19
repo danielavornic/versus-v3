@@ -158,7 +158,6 @@ const Layout = ({
       >
         {!isShop && <LeftSocialsBar />}
         <Header />
-        <main className="mt-[80px] w-screen">{children}</main>
         {hasFooter && (
           <Footer
             desktopHidden={hasOnlyMobileFooter}

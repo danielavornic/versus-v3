@@ -79,27 +79,27 @@ const Footer = ({ desktopHidden = false, hideDesktopLinks = false }) => {
             <a
               href="https://maps.app.goo.gl/D6X7mPgLgAtyg9H56"
               target="_blank"
-              className="block hover:text-[#CBD2DC] transition-all"
+              className="block revealing-line hover:text-[#CBD2DC] transition-all"
             >
               Hîncești Highway 61, Chișinău
             </a>
             <a
               href="tel:+373022544344"
               target="_blank"
-              className="block hover:text-[#CBD2DC] transition-all"
+              className="block revealing-line hover:text-[#CBD2DC] transition-all"
             >
               022 544 344
             </a>
             <a
               href="mailto:contact@versusartist.com"
               target="_blank"
-              className="block hover:text-[#CBD2DC] transition-all"
+              className="block revealing-line hover:text-[#CBD2DC] transition-all"
             >
               contact@versusartist.com
             </a>
           </div>
 
-          <p className="text-alm-white text-[13px] text-center mt-[70px] mb-[57px] md:hidden">
+          <p className="text-alm-white text-[13px] revealing-line text-center mt-[70px] mb-[57px] md:hidden">
             &copy; {year} VERSUSARTIST. All rights reserved.
           </p>
 
@@ -110,7 +110,7 @@ const Footer = ({ desktopHidden = false, hideDesktopLinks = false }) => {
               className="w-[45px] lg:w-[57px]"
             />
 
-            <p className="text-alm-white hidden md:block text-center">
+            <p className="text-alm-white revealing-line hidden md:block text-center">
               &copy; {year} VERSUSARTIST. All rights reserved.
             </p>
 

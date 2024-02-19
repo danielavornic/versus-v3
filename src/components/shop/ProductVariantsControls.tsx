@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Product } from '~/lib/sanity.queries'
 import { addToCart } from '~/store/cartSlice'
@@ -71,12 +71,12 @@ const ProductVariantsControls = ({
   setQty,
   artist,
 }: ProductVariantsControlsProps) => {
-  const { variants, color: selectedColor } = product
+  const { variants, color: selectedColor, slug } = product
 
   const dispatch = useAppDispatch()
 
-  const { query, push } = useRouter()
-  const { size: selectedSize } = query
+  const { pathname, query, push } = useRouter()
+  const [selectedSize, setSize] = useState<string | null>('s')
 
   const availableSizes = Object.values(ProductSize)
 
@@ -96,17 +96,17 @@ const ProductVariantsControls = ({
   const increaseQty = () => setQty(qty + 1)
 
   const handleSizeClick = (size) => {
-    push(
-      {
-        pathname: `/shop/${artist}/[...slug]`,
-        query: {
-          ...query,
-          size,
-        },
-      },
-      undefined,
-      { shallow: true },
-    )
+    setSize(size)
+    // push(
+    //   {
+    //     pathname: `/shop/${artist}/${slug.current}`,
+    //     query: {
+    //       size,
+    //     },
+    //   },
+    //   undefined,
+    //   { shallow: true },
+    // )
   }
 
   const handleColorClick = (color) => {
@@ -116,9 +116,6 @@ const ProductVariantsControls = ({
 
     push({
       pathname: `/shop/${artist}/${product.slug.current}`,
-      query: {
-        size: selectedSize,
-      },
     })
   }
 
@@ -128,23 +125,23 @@ const ProductVariantsControls = ({
 
   useEffect(() => {
     setQty(1)
-  }, [selectedSize, selectedColor, setQty])
+  }, [selectedSize, selectedColor])
 
-  useEffect(() => {
-    if (!selectedSize || !selectedColor) {
-      push(
-        {
-          pathname: `/shop/${artist}/[...slug]`,
-          query: {
-            ...query,
-            ...(!selectedSize && { size: availableSizes[0] }),
-          },
-        },
-        undefined,
-        { shallow: true },
-      )
-    }
-  }, [product])
+  // useEffect(() => {
+  //   if (!selectedSize || !selectedColor) {
+  //     push(
+  //       {
+  //         pathname: `/shop/${artist}/[...slug]`,
+  //         query: {
+  //           ...query,
+  //           ...(!selectedSize && { size: availableSizes[0] }),
+  //         },
+  //       },
+  //       undefined,
+  //       { shallow: true },
+  //     )
+  //   }
+  // }, [product])
 
   return (
     <div className="my-[42px] space-y-[28px]">
