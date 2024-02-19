@@ -17,6 +17,7 @@ import SplitType from 'split-type'
 
 import Loader from '~/components/common/Loader'
 import { store } from '~/store'
+import { setCart } from '~/store/cartSlice'
 export interface SharedPageProps {
   draftMode: boolean
   token: string

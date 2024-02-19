@@ -5,13 +5,14 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { PropsWithChildren, useEffect } from 'react'
 
-import { useAppDispatch } from '~/store/hooks'
+import { useAppDispatch, useAppSelector } from '~/store/hooks'
 import { reset } from '~/store/socialsSlice'
 
 import Footer from './Footer'
 import Header from './Header'
 import LeftSocialsBar from './LeftSocialsBar'
 import useLocoScroll from '~/hooks/useLocoScroll'
+import { setCart } from '~/store/cartSlice'
 
 const unbounded = Unbounded({
   subsets: ['latin-ext'],
@@ -46,12 +47,26 @@ const Layout = ({
   const { pathname } = useRouter()
   const isShop = pathname.includes('shop')
   const dispatch = useAppDispatch()
+  const cart = useAppSelector((state) => state.cart)
 
   useEffect(() => {
     if (pathname !== '/booking') {
       dispatch(reset())
     }
   }, [pathname, dispatch])
+
+  // on load, check if there's a cart in local storage and set it in the store
+  useEffect(() => {
+    const cart = localStorage.getItem('cart')
+    if (cart) {
+      dispatch(setCart(JSON.parse(cart)))
+    }
+  }, [dispatch])
+
+  // update local storage when cart changes
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }, [cart])
 
   return (
     <>

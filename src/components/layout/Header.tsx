@@ -96,7 +96,7 @@ const Header = () => {
                     className={clsx(
                       'text-[26px] ml-[9px] font-medium text-right min-w-[25px] md:block',
                       {
-                        'text-[#fff] pointer-events-none': !cart.items.length,
+                        'text-[#fff] pointer-events-none': !cart.items?.length,
                       },
                     )}
                   >

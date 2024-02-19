@@ -88,6 +88,11 @@ export const shopSlice = createSlice({
       state.items = []
       state.total = 0
     },
+    // set cart from local storage
+    setCart: (state, action: PayloadAction<CartState>) => {
+      state.items = action.payload.items
+      state.total = action.payload.total
+    },
   },
 })
 
@@ -97,6 +102,7 @@ export const {
   clearCart,
   increaseQty,
   decreaseQty,
+  setCart,
 } = shopSlice.actions
 
 export default shopSlice.reducer
