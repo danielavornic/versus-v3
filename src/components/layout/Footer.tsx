@@ -55,12 +55,12 @@ const Footer = ({ desktopHidden = false, hideDesktopLinks = false }) => {
             <ul className="space-y-[22px] lg:flex lg:space-y-0 lg:justify-center lg:space-x-[24px] xl:space-x-[52px] text-center lg:text-left">
               {footerLinks.map(({ name, link }) => (
                 <li key={name}>
-                  <Link
-                    href={link}
+                  <a
+                    href={`${process.env.NEXT_PUBLIC_HOST}/${link}`}
                     className="text-[18px] font-semibold uppercase lg:text-[20px] hover:text-[#CBD2DC] transition-all revealing-words"
                   >
                     {name}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
