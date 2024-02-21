@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import clsx from 'clsx'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import ArtistsListDesktop from '~/components/booking/ArtistsListDesktop'
 import ArtistsListMobile from '~/components/booking/ArtistsListMobile'
@@ -36,6 +36,13 @@ const BookingArtistsPage = (
   const { artists } = props
 
   const [artist, setArtist] = useState('')
+
+  // useEffect(() => {
+  //   document.body.style.overflowY = 'hidden'
+  //   return () => {
+  //     document.body.style.overflowY = 'auto'
+  //   }
+  // }, [])
 
   return (
     <Layout

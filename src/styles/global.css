@@ -7,14 +7,37 @@ body {
   @apply bg-black overflow-x-hidden;
 }
 
-body {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
 
 body::-webkit-scrollbar {
-  display: none;
+  @apply !w-[8px];
 }
+
+body::-webkit-scrollbar-track {
+  @apply !bg-black;
+}
+
+body::-webkit-scrollbar-thumb {
+  @apply !bg-alm-white rounded-[5px];
+}
+
+
+button {
+  @apply cursor-pointer focus:outline-none;
+}
+
+.prod-scrollbar::-webkit-scrollbar {
+  @apply w-[5px]
+}
+
+.prod-scrollbar::-webkit-scrollbar-track {
+  @apply bg-black;
+}
+
+.prod-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-alm-white rounded-[5px];
+}
+
+
 
 #__next > div {
   font-family: var(--font-unbounded);
@@ -22,7 +45,7 @@ body::-webkit-scrollbar {
 }
 
 .outline-btn {
-  @apply border hover:bg-[#D2D2D2] hover:border-[#D2D2D2] hover:text-black transition-all focus:bg-white focus:text-black border-white
+  @apply border hover:bg-[#D2D2D2] hover:border-[#D2D2D2] hover:text-black transition-all focus:bg-white focus:border-white focus:text-black border-white
 }
 
 .container {

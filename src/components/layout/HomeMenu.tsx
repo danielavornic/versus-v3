@@ -98,9 +98,10 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
       />
       <div
         className={clsx(
-          'w-[calc(100vw-60px)] lg:w-[calc(100vw-100px)] bg-black backdrop-blur-sm bg-opacity-70 h-[calc(100vh-80px)] flex flex-col mt-[80px] bg-cover bg-center',
+          'w-[calc(100vw-60px)] lg:w-[calc(100vw-100px)] bg-black backdrop-blur-sm bg-opacity-70 h-[calc(100vh-80px)] flex flex-col mt-[80px] lg:mt-[8vh] bg-cover bg-center',
           {
             '!bg-opacity-100': isShop,
+            'h-full': isOpen,
           },
         )}
       >
@@ -113,7 +114,7 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
               poster="/images/home-video-poster.png"
               className="absolute bottom-0 left-0 right-0 top-0 z-0 w-[calc(100vw-60px)] md:w-[calc(100vw-80px)] lg:w-[calc(100vw-100px)] block mx-auto h-screen object-cover"
             >
-              <source src="/videos/home-video-bw.mp4" type="video/mp4" />
+              <source src="/videos/home-video-bw.webm" type="video/mp4" />
             </video>
           </div>
         )}
@@ -133,7 +134,7 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
           ))}
         </ul>
 
-        <div className="flex flex-col lg:flex-row space-y-[5px] menu-footer absolute bottom-[30px] md:bottom-[60px] 2xl:bottom-[70px] left-0 right-0 lg:space-x-[57px] justify-center lg:space-y-0 items-center">
+        <div className="flex flex-col lg:flex-row space-y-[5px] menu-footer absolute bottom-[30px] md:bottom-[100px] left-0 right-0 lg:space-x-[57px] justify-center lg:space-y-0 items-center">
           <p className="text-[10px] lg:text-[13px] mb-5 lg:mb-0">
             © {year} VERSUSARTIST All Rights Reserved.
           </p>
@@ -146,7 +147,7 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
             />
 
             <a
-              href="https://www.instagram.com/versus.artist/"
+              href="https://www.instagram.com/versusartist/"
               className="w-[16px] h-auto hover:text-instagram transition-all"
               target="_blank"
               rel="noreferrer"
@@ -154,7 +155,7 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
               <Instagram />
             </a>
             <a
-              href="https://www.facebook.com/versus.artist"
+              href="https://www.facebook.com/VersusArtistsLabel"
               className="w-[10px] h-auto mx-[18px] hover:text-facebook transition-all"
               target="_blank"
               rel="noreferrer"
@@ -162,7 +163,7 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
               <Facebook />
             </a>
             <a
-              href="https://www.youtube.com/c/soundversus"
+              href="https://www.youtube.com/@versusartists"
               className="w-[17px] h-auto mr-[18px] hover:text-youtube transition-all"
               target="_blank"
               rel="noreferrer"

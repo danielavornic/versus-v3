@@ -1,13 +1,46 @@
+import { Autoplay, Mousewheel } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
 import { urlForImage } from '~/lib/sanity.image'
 import { ProductionWork } from '~/lib/sanity.queries'
 
 import ProducerCard from './ProducerCard'
+
+const ProdWork = ({ work }: { work: ProductionWork }) => {
+  return (
+    <div className="flex mb-[56px] 1.5xl:mb-[36px] flex-col 1.5xl:flex-row 1.5xl:items-center 1.5xl:justify-end items-end text-alm-white text-right 1.5xl:space-x-[50px]">
+      <a href={work.link} target="_blank" rel="noreferrer">
+        <h4 className="text-[24px] lg:text-[26px] font-medium hover:text-white">
+          {work.artists}
+        </h4>
+        <p className="text-[24px] lg:text-[26px] hover:text-white">
+          {work.name}
+        </p>
+      </a>
+
+      <a
+        href={work.link}
+        target="_blank"
+        rel="noreferrer"
+        className="w-full lg:w-fit inline-block"
+      >
+        <div
+          className="w-full h-[220px] lg:w-[400px] xl:w-[460px] xl:h-[309px] bg-cover bg-center bg-no-repeat mt-[56px] lg:mt-[32px] 1.5xl:mt-0"
+          style={{
+            backgroundImage: `url(${urlForImage(work.image)?.url()})`,
+          }}
+        />
+      </a>
+    </div>
+  )
+}
 
 const ProdSection = ({
   productionWorks,
 }: {
   productionWorks: ProductionWork[]
 }) => {
+  const slides = [...productionWorks, ...productionWorks]
   return (
     <section
       id="production"
@@ -23,8 +56,8 @@ const ProdSection = ({
           Oferim servicii contra-cost: PRODUCȚIE - SONGWRITING - REC - MIX -
           MASTER. <br />
           <br />
-          Avem totul, de la oameni, la tehnică, pentru a aduce ideea la stadiul
-          de produs final, gata de publicat.
+          Avem totul, de la oameni la tehnică, pentru a aduce ideea la stadiul
+          de produs final, gata pentru a fi publicat.
         </p>
 
         <div className="flex flex-col mt-[70px] md:flex-row justify-between lg:mt-[120px] xl:space-x-[42px] items-center">
@@ -33,35 +66,46 @@ const ProdSection = ({
             <ProducerCard name="Nemax" image="/images/nemax.png" />
           </div>
 
-          <div className="mt-[220px] md:mt-0 md:max-h-[840px] xl:max-h-[1100px] 2xl:max-h-[1500px] overflow-y-auto hidden-scrollbar">
-            {productionWorks?.map((work: ProductionWork) => (
-              <div
-                key={work._id}
-                className="flex mb-[56px] 1.5xl:mb-[36px] flex-col 1.5xl:flex-row 1.5xl:items-center 1.5xl:justify-end items-end text-alm-white text-right 1.5xl:space-x-[50px]"
-              >
-                <a href={work.link} target="_blank" rel="noreferrer">
-                  <h4 className="text-[24px] lg:text-[26px] font-medium hover:text-white">
-                    {work.artists}
-                  </h4>
-                  <p className="text-[24px] lg:text-[26px] hover:text-white">
-                    {work.name}
-                  </p>
-                </a>
+          <Swiper
+            direction={'vertical'}
+            slidesPerView={4}
+            scrollbar={true}
+            mousewheel={true}
+            loop={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: true,
+            }}
+            breakpoints={{
+              0: {
+                slidesPerView: 3,
+              },
+              768: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+              },
+              1440: {
+                slidesPerView: 4,
+              },
+            }}
+            modules={[Autoplay, Mousewheel]}
+            className="mt-[220px] hidden md:block md:mt-[100px] lg:mt-0 md:max-h-[900px] lg:max-h-[1080px] xl:max-h-[1400px] lg:ml-auto lg:mr-0 cursor-grab focus:cursor-grabbing 2xl:max-h-[1500px]"
+          >
+            {slides?.map((work: ProductionWork, index: number) => (
+              <SwiperSlide key={index}>
+                <ProdWork work={work} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
-                <a
-                  href={work.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-full lg:w-fit inline-block"
-                >
-                  <div
-                    className="w-full h-[220px] xl:w-[460px] xl:h-[309px] bg-cover bg-center bg-no-repeat mt-[56px] lg:mt-[32px] 1.5xl:mt-0"
-                    style={{
-                      backgroundImage: `url(${urlForImage(work.image)?.url()})`,
-                    }}
-                  />
-                </a>
-              </div>
+          <div className="md:hidden">
+            {slides?.map((work: ProductionWork, index: number) => (
+              <SwiperSlide key={index}>
+                <ProdWork work={work} />
+              </SwiperSlide>
             ))}
           </div>
         </div>

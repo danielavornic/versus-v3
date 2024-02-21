@@ -6,10 +6,10 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head />
-      <body>
-        <Loader />
+      <body className="invisible-scrollbar">
         <Main />
       </body>
+      <Loader />
       <NextScript />
     </Html>
   )

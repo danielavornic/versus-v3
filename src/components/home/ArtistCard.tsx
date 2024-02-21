@@ -76,7 +76,7 @@ const ArtistCard = ({
           })}
         >
           <div className="flex justify-between">
-            <div className="flex space-x-[42px] lg:space-x-[14px] items-center">
+            <div className="flex space-x-[42px] lg:space-x-[12px] xl:space-x-[14px] items-center">
               <a
                 href={tiktok}
                 target="_blank"
@@ -112,7 +112,7 @@ const ArtistCard = ({
             </div>
 
             {(tiktok2 || instagram2 || facebook2 || youtube2) && (
-              <div className="flex space-x-[42px] lg:space-x-[14px] items-center">
+              <div className="flex space-x-[42px] lg:space-x-[12px] xl:space-x-[14px] items-center">
                 <a
                   href={tiktok2}
                   target="_blank"
@@ -149,7 +149,7 @@ const ArtistCard = ({
             )}
           </div>
 
-          <div className="grid grid-cols-2 gap-5 xl:grid-cols-4">
+          <div className="grid grid-cols-2 gap-5 lg:gap-2 xl:gap-5 xl:grid-cols-4">
             <StreamingButton link={spotify} icon="/images/spotify-logo.svg" />
             <StreamingButton
               link={appleMusic}

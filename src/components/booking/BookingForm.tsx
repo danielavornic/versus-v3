@@ -1,7 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
 import clsx from 'clsx'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
@@ -17,6 +15,7 @@ type BookingFormData = {
   name: string
   email: string
   phone: string
+  mediaLink?: string
   terms: boolean
 }
 
@@ -33,11 +32,15 @@ const BookingForm = ({ artist, setArtist }) => {
   } = useForm<BookingFormData>({
     mode: 'onChange',
   })
-  const { query, push } = useRouter()
-
   const [isTermsChecked, setIsTermsChecked] = useState(undefined)
   const [buttonState, setButtonState] = useState('')
   const [showLoadingBtn, setShowLoadingBtn] = useState(false)
+
+  const eventInfo = watch('eventInfo')
+  const name = watch('name')
+  const email = watch('email')
+  const phone = watch('phone')
+  const mediaLink = watch('mediaLink')
 
   const onSubmit = () => mutate()
 
@@ -47,10 +50,11 @@ const BookingForm = ({ artist, setArtist }) => {
         method: 'POST',
         body: JSON.stringify({
           date: watch('date'),
-          eventInfo: watch('eventInfo'),
-          name: watch('name'),
-          email: watch('email'),
-          phone: watch('phone'),
+          eventInfo,
+          name,
+          email,
+          phone,
+          mediaLink,
           currentTime: new Date(),
           artist,
         }),
@@ -58,43 +62,45 @@ const BookingForm = ({ artist, setArtist }) => {
       return res
     },
     onSuccess: () => {
-      setTimeout(() => {
-        reset()
-        setIsTermsChecked(undefined)
-        setButtonState('success')
-        window.scrollTo(0, 0)
-      }, 2000)
+      reset()
+      setIsTermsChecked(undefined)
+      setButtonState('success')
+      window.scrollTo(0, 0)
 
       setTimeout(() => {
         setShowLoadingBtn(false)
-      }, 5000)
+      }, 1000)
     },
   })
 
   useEffect(() => {
-    setButtonState('')
-  }, [query])
+    reset()
+    setIsTermsChecked(undefined)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [artist])
 
   useEffect(() => {
     if (
       !Object.keys(errors).length &&
-      watch('terms') &&
-      watch('eventInfo') &&
-      watch('name') &&
-      watch('email') &&
-      watch('phone')
+      isTermsChecked &&
+      eventInfo &&
+      name &&
+      email &&
+      phone
     ) {
       setShowLoadingBtn(true)
     } else {
       setShowLoadingBtn(false)
     }
-  }, [errors, isTermsChecked, watch])
+
+    console.log(errors)
+  }, [errors, isTermsChecked, eventInfo, name, email, phone, mediaLink])
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className={clsx(
-        'w-full max-w-[380px] md:max-w-none lg:absolute lg:h-[calc(100vh-80px)] lg:left-0 lg:right-0 relative lg:w-[800px] 3xl:w-[1000px] mx-auto lg:px-10  flex flex-col items-center',
+        'w-full max-w-[380px] md:max-w-none lg:absolute lg:h-full lg:left-0 lg:right-0 relative lg:w-[800px] 3xl:w-[1000px] mx-auto lg:px-10  flex flex-col items-center',
         { 'bg-black z-20': artist },
       )}
       id="booking-form"
@@ -111,12 +117,12 @@ const BookingForm = ({ artist, setArtist }) => {
         )}
       >
         {buttonState === 'success' ? (
-          <h2 className="text-[43px] xl:mb-[57px] lg:translate-y-[100px] text-center leading-[48px] 3xl:text-[64px] 3xl:leading-[1]">
+          <h2 className="text-[43px] lg:mb-[300px] lg:translate-y-[100px] text-center leading-[48px] 3xl:text-[64px] 3xl:leading-[1]">
             your message <br />
             is on its way
           </h2>
         ) : (
-          <h3 className="text-[43px] mb-[42px] xl:mb-[57px] font-medium uppercase text-center leading-[48px] 3xl:text-[64px] 3xl:leading-[1.1] transition-all">
+          <h3 className="text-[43px] mb-[42px] xl:mb-[50px] font-medium uppercase text-center leading-[48px] 3xl:text-[64px] 3xl:leading-[1.1] transition-all">
             <span className="text-center">Booking</span>
             <br />
             {artist ?? 'Satoshi'}
@@ -127,8 +133,7 @@ const BookingForm = ({ artist, setArtist }) => {
           className={clsx(
             'space-y-[15px] flex flex-col items-center justify-center w-full sm:!max-w-[450px] md:max-w-none',
             {
-              'hidden lg:flex lg:opacity-0 lg:pointer-events-none':
-                buttonState === 'success',
+              'hidden lg:pointer-events-none': buttonState === 'success',
             },
           )}
         >
@@ -200,6 +205,20 @@ const BookingForm = ({ artist, setArtist }) => {
             leftComponent={<span className="text-[12px]">+373</span>}
           />
 
+          <Input
+            {...register('mediaLink', {
+              pattern: {
+                value:
+                  /^(https?:\/\/)?(www\.)?([a-zA-Z0-9]+)\.([a-zA-Z0-9]+)\/?/,
+                message: 'Link-ul este invalid',
+              },
+            })}
+            placeholder="Media Link (optional)"
+            type="text"
+            isError={!!errors.mediaLink}
+            isCompleted={!!watch('mediaLink')}
+          />
+
           <div className="w-full !pt-[10px]">
             <Checkbox
               {...register('terms', {
@@ -219,28 +238,33 @@ const BookingForm = ({ artist, setArtist }) => {
         </div>
 
         <p className="text-[12px] text-red text-center min-h-[18px] mt-[28px]">
-          {Object.keys(errors)
-            .filter((key) => key !== 'terms')
-            .some((key) => errors[key].type === 'required')
-            ? 'Vă rugăm să completați toate câmpurile'
-            : errors.eventInfo?.type === 'maxLength'
-              ? 'Este depășită limita de de caractere (250)'
-              : errors.email?.type === 'pattern'
-                ? 'E-mailul este invalid. Verificați să conțină @'
-                : errors.phone?.type === 'minLength' ||
-                    errors.phone?.type === 'pattern'
-                  ? 'Numărul de telefon este invalid'
-                  : errors.terms?.type === 'required'
-                    ? 'Vă rugăm să acceptați prelucrarea datelor personale'
-                    : null}
+          {buttonState === 'success'
+            ? null
+            : Object.keys(errors)
+                  .filter((key) => key !== 'terms')
+                  .some((key) => errors[key].type === 'required')
+              ? 'Vă rugăm să completați toate câmpurile'
+              : errors.eventInfo?.type === 'maxLength'
+                ? 'Este depășită limita de de caractere (250)'
+                : errors.email?.type === 'pattern'
+                  ? 'E-mailul este invalid. Verificați să conțină @'
+                  : errors.phone?.type === 'minLength' ||
+                      errors.phone?.type === 'pattern'
+                    ? 'Numărul de telefon este invalid'
+                    : errors.terms?.type === 'required' &&
+                        buttonState !== 'success'
+                      ? 'Vă rugăm să acceptați prelucrarea datelor personale'
+                      : errors.mediaLink
+                        ? 'Link-ul este invalid'
+                        : null}
         </p>
       </div>
 
       <div
         className={clsx(
-          'z-10 mt-[30px] 1.5xl:mt-[50px] flex flex-col items-center space-y-10 lg:flex-row lg:items-center lg:space-y-0 pb-20 md:pb-0',
+          'z-10 mt-[30px] flex flex-col items-center space-y-10 lg:pb-10 lg:flex-row lg:items-center lg:space-y-0 pb-20 md:pb-0',
           {
-            // 'lg:opacity-0 lg:pointer-events-none': !artist,
+            'lg:opacity-0 lg:pointer-events-none': !artist,
           },
         )}
       >
@@ -260,9 +284,8 @@ const BookingForm = ({ artist, setArtist }) => {
             form="booking-form"
             buttonState={buttonState}
             setButtonState={setButtonState}
-            className={clsx({
-              'opacity-0 !w-0': buttonState === 'success',
-              'lg:opacity-0 lg:pointer-events-none lg:!w-0': !artist,
+            className={clsx('hidden lg:inline-block', {
+              'opacity-0 !w-0 hidden': buttonState === 'success',
             })}
           />
         ) : (
@@ -270,40 +293,48 @@ const BookingForm = ({ artist, setArtist }) => {
             type="submit"
             form="booking-form"
             className={clsx(
-              'text-[18px] uppercase outline-btn h-[64px] w-[240px] font-medium transition-all align-self-start justify-center border !leading-[14px] inline-block',
+              'text-[18px] hidden lg:inline-block uppercase outline-btn h-[64px] w-[240px] font-medium transition-all align-self-start justify-center border !leading-[14px]',
               {
-                'opacity-0 !w-0': buttonState === 'success',
-                'lg:opacity-0 lg:pointer-events-none lg:!w-0': !artist,
+                '!hidden': buttonState === 'success',
               },
             )}
           >
             Send
           </button>
         )}
-        <button
-          onClick={() => push({ query: {} }, undefined, { shallow: true })}
+
+        <p
+          onClick={() => {
+            setArtist('')
+            reset()
+            setIsTermsChecked(undefined)
+            if (buttonState === 'success') {
+              setButtonState('')
+            }
+          }}
+          role="button"
           className={clsx(
-            'underline uppercase font-medium duration-1000 text-lg block lg:ml-10 text-alm-white hover:text-white active:text-alm-white transition-all',
+            'underline cursor-pointer uppercase focus:outline-none font-medium duration-500 text-lg block lg:ml-10 text-alm-white hover:text-white active:text-alm-white transition-all',
             {
               'lg:!ml-0': buttonState === 'success',
-              'lg:opacity-0 lg:pointer-events-none lg:!w-0 lg:!ml-0': !artist,
+              'opacity-0 pointer-events-none !w-0 !ml-0': !artist,
             },
           )}
         >
           Close
-        </button>
-        <a
-          href={`${process.env.NEXT_PUBLIC_HOST}/#booking`}
-          className={clsx(
-            'underline uppercase font-medium duration-1000 text-lg hidden text-alm-white hover:text-white active:text-alm-white transition-all',
-            {
-              'lg:block': !artist,
-            },
-          )}
-        >
-          Close
-        </a>
+        </p>
       </div>
+      <a
+        href={`${process.env.NEXT_PUBLIC_HOST}/#booking`}
+        className={clsx(
+          'underline uppercase w-fit lg:fixed text-center left-0 right-0 z-10 mx-auto bottom-[70px] xl:bottom-[30px] 1.5xl:bottom-[20px] 3xl:bottom-[115px] font-medium duration-500 text-lg hidden text-alm-white hover:text-white active:text-alm-white transition-all',
+          {
+            '!inline-block': !artist,
+          },
+        )}
+      >
+        Close
+      </a>
     </form>
   )
 }

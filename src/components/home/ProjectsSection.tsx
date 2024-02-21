@@ -2,27 +2,26 @@ import { Project as IProject } from '~/lib/sanity.queries'
 
 import Project from './Project'
 
-// TODO: Replace videos
 const projects: IProject[] = [
   {
     name: 'UNSESSION',
     image: '/images/unsession.png',
-    video: '/videos/unsession.mp4',
-    videoMobile: '/videos/unsession.mp4',
+    video: '/videos/unsession.webm',
+    videoMobile: '/videos/unsession.webm',
     color: '#D7FF55',
     content: (
       <>
         <p className="mb-[28px] 2lx:mr-[20%]">
           Este o emisiune online marca VERSUS ARTIST care constă din 2 elemente:
         </p>
-        <ul className="list-disc list-inside 2xl:mr-[20%]">
+        <ul className="list-disc list-inside space-y-5 2xl:mr-[20%]">
           <li>
             Interpretarea live de către artiști new-entry sau consacrați, din
             Moldova și România atât a premierelor muzicale, cât și a hiturilor,
             în diverse forme: versiunea originală, acoustic, stilizată, mash-up
             cu altă piesă, duet cu alt artist.
           </li>
-          <li>O discuție non-formală cu Satoshi despre muzică</li>
+          <li>O discuție non-formală cu Satoshi despre muzică.</li>
         </ul>
       </>
     ),

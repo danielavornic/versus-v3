@@ -16,7 +16,7 @@ const Loader = () => {
     <Div100vh
       id="global-loader"
       className={clsx(
-        'w-screen bg-black fixed z-[1000] top-0 flex justify-center flex-col pb-[86px]',
+        'w-screen bg-black fixed z-[1000] top-0 left-0 right-0 flex justify-center flex-col pb-[86px]',
         unbounded.variable,
       )}
     >
@@ -27,7 +27,7 @@ const Loader = () => {
         playsInline
         className="w-full h-full hidden lg:block"
       >
-        <source src="/videos/loader.mp4" type="video/mp4" />
+        <source src="/videos/loader.webm" type="video/mp4" />
       </video>
 
       <video
@@ -37,7 +37,7 @@ const Loader = () => {
         playsInline
         className="w-full h-full lg:hidden"
       >
-        <source src="/videos/loader-mobile.mp4" type="video/mp4" />
+        <source src="/videos/loader-mobile.webm" type="video/mp4" />
       </video>
 
       <p className="text-[10px] font-unbounded text-center text-alm-white">

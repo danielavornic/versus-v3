@@ -322,7 +322,7 @@ export const OrderNew = (props: OrderNewProps) => {
 
               <div className="socials align-middle mx-auto block text-center md:mx-0">
                 <a
-                  href="https://www.instagram.com/versus.artist/"
+                  href="https://www.instagram.com/versusartist/"
                   className="w-[16px] h-[14px] align-middle opacity-50 hover:opacity-100 transition-full"
                   target="_blank"
                   rel="noreferrer"
@@ -333,7 +333,7 @@ export const OrderNew = (props: OrderNewProps) => {
                   />
                 </a>
                 <a
-                  href="https://www.facebook.com/versus.artist"
+                  href="https://www.facebook.com/VersusArtistsLabel"
                   className="w-[10px] h-[16px] align-middle mx-[18px] opacity-50 hover:opacity-100 transition-full"
                   target="_blank"
                   rel="noreferrer"
@@ -344,7 +344,7 @@ export const OrderNew = (props: OrderNewProps) => {
                   />
                 </a>
                 <a
-                  href="https://www.youtube.com/c/soundversus"
+                  href="https://www.youtube.com/@versusartists"
                   className="w-[17px] h-[12px] align-middle mr-[18px] opacity-50 hover:opacity-100 transition-full"
                   target="_blank"
                   rel="noreferrer"

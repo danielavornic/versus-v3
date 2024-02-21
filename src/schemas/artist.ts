@@ -49,7 +49,7 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'instagram1',
+      name: 'instagram2',
       title: 'Instagram 2',
       type: 'string',
     }),

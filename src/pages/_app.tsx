@@ -172,6 +172,8 @@ export default function App({
       if (loader) {
         setTimeout(() => {
           loader.remove()
+          document.body.classList.add('normal-scrollbar')
+          document.body.classList.remove('invisible-scrollbar')
         }, 4000)
       }
     }

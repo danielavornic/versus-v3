@@ -46,7 +46,7 @@ const Project = ({ project }: { project: IProject }) => {
                 playsInline
                 className="object-cover h-full"
               >
-                <source src={video} type="video/mp4" />
+                <source src={video} type="video/webm" />
               </video>
             </div>
           </>
@@ -71,7 +71,7 @@ const Project = ({ project }: { project: IProject }) => {
       >
         <h3
           className={clsx(
-            'text-[33px] md:text-[42px] revealing-line !leading-tight mb-[42px] xl:w-[80%] 1.5xl:w-[50%]',
+            'text-[33px] md:text-[42px] revealing-line !leading-tight mb-[42px] xl:w-[80%] 1.5xl:w-[50%] 2xl:w-[80%]',
             {
               'xl:mb-0': !content2,
             },

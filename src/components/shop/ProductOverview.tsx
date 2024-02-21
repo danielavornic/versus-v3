@@ -64,7 +64,7 @@ const ProductOverview = ({ product }: { product: Product }) => {
                 cardul.
                 <br />
                 După ce plasați comanda, veți primi un email cu informațiile
-                despre ridicarea acesteaia.
+                despre ridicarea acesteia.
               </p>
             </div>
           </div>

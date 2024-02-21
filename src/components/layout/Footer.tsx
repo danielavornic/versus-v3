@@ -123,7 +123,7 @@ const Footer = ({ desktopHidden = false, hideDesktopLinks = false }) => {
 
             <div className="flex space-x-[16px]">
               <a
-                href="https://www.instagram.com/versus.artist/"
+                href="https://www.instagram.com/versusartist/"
                 className="w-[16px] h-auto hover:text-instagram transition-all"
                 target="_blank"
                 rel="noreferrer"
@@ -131,7 +131,7 @@ const Footer = ({ desktopHidden = false, hideDesktopLinks = false }) => {
                 <Instagram />
               </a>
               <a
-                href="https://www.facebook.com/versus.artist"
+                href="https://www.facebook.com/VersusArtistsLabel"
                 className="w-[10px] h-auto mx-[18px] hover:text-facebook transition-all"
                 target="_blank"
                 rel="noreferrer"
@@ -139,7 +139,7 @@ const Footer = ({ desktopHidden = false, hideDesktopLinks = false }) => {
                 <Facebook />
               </a>
               <a
-                href="https://www.youtube.com/c/soundversus"
+                href="https://www.youtube.com/@versusartists"
                 className="w-[17px] h-auto hover:text-youtube transition-all"
                 target="_blank"
                 rel="noreferrer"

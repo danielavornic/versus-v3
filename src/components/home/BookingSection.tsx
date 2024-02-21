@@ -108,7 +108,7 @@ const BookingSection = () => {
                 playsInline
                 className="w-full object-cover h-[95vh] absolute top-[50%] right-0 z-0 left-0  md:hidden -translate-y-1/2"
               >
-                <source src="/videos/booking-mobile.mp4" type="video/mp4" />
+                <source src="/videos/booking-mobile.webm" type="video/mp4" />
               </video>
               <video
                 autoPlay
@@ -117,7 +117,7 @@ const BookingSection = () => {
                 playsInline
                 className="w-full object-cover md:h-[80vh] lg:h-[95vh] absolute top-[50%] right-0 z-0 left-0 hidden md:block -translate-y-1/2"
               >
-                <source src="/videos/booking-mid.mp4" type="video/mp4" />
+                <source src="/videos/booking-mid.webm" type="video/mp4" />
               </video>
               <video
                 autoPlay
@@ -126,7 +126,7 @@ const BookingSection = () => {
                 playsInline
                 className="w-full object-cover h-[95vh] absolute top-[50%] right-0 z-0 left-0 hidden 3xl:block -translate-y-1/2"
               >
-                <source src="/videos/booking-xl.mp4" type="video/mp4" />
+                <source src="/videos/booking-xl.webm" type="video/mp4" />
               </video>
             </>
           ) : (
@@ -168,8 +168,8 @@ const BookingSection = () => {
                   </li>
                   <li>
                     Gestionarea procesului legal și contabil: întocmirea
-                    contractelor, încasări și plăți.Asigurarea comunicării între
-                    client și echipa artistului, elaborarea și aprobarea
+                    contractelor, încasări și plăți. Asigurarea comunicării
+                    între client și echipa artistului, elaborarea și aprobarea
                     materialelor promoționale.
                   </li>
                   <li>
