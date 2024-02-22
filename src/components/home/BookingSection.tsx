@@ -115,7 +115,7 @@ const BookingSection = () => {
                 autoPlay
                 loop
                 muted
-                // playsInline
+                playsInline
                 poster="/videos/booking-poster.png"
                 className="w-full object-cover md:h-[80vh] lg:h-[95vh] absolute top-[50%] right-0 z-0 left-0 hidden md:block -translate-y-1/2"
               >
@@ -125,7 +125,7 @@ const BookingSection = () => {
                 autoPlay
                 loop
                 muted
-                // playsInline
+                playsInline
                 poster="/videos/booking-poster.png"
                 className="w-full object-cover h-[95vh] absolute top-[50%] right-0 z-0 left-0 hidden 3xl:block -translate-y-1/2"
               >
