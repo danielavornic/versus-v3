@@ -117,8 +117,8 @@ const ReleasesSection = ({ releases }: { releases: Release[] }) => {
     }, [windowWidth])
   })
 
-  return (
-    <>
+  if (windowWidth < 1024) {
+    return (
       <section
         id="releases-mobile"
         className="relative lg:hidden text-white lg:pt-[80px] my-[150px] lg:h-screen lg:min-h-screen lg:my-[165px] lg:px-[50px] 3xl:my-[230px]"
@@ -155,23 +155,25 @@ const ReleasesSection = ({ releases }: { releases: Release[] }) => {
           ))}
         </Swiper>
       </section>
+    )
+  }
 
-      <Div100vh
-        id="releases"
-        className="relative hidden lg:block text-white lg:pt-[80px] my-[150px] lg:h-screen lg:min-h-screen lg:my-[165px] lg:px-[50px] 3xl:my-[230px]"
-      >
-        <h2 className="overflow-hidden revealing-line lg:inline relative z-10 mb-[42px] lg:mb-0 mobile-title text-center lg:text-left lg:text-[57px] xl:text-[62px] container lg:px-0 lg:w-auto !leading-tight">
-          DON&apos;T STAY <br />
-          PRESS PLAY <br />
-          NEW TUNES <br />
-          ON THEIR WAY
-        </h2>
+  return (
+    <Div100vh
+      id="releases"
+      className="relative hidden lg:block text-white lg:pt-[80px] my-[150px] lg:h-screen lg:min-h-screen lg:my-[165px] lg:px-[50px] 3xl:my-[230px]"
+    >
+      <h2 className="overflow-hidden revealing-line lg:inline relative z-10 mb-[42px] lg:mb-0 mobile-title text-center lg:text-left lg:text-[57px] xl:text-[62px] container lg:px-0 lg:w-auto !leading-tight">
+        DON&apos;T STAY <br />
+        PRESS PLAY <br />
+        NEW TUNES <br />
+        ON THEIR WAY
+      </h2>
 
-        {releases.map((release, index) => (
-          <ReleaseCard release={release} index={index} key={index} />
-        ))}
-      </Div100vh>
-    </>
+      {releases.map((release, index) => (
+        <ReleaseCard release={release} index={index} key={index} />
+      ))}
+    </Div100vh>
   )
 }
 

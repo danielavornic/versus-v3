@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import Link from 'next/link'
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import Div100vh from 'react-div-100vh'
 import SplitType from 'split-type'
 
@@ -11,20 +11,7 @@ const BookingSection = () => {
   const [isReadMore, setIsReadMore] = useState(false)
   const { width: windowWidth } = useWindowSize()
 
-  useEffect(() => {
-    // Define a function that will handle the onload event
-    const handleLoad = () => {
-      ScrollTrigger.refresh()
-    }
-
-    // Add the event listener when the component mounts
-    window.addEventListener('load', handleLoad)
-
-    // Remove the event listener when the component unmounts
-    return () => {
-      window.removeEventListener('load', handleLoad)
-    }
-  }, [])
+  console.log('windowWidth', windowWidth)
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -101,36 +88,42 @@ const BookingSection = () => {
         <div className="relative flex items-center justify-center md:px-12 lg:p-0">
           {!isReadMore ? (
             <>
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                poster="/videos/booking-mobile-poster.png"
-                className="w-full object-cover h-[95vh] absolute top-[50%] right-0 z-0 left-0  md:hidden -translate-y-1/2"
-              >
-                <source src="/videos/booking-mobile.webm" type="video/webm" />
-              </video>
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                poster="/videos/booking-poster.png"
-                className="w-full object-cover md:h-[80vh] lg:h-[95vh] absolute top-[50%] right-0 z-0 left-0 hidden md:block -translate-y-1/2"
-              >
-                <source src="/videos/booking-mid.webm" type="video/webm" />
-              </video>
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                poster="/videos/booking-poster.png"
-                className="w-full object-cover h-[95vh] absolute top-[50%] right-0 z-0 left-0 hidden 3xl:block -translate-y-1/2"
-              >
-                <source src="/videos/booking-xl.webm" type="video/webm" />
-              </video>
+              {windowWidth > 1500 && (
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster="/videos/booking-poster.png"
+                  className="w-full object-cover h-[95vh] absolute top-[50%] right-0 z-0 left-0 hidden 3xl:block -translate-y-1/2"
+                >
+                  <source src="/videos/booking-xl.webm" type="video/webm" />
+                </video>
+              )}{' '}
+              {windowWidth >= 768 && (
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster="/videos/booking-poster.png"
+                  className="w-full object-cover md:h-[80vh] lg:h-[95vh] absolute top-[50%] right-0 z-0 left-0 hidden md:block -translate-y-1/2"
+                >
+                  <source src="/videos/booking-mid.webm" type="video/webm" />
+                </video>
+              )}{' '}
+              {windowWidth < 768 && (
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster="/videos/booking-mobile-poster.png"
+                  className="w-full object-cover h-[95vh] absolute top-[50%] right-0 z-0 left-0  md:hidden -translate-y-1/2"
+                >
+                  <source src="/videos/booking-mobile.webm" type="video/webm" />
+                </video>
+              )}
             </>
           ) : (
             <div className="hidden md:block absolute md:top-[50%] md:-translate-y-1/2 left-0 right-0 h-[95vh] w-full bg-cover bg-[url('/images/booking-bg.png')] object-cover" />

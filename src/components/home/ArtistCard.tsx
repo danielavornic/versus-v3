@@ -76,12 +76,12 @@ const ArtistCard = ({
           })}
         >
           <div className="flex justify-between">
-            <div className="flex space-x-[42px] lg:space-x-[12px] xl:space-x-[14px] items-center">
+            <div className="flex space-x-[20px] lg:space-x-[12px] xl:space-x-[14px] items-center">
               <a
                 href={tiktok}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 lg:w-[14px] text-white hover:text-tiktok transition-all duration-500"
+                className="w-5 lg:w-[14px] text-white hover:text-tiktok transition-all duration-500"
               >
                 <TikTok />
               </a>
@@ -89,7 +89,7 @@ const ArtistCard = ({
                 href={instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 lg:w-[16px] text-white hover:text-instagram transition-all duration-500"
+                className="w-5 lg:w-[16px] text-white hover:text-instagram transition-all duration-500"
               >
                 <Instagram />
               </a>
@@ -97,7 +97,7 @@ const ArtistCard = ({
                 href={facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-[23px] lg:w-[10px] text-white hover:text-facebook transition-all duration-500"
+                className="w-[14px] lg:w-[10px] text-white hover:text-facebook transition-all duration-500"
               >
                 <Facebook />
               </a>
@@ -105,19 +105,19 @@ const ArtistCard = ({
                 href={youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 lg:w-[17px] text-white hover:text-youtube transition-all duration-500"
+                className="w-6 lg:w-[17px] text-white hover:text-youtube transition-all duration-500"
               >
                 <YouTube />
               </a>
             </div>
 
             {(tiktok2 || instagram2 || facebook2 || youtube2) && (
-              <div className="flex space-x-[42px] lg:space-x-[12px] xl:space-x-[14px] items-center">
+              <div className="flex space-x-[20px] lg:space-x-[12px] xl:space-x-[14px] items-center">
                 <a
                   href={tiktok2}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 lg:w-[14px] text-white hover:text-tiktok transition-all duration-500"
+                  className="w-5 lg:w-[14px] text-white hover:text-tiktok transition-all duration-500"
                 >
                   <TikTok />
                 </a>
@@ -125,7 +125,7 @@ const ArtistCard = ({
                   href={instagram2}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 lg:w-[16px] text-white hover:text-instagram transition-all duration-500"
+                  className="w-5 lg:w-[16px] text-white hover:text-instagram transition-all duration-500"
                 >
                   <Instagram />
                 </a>
@@ -133,7 +133,7 @@ const ArtistCard = ({
                   href={facebook2}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-[23px] lg:w-[10px] text-white hover:text-facebook transition-all duration-500"
+                  className="w-[14px] lg:w-[10px] text-white hover:text-facebook transition-all duration-500"
                 >
                   <Facebook />
                 </a>
@@ -141,7 +141,7 @@ const ArtistCard = ({
                   href={youtube2}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 lg:w-[17px] text-white hover:text-youtube transition-all duration-500"
+                  className="w-6 lg:w-[17px] text-white hover:text-youtube transition-all duration-500"
                 >
                   <YouTube />
                 </a>
@@ -149,7 +149,7 @@ const ArtistCard = ({
             )}
           </div>
 
-          <div className="grid grid-cols-2 gap-5 lg:gap-2 xl:gap-5 xl:grid-cols-4">
+          <div className="grid grid-cols-2 gap-y-2 lg:gap-2 xl:gap-5 xl:grid-cols-4">
             <StreamingButton link={spotify} icon="/images/spotify-logo.svg" />
             <StreamingButton
               link={appleMusic}
