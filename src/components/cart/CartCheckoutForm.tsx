@@ -41,6 +41,11 @@ const CartCheckoutForm = () => {
     mode: 'onChange',
   })
 
+  const firstName = watch('firstName')
+  const lastName = watch('lastName')
+  const email = watch('email')
+  const phone = watch('phone')
+
   const onSubmit = () => mutate()
 
   const { mutate } = useMutation({
@@ -48,23 +53,21 @@ const CartCheckoutForm = () => {
       const res = fetch('/api/checkout', {
         method: 'POST',
         body: JSON.stringify({
-          firstName: watch('firstName'),
-          lastName: watch('lastName'),
-          email: watch('email'),
-          phone: watch('phone'),
+          firstName,
+          lastName,
+          email,
+          phone,
           cart,
         }),
       })
       return res
     },
     onSuccess: () => {
-      setTimeout(() => {
-        reset()
-        setIsTermsChecked(undefined)
-        setIsPickupChecked(undefined)
-        setIsPaymentChecked(undefined)
-        setButtonState('success')
-      }, 1000)
+      reset()
+      setIsTermsChecked(undefined)
+      setIsPickupChecked(undefined)
+      setIsPaymentChecked(undefined)
+      setButtonState('success')
 
       setTimeout(() => {
         push('/shop/checkout-sucess')
@@ -75,15 +78,25 @@ const CartCheckoutForm = () => {
   useEffect(() => {
     const isFormValid =
       Object.keys(errors).length === 0 &&
-      watch('firstName') &&
-      watch('lastName') &&
-      watch('email') &&
-      watch('phone') &&
-      watch('isPickupChecked') &&
-      watch('isPaymentChecked') &&
-      watch('isTermsChecked')
+      firstName &&
+      lastName &&
+      email &&
+      phone &&
+      isPickupChecked &&
+      isPaymentChecked &&
+      isTermsChecked
+
     setShowLoadingBtn(isFormValid)
-  }, [errors, isPickupChecked, isPaymentChecked, isTermsChecked, watch])
+  }, [
+    errors,
+    isPickupChecked,
+    isPaymentChecked,
+    isTermsChecked,
+    firstName,
+    lastName,
+    email,
+    phone,
+  ])
 
   return (
     <div className="lg:w-[450px]">

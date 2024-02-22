@@ -20,27 +20,13 @@ const Loader = () => {
         unbounded.variable,
       )}
     >
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="w-full h-full hidden lg:block"
-      >
-        <source src="/videos/loader.webm" type="video/mp4" />
-      </video>
+      <img
+        src="/videos/loader.gif"
+        alt="loader"
+        className="w-[300px] lg:w-[350px] xl:w-[400px] 3xl:w-[510px] h-auto"
+      />
 
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="w-full h-full lg:hidden"
-      >
-        <source src="/videos/loader-mobile.webm" type="video/mp4" />
-      </video>
-
-      <p className="text-[10px] font-unbounded text-center text-alm-white">
+      <p className="text-[10px] font-unbounded text-center fixed bottom-[85px] left-0 right-0 text-alm-white">
         © {year} VERSUSARTIST All Rights Reserved.
       </p>
     </Div100vh>

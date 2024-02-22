@@ -57,7 +57,7 @@ const ArtistsListDesktop = ({ artists, artist, setArtist }) => {
                 },
               )}
             >
-              <source src={promoVideo} type="video/mp4" />
+              <source src={promoVideo} type="video/webm" />
             </video>
           )}
           <p

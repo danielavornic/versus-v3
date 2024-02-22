@@ -36,7 +36,7 @@ const Project = ({ project }: { project: IProject }) => {
         {video && (
           <>
             <video autoPlay loop muted playsInline className="block md:hidden">
-              <source src={videoMobile} type="video/mp4" />
+              <source src={videoMobile} type="video/webm" />
             </video>
             <div className="flex-1 relative hidden md:block">
               <video

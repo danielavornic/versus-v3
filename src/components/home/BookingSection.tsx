@@ -106,27 +106,30 @@ const BookingSection = () => {
                 loop
                 muted
                 playsInline
+                poster="/images/home-video-poster.png"
                 className="w-full object-cover h-[95vh] absolute top-[50%] right-0 z-0 left-0  md:hidden -translate-y-1/2"
               >
-                <source src="/videos/booking-mobile.webm" type="video/mp4" />
+                <source src="/videos/booking-mobile.webm" type="video/webm" />
               </video>
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
+                poster="/images/home-video-poster.png"
                 className="w-full object-cover md:h-[80vh] lg:h-[95vh] absolute top-[50%] right-0 z-0 left-0 hidden md:block -translate-y-1/2"
               >
-                <source src="/videos/booking-mid.webm" type="video/mp4" />
+                <source src="/videos/booking-mid.webm" type="video/webm" />
               </video>
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
+                poster="/images/home-video-poster.png"
                 className="w-full object-cover h-[95vh] absolute top-[50%] right-0 z-0 left-0 hidden 3xl:block -translate-y-1/2"
               >
-                <source src="/videos/booking-xl.webm" type="video/mp4" />
+                <source src="/videos/booking-xl.webm" type="video/webm" />
               </video>
             </>
           ) : (

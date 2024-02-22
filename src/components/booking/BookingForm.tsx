@@ -63,13 +63,11 @@ const BookingForm = ({ artist, setArtist }) => {
     },
     onSuccess: () => {
       reset()
+      clearErrors()
       setIsTermsChecked(undefined)
       setButtonState('success')
       window.scrollTo(0, 0)
-
-      setTimeout(() => {
-        setShowLoadingBtn(false)
-      }, 1000)
+      setShowLoadingBtn(false)
     },
   })
 
