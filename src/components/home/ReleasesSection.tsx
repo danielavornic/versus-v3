@@ -114,7 +114,7 @@ const ReleasesSection = ({ releases }: { releases: Release[] }) => {
       return () => {
         ctx?.revert()
       }
-    }, [windowWidth])
+    }, [windowWidth, releases])
   })
 
   if (windowWidth < 1024) {

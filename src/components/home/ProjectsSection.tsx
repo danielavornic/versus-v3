@@ -7,7 +7,6 @@ const projects: IProject[] = [
     name: 'UNSESSION',
     image: '/images/unsession.png',
     video: '/videos/unsession.webm',
-    videoMobile: '/videos/unsession.webm',
     color: '#D7FF55',
     content: (
       <>

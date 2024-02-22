@@ -10,7 +10,6 @@ const Project = ({ project }: { project: IProject }) => {
     image,
     content2,
     video,
-    videoMobile,
     color,
     images: imagesLinks,
   } = project
@@ -34,22 +33,17 @@ const Project = ({ project }: { project: IProject }) => {
           />
         </div>
         {video && (
-          <>
-            <video autoPlay loop muted playsInline className="block md:hidden">
-              <source src={videoMobile} type="video/webm" />
+          <div className="flex-1 relative">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="object-cover h-full"
+            >
+              <source src={video} type="video/webm" />
             </video>
-            <div className="flex-1 relative hidden md:block">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="object-cover h-full"
-              >
-                <source src={video} type="video/webm" />
-              </video>
-            </div>
-          </>
+          </div>
         )}
         {images && (
           <ImageGallery

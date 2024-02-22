@@ -37,13 +37,6 @@ const BookingArtistsPage = (
 
   const [artist, setArtist] = useState('')
 
-  // useEffect(() => {
-  //   document.body.style.overflowY = 'hidden'
-  //   return () => {
-  //     document.body.style.overflowY = 'auto'
-  //   }
-  // }, [])
-
   return (
     <Layout
       hasFooter
