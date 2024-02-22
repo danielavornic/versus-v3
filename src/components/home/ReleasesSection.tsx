@@ -1,7 +1,6 @@
 import { useWindowSize } from '@uidotdev/usehooks'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import { useEffect, useLayoutEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import Div100vh from 'react-div-100vh'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -9,67 +8,114 @@ import { Release } from '~/lib/sanity.queries'
 
 import ReleaseCard from './ReleaseCard'
 
+const randomX = (direction: number) => {
+  return direction * (Math.random() * 10 + 400)
+}
+
+const randomY = (direction: number) => {
+  return direction * (Math.random() * 10 + 20)
+}
+
+const randomDelay = (direction: number) => {
+  return direction * (Math.random() * 1)
+}
+
+const randomTime = (direction: number) => {
+  return direction * (Math.random() * 3 + 5)
+}
+
+const randomTime2 = (direction: number) => {
+  return direction * (Math.random() * 5 + 10)
+}
+
+const randomAngle = (direction: number) => {
+  return direction * (Math.random() * 8)
+}
+
 const ReleasesSection = ({ releases }: { releases: Release[] }) => {
-  const { width: windowWidth, height } = useWindowSize()
+  const { width: windowWidth } = useWindowSize()
 
   useLayoutEffect(() => {
     if (windowWidth < 1024) return
 
     let ctx = gsap.context(() => {
-      gsap.registerPlugin(ScrollTrigger)
+      const releases = document.querySelectorAll('.release')
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: '#releases',
-          pin: true,
-          start: 'top top',
-          anticipatePin: 1,
-          end: '+=100%',
-          scrub: 3,
-          invalidateOnRefresh: true,
-          toggleActions: 'play play reverse reverse',
-        },
+      gsap.config({
+        nullTargetWarn: false,
       })
 
-      tl.addLabel('start').to('#release-0', {
-        top: '0px',
-      })
-      tl.to('#release-1', {
-        top: '50px',
-      })
-      tl.to('#release-2', {
-        top: '100px',
-      })
-      tl.to('#release-3', {
-        top: '220px',
-      })
-      tl.to('#release-4', {
-        top: '320px',
-      })
-      tl.to('#release-5', {
-        top: '400px',
-      })
-      tl.to('#release-6', {
-        top: '450px',
-      })
-      tl.to('#release-7', {
-        top: '500px',
-      })
-      tl.to('#release-8', {
-        top: '520px',
-      })
-      tl.to('#release-9', {
-        top: '550px',
-      })
-      tl.to('#release-10', {
-        top: '620px',
-      })
-    })
+      const animations = new Map()
 
-    return () => {
-      if (ctx) ctx.revert()
-    }
-  }, [windowWidth, releases, height])
+      const moveX = (element, direction) => {
+        const anim = gsap.to(element, {
+          x: randomX(direction),
+          duration: randomTime(direction),
+          delay: randomDelay(direction),
+          ease: 'power1.inOut',
+          onComplete: () => moveX(element, -direction),
+        })
+        return anim
+      }
+
+      const moveY = (element, direction) => {
+        const anim = gsap.to(element, {
+          y: randomY(direction),
+          duration: randomTime2(direction),
+          delay: randomDelay(direction),
+          ease: 'power1.inOut',
+          onComplete: () => moveY(element, -direction),
+        })
+        return anim
+      }
+
+      const rotate = (element, direction) => {
+        const anim = gsap.to(element, {
+          rotation: randomAngle(direction),
+          duration: randomTime(direction),
+          delay: randomDelay(direction),
+          ease: 'power1.inOut',
+          onComplete: () => rotate(element, -direction),
+        })
+        return anim
+      }
+
+      releases.forEach((release) => {
+        gsap.set(release, {
+          x: randomX(-1),
+          y: randomY(1),
+          rotation: randomAngle(-1),
+        })
+
+        const anims = [
+          moveX(release, 1),
+          moveY(release, -1),
+          rotate(release, 1),
+        ]
+        animations.set(release, anims)
+
+        release.addEventListener('mouseenter', () => {
+          gsap.to(release, {
+            scale: 1.25,
+            duration: 0.1,
+            ease: 'power1.out',
+          })
+        })
+
+        release.addEventListener('mouseleave', () => {
+          gsap.to(release, {
+            scale: 1,
+            duration: 0.1,
+            ease: 'power1.out',
+          })
+        })
+      })
+
+      return () => {
+        ctx?.revert()
+      }
+    }, [windowWidth])
+  })
 
   return (
     <>
@@ -114,7 +160,7 @@ const ReleasesSection = ({ releases }: { releases: Release[] }) => {
         id="releases"
         className="relative hidden lg:block text-white lg:pt-[80px] my-[150px] lg:h-screen lg:min-h-screen lg:my-[165px] lg:px-[50px] 3xl:my-[230px]"
       >
-        <h2 className="overflow-hidden relative z-10 mb-[42px] lg:mb-0 mobile-title text-center lg:text-left lg:text-[57px] xl:text-[62px] container lg:px-0 lg:w-auto !leading-tight">
+        <h2 className="overflow-hidden revealing-line lg:inline relative z-10 mb-[42px] lg:mb-0 mobile-title text-center lg:text-left lg:text-[57px] xl:text-[62px] container lg:px-0 lg:w-auto !leading-tight">
           DON&apos;T STAY <br />
           PRESS PLAY <br />
           NEW TUNES <br />

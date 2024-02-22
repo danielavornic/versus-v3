@@ -40,17 +40,17 @@ const sizesDict = {
 }
 
 const horizontalPositions = [
-  'lg:left-[80vw] 1.5xl:left-[75vw]',
-  'lg:left-[400px]',
-  'lg:left-[55vw] 1.5xl:right-[40vw]',
-  'lg:right-[-50px]',
-  'lg:left-[35vw]',
-  'lg:right-[25vw] 2xl:right-[20vw]',
-  'lg:left-[50px]',
-  'lg:right-[-50px]',
-  'lg:left-[50vw]',
-  'lg:left-[20vw]',
-  'lg:right-[15vw]',
+  'lg:left-[80vw] 1.5xl:left-[75vw] top-[0px]',
+  'lg:left-[600px] top-[50px]',
+  'lg:left-[55vw] 1.5xl:right-[40vw] top-[100px]',
+  'lg:right-[-50px] top-[220px]',
+  'lg:left-[35vw] top-[320px]',
+  'lg:right-[25vw] 2xl:right-[20vw] top-[400px]',
+  'lg:left-[50px] top-[450px]',
+  'lg:right-[-50px] top-[500px]',
+  'lg:left-[50vw] top-[520px]',
+  'lg:left-[20vw] top-[550px]',
+  'lg:right-[15vw] top-[620px]',
 ]
 
 const sizes = [2, 0, 2, 1, 0, 0, 1, 0, 1, 2, 2, 1]
@@ -69,7 +69,7 @@ const ReleaseCard = ({
   return (
     <div
       className={clsx(
-        'release bg-cover top-[120vh] w-[300px] h-[300px] bg-no-repeat bg-center lg:absolute lg:hover:transform duration-500 lg:hover:scale-105 transition-all',
+        'release bg-cover top-[120vh] w-[300px] h-[300px] bg-no-repeat bg-center lg:absolute lg:hover:transform duration-500 lg:hover:scale-[1.2] transition-all',
         sizeClassName,
         horizontalPositions[index],
       )}

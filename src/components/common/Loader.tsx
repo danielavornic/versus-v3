@@ -16,7 +16,7 @@ const Loader = () => {
     <Div100vh
       id="global-loader"
       className={clsx(
-        'w-screen bg-black fixed z-[1000] top-0 left-0 right-0 flex justify-center flex-col pb-[86px]',
+        'w-screen bg-black fixed z-[1000] top-0 left-0 right-0 flex justify-center items-center flex-col pb-[86px]',
         unbounded.variable,
       )}
     >
