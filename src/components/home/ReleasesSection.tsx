@@ -1,6 +1,6 @@
 import { useWindowSize } from '@uidotdev/usehooks'
 import { gsap } from 'gsap'
-import { useLayoutEffect } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 import Div100vh from 'react-div-100vh'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -35,7 +35,7 @@ const randomAngle = (direction: number) => {
 const ReleasesSection = ({ releases }: { releases: Release[] }) => {
   const { width: windowWidth } = useWindowSize()
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (windowWidth < 1024) return
 
     let ctx = gsap.context(() => {
