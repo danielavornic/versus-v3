@@ -115,10 +115,28 @@ const BookingForm = ({ artist, setArtist }) => {
         )}
       >
         {buttonState === 'success' ? (
-          <h2 className="text-[43px] lg:mb-[300px] lg:translate-y-[100px] text-center leading-[48px] 3xl:text-[64px] 3xl:leading-[1]">
-            your message <br />
-            is on its way
-          </h2>
+          <>
+            <h2 className="text-[43px] lg:mb-[350px] lg:translate-y-[100px] text-center leading-[48px] 3xl:text-[64px] 3xl:leading-[1]">
+              your message <br />
+              is on its way
+            </h2>
+            <p
+              onClick={() => {
+                setArtist('')
+                reset()
+                setIsTermsChecked(undefined)
+                if (buttonState === 'success') {
+                  setButtonState('')
+                }
+              }}
+              role="button"
+              className={clsx(
+                'underline cursor-pointer uppercase focus:outline-none font-medium duration-500 text-lg block text-alm-white hover:text-white active:text-alm-white transition-all',
+              )}
+            >
+              Close
+            </p>
+          </>
         ) : (
           <h3 className="text-[43px] mb-[42px] xl:mb-[50px] font-medium uppercase text-center leading-[48px] 3xl:text-[64px] 3xl:leading-[1.1] transition-all">
             <span className="text-center">Booking</span>
@@ -314,7 +332,7 @@ const BookingForm = ({ artist, setArtist }) => {
           className={clsx(
             'underline cursor-pointer uppercase focus:outline-none font-medium duration-500 text-lg block lg:ml-10 text-alm-white hover:text-white active:text-alm-white transition-all',
             {
-              'lg:!ml-0': buttonState === 'success',
+              hidden: buttonState === 'success',
               'opacity-0 pointer-events-none !w-0 !ml-0': !artist,
             },
           )}

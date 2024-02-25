@@ -24,10 +24,7 @@ const HomeHero = () => {
                 },
               )}
             >
-              <source
-                src="/videos/home-video-mobile-bw.webm"
-                type="video/webm"
-              />
+              <source src="/videos/home-video-mobile-bw.mp4" type="video/mp4" />
             </video>
             <video
               autoPlay
@@ -36,7 +33,7 @@ const HomeHero = () => {
               poster="/images/home-video-poster.png"
               className="absolute bottom-0 left-0 right-0 top-0 z-0 w-[calc(100vw-60px)] md:hidden md:w-[calc(100vw-80px)] lg:w-[calc(100vw-100px)] block mx-auto h-screen object-cover"
             >
-              <source src="/videos/home-video-mobile.webm" type="video/webm" />
+              <source src="/videos/home-video-mobile.mp4" type="video/mp4" />
             </video>
           </>
         )}
@@ -53,7 +50,7 @@ const HomeHero = () => {
               },
             )}
           >
-            <source src="/videos/home-video-bw.webm" type="video/webm" />
+            <source src="/videos/home-video-bw.mp4" type="video/mp4" />
           </video>
         )}
         {width >= 768 && (
@@ -64,7 +61,7 @@ const HomeHero = () => {
             poster="/images/home-video-poster.png"
             className="absolute bottom-0 left-0 right-0 top-0 hidden md:block z-0 w-[calc(100vw-60px)] md:w-[calc(100vw-80px)] lg:w-[calc(100vw-100px)] mx-auto h-screen object-cover"
           >
-            <source src="/videos/home-video.webm" type="video/webm" />
+            <source src="/videos/home-video.mp4" type="video/mp4" />
           </video>
         )}
       </div>

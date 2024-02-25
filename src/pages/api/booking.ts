@@ -51,6 +51,7 @@ export default async function handler(
 
     const formattedRow = {
       Timestamp: new Date().toLocaleString(),
+      Artist: emailData.artist,
       ['Event Date']: emailData.date
         ? new Date(emailData.date).toLocaleDateString('en-GB', {
             day: 'numeric',

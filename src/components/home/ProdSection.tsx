@@ -102,7 +102,7 @@ const ProdSection = ({
           </Swiper>
 
           <div className="md:hidden mt-[100px]">
-            {slides?.map((work: ProductionWork, index: number) => (
+            {productionWorks?.map((work: ProductionWork, index: number) => (
               <SwiperSlide key={index}>
                 <ProdWork work={work} />
               </SwiperSlide>

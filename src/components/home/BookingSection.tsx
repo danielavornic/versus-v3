@@ -97,7 +97,7 @@ const BookingSection = () => {
                   poster="/videos/booking-poster.png"
                   className="w-full object-cover h-[95vh] absolute top-[50%] right-0 z-0 left-0 hidden 3xl:block -translate-y-1/2"
                 >
-                  <source src="/videos/booking-xl.webm" type="video/webm" />
+                  <source src="/videos/booking-xl.mp4" type="video/mp4" />
                 </video>
               )}{' '}
               {windowWidth >= 768 && (
@@ -109,7 +109,7 @@ const BookingSection = () => {
                   poster="/videos/booking-poster.png"
                   className="w-full object-cover md:h-[80vh] lg:h-[95vh] absolute top-[50%] right-0 z-0 left-0 hidden md:block -translate-y-1/2"
                 >
-                  <source src="/videos/booking-mid.webm" type="video/webm" />
+                  <source src="/videos/booking-mid.mp4" type="video/mp4" />
                 </video>
               )}{' '}
               {windowWidth < 768 && (
@@ -121,7 +121,7 @@ const BookingSection = () => {
                   poster="/videos/booking-mobile-poster.png"
                   className="w-full object-cover h-[95vh] absolute top-[50%] right-0 z-0 left-0  md:hidden -translate-y-1/2"
                 >
-                  <source src="/videos/booking-mobile.webm" type="video/webm" />
+                  <source src="/videos/booking-mobile.mp4" type="video/mp4" />
                 </video>
               )}
             </>

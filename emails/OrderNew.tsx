@@ -225,7 +225,7 @@ export const OrderNew = (props: OrderNewProps) => {
 
             <div className="bg-[#FAFAFA] p-6 mx-[4vw]">
               <h2 className="text-[25px] md:text-[43px] font-semibold mb-10 leading-[1]">
-                Detalli comandă
+                Detalii comandă
               </h2>
               <div>
                 {cart?.items.map(({ product, size, quantity }: any, index) => (
@@ -284,7 +284,7 @@ export const OrderNew = (props: OrderNewProps) => {
               </div>
 
               <h2 className="text-[25px] md:text-[43px] font-semibold mb-10 leading-[1] mt-10">
-                Detalli personale
+                Detalii personale
               </h2>
               <div className="px-3">
                 <Text className="text-xs mb-8">{firstName}</Text>

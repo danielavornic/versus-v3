@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.80",
+    "@mux/mux-player-react": "^2.3.3",
     "@portabletext/react": "^3.0.11",
     "@portabletext/to-html": "^2.0.5",
     "@react-email/button": "^0.0.13",
@@ -30,6 +31,7 @@
     "@tanstack/react-query": "^5.17.9",
     "@types/react-datepicker": "^4.19.5",
     "@uidotdev/usehooks": "^2.4.1",
+    "@vercel/blob": "^0.22.1",
     "clsx": "^2.0.0",
     "google-auth-library": "^9.6.3",
     "google-spreadsheet": "^4.1.1",
