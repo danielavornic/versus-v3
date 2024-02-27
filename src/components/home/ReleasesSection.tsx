@@ -9,11 +9,11 @@ import { Release } from '~/lib/sanity.queries'
 import ReleaseCard from './ReleaseCard'
 
 const randomX = (direction: number) => {
-  return direction * (Math.random() * 10 + 400)
+  return direction * (Math.random() * 10 + 350)
 }
 
 const randomY = (direction: number) => {
-  return direction * (Math.random() * 10 + 20)
+  return direction * (Math.random() * 10 + 30)
 }
 
 const randomDelay = (direction: number) => {
@@ -25,11 +25,11 @@ const randomTime = (direction: number) => {
 }
 
 const randomTime2 = (direction: number) => {
-  return direction * (Math.random() * 5 + 10)
+  return direction * (Math.random() * 5 + 15)
 }
 
 const randomAngle = (direction: number) => {
-  return direction * (Math.random() * 8)
+  return direction * (Math.random() * 7)
 }
 
 const ReleasesSection = ({ releases }: { releases: Release[] }) => {

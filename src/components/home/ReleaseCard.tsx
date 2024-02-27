@@ -40,20 +40,26 @@ const sizesDict = {
 }
 
 const horizontalPositions = [
-  'lg:left-[80vw] 1.5xl:left-[75vw] top-[0px]',
+  'lg:left-[80vw] 1.5xl:left-[40vw] top-[0px]',
   'lg:left-[600px] top-[50px]',
+  'lg:left-[85vw] 1.5xl:right-[10vw] top-[65px]',
   'lg:left-[55vw] 1.5xl:right-[40vw] top-[100px]',
+  'lg:right-[300px] top-[100px]',
+  'lg:left-[60vw] top-[150px]',
   'lg:right-[-50px] top-[220px]',
-  'lg:left-[35vw] top-[320px]',
-  'lg:right-[25vw] 2xl:right-[20vw] top-[400px]',
-  'lg:left-[50px] top-[450px]',
-  'lg:right-[-50px] top-[500px]',
-  'lg:left-[50vw] top-[520px]',
-  'lg:left-[20vw] top-[550px]',
-  'lg:right-[15vw] top-[620px]',
+  'lg:right-[50px] top-[300px]',
+  'lg:right-[55vw] top-[320px]',
+  'lg:right-[20vw] 2xl:right-[20vw] top-[400px]',
+  'lg:right-[500px] top-[420px]',
+  'lg:right-[-50px] top-[450px]',
+  'lg:left-[30vw] top-[520px]',
+  'lg:left-[50px] top-[550px]',
+  'lg:left-[10vw] top-[600px]',
+  'lg:right-[10vw] top-[620px]',
+  'lg:left-[35vw] top-[650px]',
 ]
 
-const sizes = [2, 0, 2, 1, 0, 0, 1, 0, 1, 2, 2, 1]
+const sizes = [2, 0, 1, 1, 1, 2, 1, 0, 1, 0, 2, 1, 2, 1, 0, 1, 1]
 
 const ReleaseCard = ({
   release,
@@ -69,9 +75,9 @@ const ReleaseCard = ({
   return (
     <div
       className={clsx(
-        'release bg-cover w-[300px] h-[300px] bg-no-repeat bg-center lg:absolute lg:hover:transform duration-500 lg:hover:scale-[1.2] transition-all',
-        sizeClassName,
         horizontalPositions[index],
+        sizeClassName,
+        'release bg-cover w-[300px] hover:z-[1000] h-[300px] bg-no-repeat bg-center lg:absolute lg:hover:transform duration-500 lg:hover:scale-[1.2] transition-all',
       )}
       style={{ backgroundImage: `url(${urlForImage(coverImg)?.url()})` }}
       title={`${name} by ${artist}`}
