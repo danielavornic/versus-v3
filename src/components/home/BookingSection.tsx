@@ -78,7 +78,7 @@ const BookingSection = () => {
       id="booking"
       data-scroll-section
       className={clsx(
-        'bg-black text-white flex items-center justify-center my-[120px] lg:mt-[200px]',
+        'bg-black text-white flex items-center justify-center my-[120px] lg:mb-[200px]',
         {
           '!h-full md:!h-screen': isReadMore,
         },
@@ -88,6 +88,7 @@ const BookingSection = () => {
         <div className="relative flex items-center justify-center md:px-12 lg:p-0">
           {!isReadMore ? (
             <>
+              <div className="bg-black bg-opacity-50 absolute h-[95vh] -translate-y-1/2 top-[50%] left-0 right-0 z-[1]"></div>
               {windowWidth > 1500 && (
                 <video
                   autoPlay

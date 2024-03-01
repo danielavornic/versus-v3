@@ -51,11 +51,9 @@ export default function IndexPage(
     <Layout>
       <HomeHero />
       <ArtistsGrid artists={artists} />
-      <BookingSection />
       <ReleasesSection releases={releases} />
+      <BookingSection />
       <ProdSection productionWorks={productionWorks} />
-      {/* <ConcertsSection /> */}
-      {/* <Conceptualization /> */}
       <ProjectsSection />
     </Layout>
   )

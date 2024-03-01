@@ -1,3 +1,4 @@
+import { useWindowSize } from '@uidotdev/usehooks'
 import clsx from 'clsx'
 import ImageGallery from 'react-image-gallery'
 
@@ -10,6 +11,7 @@ const Project = ({ project }: { project: IProject }) => {
     image,
     content2,
     video,
+    videoMobile,
     color,
     images: imagesLinks,
   } = project
@@ -18,6 +20,8 @@ const Project = ({ project }: { project: IProject }) => {
     original: src,
     thumbnail: src,
   }))
+
+  const { width } = useWindowSize()
 
   return (
     <div className="flex flex-col space-y-[70px] lg:space-y-[100px] 1.5xl:space-y-[120px]">
@@ -41,7 +45,10 @@ const Project = ({ project }: { project: IProject }) => {
               playsInline
               className="object-cover h-full"
             >
-              <source src={video} type="video/mp4" />
+              <source
+                src={width >= 576 ? video : videoMobile}
+                type="video/mp4"
+              />
             </video>
           </div>
         )}
