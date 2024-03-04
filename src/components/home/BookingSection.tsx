@@ -11,8 +11,6 @@ const BookingSection = () => {
   const [isReadMore, setIsReadMore] = useState(false)
   const { width: windowWidth } = useWindowSize()
 
-  console.log('windowWidth', windowWidth)
-
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       gsap.registerPlugin(ScrollTrigger)
@@ -88,7 +86,7 @@ const BookingSection = () => {
         <div className="relative flex items-center justify-center md:px-12 lg:p-0">
           {!isReadMore ? (
             <>
-              <div className="bg-black bg-opacity-50 absolute h-[95vh] -translate-y-1/2 top-[50%] left-0 right-0 z-[1]"></div>
+              <div className="bg-black bg-opacity-50 absolute h-[96vh] -translate-y-1/2 top-[50%] left-0 right-0 z-[1]"></div>
               {windowWidth > 1500 && (
                 <video
                   autoPlay
@@ -152,13 +150,14 @@ const BookingSection = () => {
                 <div className="md:hidden bg-cover h-[400px] bg-[url('/images/event.png')]"></div>
 
                 <p className="uppercase leading-[1.1] overflow-hidden text-[24px] md:text-[28px] flex-1 lg:text-[32px] 1.5xl:text-[36px] 3xl:text-[42px] lg:mr-[42px] xl:mr-[80px] lg:normal-case">
-                  Booking pentru Artiștii Versus cât și outsource pentru clienți
-                  din sau din afara Republicii Moldova.
+                  Creează propriul Line-Up! Alege artiștii. Restul e muzică.
+                  <br />
+                  Booking pentru Artiștii Versus și outsource.
                 </p>
                 <ul className="font-okta font-light space-y-[16px] list-outside list-disc text-lg xl:text-[20px] flex-1 !leading-tight">
                   <li>
                     Crearea și adaptarea ofertelor pentru artiști (format cu
-                    band, cu DJ, acoustic, la festivale, evnimente private sau
+                    band, cu DJ, acoustic, la festivale, evenimente private sau
                     publice) care cuprind riderul tehnic și cel de ospitalitate
                     + stabilirea tuturor costurilor suportate de către
                     beneficiar.

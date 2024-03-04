@@ -17,7 +17,7 @@ const footerLinks = [
     link: '/#booking',
   },
   {
-    name: 'Production & Mix Master',
+    name: 'Production & Mix/Master',
     link: '/#production',
   },
   {

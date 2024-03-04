@@ -28,7 +28,7 @@ const menuLinks = [
     href: '/#booking',
   },
   {
-    title: 'Production & Master',
+    title: 'Production & Mix/Master',
     href: '/#production',
   },
   {

@@ -36,20 +36,29 @@ const Project = ({ project }: { project: IProject }) => {
             className="w-full object-contain md:max-w-[50%] lg:max-w-none lg:w-[400px] 1.5xl:w-[520px] md:mx-auto"
           />
         </div>
-        {video && (
+        {video && width && (
           <div className="flex-1 relative">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="object-cover h-full"
-            >
-              <source
-                src={width >= 576 ? video : videoMobile}
-                type="video/mp4"
-              />
-            </video>
+            {width <= 576 ? (
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="object-cover h-full"
+              >
+                <source src={videoMobile} type="video/mp4" />
+              </video>
+            ) : (
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="object-cover h-full"
+              >
+                <source src={video} type="video/mp4" />
+              </video>
+            )}
           </div>
         )}
         {images && (
@@ -67,12 +76,12 @@ const Project = ({ project }: { project: IProject }) => {
       </div>
       <div
         className={clsx({
-          'xl:flex xl:items-center': !content2,
+          'xl:flex xl:items-center justify-start': !content2,
         })}
       >
         <h3
           className={clsx(
-            'text-[33px] md:text-[42px] revealing-line !leading-tight mb-[42px] xl:w-[80%] 1.5xl:w-[50%] 2xl:w-[80%]',
+            'text-[33px] md:text-[42px] revealing-line !leading-tight mb-[42px] xl:w-[80%] 1.5xl:w-[37%] 3xl:w-[31%]',
             {
               'xl:mb-0': !content2,
             },
@@ -81,12 +90,10 @@ const Project = ({ project }: { project: IProject }) => {
           {name}
         </h3>
         <div
-          className={clsx(
-            'flex flex-col 2xl:flex-row 2xl:space-x-[100px] justify-between',
-            {
-              'xl:max-w-[700px] 2xl:max-w-none': !!content2,
-            },
-          )}
+          className={clsx('flex flex-col 2xl:flex-row 2xl:space-x-[100px] ', {
+            'xl:max-w-[700px] 2xl:max-w-none justify-between': !!content2,
+            'xl:max-w-[700px]': !content2,
+          })}
         >
           {typeof content === 'string' ? (
             <p className="flex-1 2xl:text-justify revealing-words">{content}</p>

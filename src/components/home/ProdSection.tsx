@@ -49,21 +49,28 @@ const ProdSection = ({
       <div className="container">
         <h2 className="title mobile-title uppercase mb-[56px] lg:mb-[70px] lg:text-[60px] lg:font-medium lg:leading-[1.1] 1.5xl:text-[93px]">
           prod<span className="hidden lg:inline-block">uction</span>
-          <br className="hidden lg:block" />& MASTERING
+          <br className="hidden lg:block" />& MIX/MASTERING
         </h2>
         <p className="mobile-text revealing-words max-w-[750px] 2xl:max-w-[650px] text-alm-white lg:text-[20px] lg:mb-[80px] 1.5xl:max-w-[746px]">
-          Nu este neapărat să fii semnat la Versus Artist pentru a lucra cu noi.
-          Oferim servicii contra-cost: PRODUCȚIE - SONGWRITING - REC - MIX -
-          MASTER. <br />
+          Te putem ajuta să faci muzica ta: PRODUCȚIE-SONGWRITING-REC-MIX-MASTER
+          - le putem pe toate.
           <br />
-          Avem totul, de la oameni la tehnică, pentru a aduce ideea la stadiul
-          de produs final, gata pentru a fi publicat.
+          <br />
+          Tu vii cu piesa, noi cu tehnica și oamenii.
         </p>
 
         <div className="flex flex-col mt-[70px] md:flex-row justify-between lg:mt-[120px] xl:space-x-[42px] items-center">
           <div className="space-y-4 lg:space-y-5 2xl:space-y-[25px]">
-            <ProducerCard name="Tensso" image="/images/tensso.png" />
-            <ProducerCard name="Nemax" image="/images/nemax.png" />
+            <ProducerCard
+              name="Tensso"
+              image="/images/tensso.png"
+              role="Production & Mix/MASTERING"
+            />
+            <ProducerCard
+              name="Nemax"
+              image="/images/nemax.png"
+              role="Production"
+            />
           </div>
 
           <Swiper

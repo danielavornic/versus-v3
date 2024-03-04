@@ -12,17 +12,16 @@ const projects: IProject[] = [
     content: (
       <>
         <p className="mb-[28px] 2lx:mr-[20%]">
-          Este o emisiune online marca VERSUS ARTIST care constă din 2 elemente:
+          UNSESSION & UNARTIST sunt 2 platforme prin care poți descoperi
+          artistul prin muzica sa și omul prin cuvintele sale.
+          <br />
+          <br />
+          Subscribe la{' '}
+          <a href="https://www.youtube.com/@versusartists" target="_blank">
+            canalul de YouToube Versus Artist
+          </a>{' '}
+          și urmărește cele mai bune lansări.
         </p>
-        <ul className="list-disc list-inside space-y-5 2xl:mr-[20%]">
-          <li>
-            Interpretarea live de către artiști new-entry sau consacrați, din
-            Moldova și România atât a premierelor muzicale, cât și a hiturilor,
-            în diverse forme: versiunea originală, acoustic, stilizată, mash-up
-            cu altă piesă, duet cu alt artist.
-          </li>
-          <li>O discuție non-formală cu Satoshi despre muzică.</li>
-        </ul>
       </>
     ),
   },
