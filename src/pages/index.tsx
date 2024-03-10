@@ -48,7 +48,7 @@ export default function IndexPage(
   const { artists, releases, productionWorks } = props
 
   return (
-    <Layout>
+    <Layout className="bg-black">
       <HomeHero />
       <ArtistsGrid artists={artists} />
       <ReleasesSection releases={releases} />

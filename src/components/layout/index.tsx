@@ -5,14 +5,13 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { PropsWithChildren, useEffect } from 'react'
 
+import { setCart } from '~/store/cartSlice'
 import { useAppDispatch, useAppSelector } from '~/store/hooks'
 import { reset } from '~/store/socialsSlice'
 
 import Footer from './Footer'
 import Header from './Header'
 import LeftSocialsBar from './LeftSocialsBar'
-import useLocoScroll from '~/hooks/useLocoScroll'
-import { setCart } from '~/store/cartSlice'
 
 const unbounded = Unbounded({
   subsets: ['latin-ext'],
