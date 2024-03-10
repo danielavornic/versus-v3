@@ -1,6 +1,5 @@
 import clsx from 'clsx'
 import { Unbounded } from 'next/font/google'
-import React, { useEffect } from 'react'
 import Div100vh from 'react-div-100vh'
 
 const unbounded = Unbounded({
@@ -12,16 +11,6 @@ const unbounded = Unbounded({
 const year = new Date().getFullYear()
 
 const Loader = () => {
-  const [pathname, setPathname] = React.useState('')
-
-  useEffect(() => {
-    setPathname(window?.location.pathname)
-  }, [])
-
-  if (pathname?.includes('/shop')) {
-    return null
-  }
-
   return (
     <Div100vh
       id="global-loader"
