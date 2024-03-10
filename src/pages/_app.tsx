@@ -177,25 +177,25 @@ export default function App({
     }
   }, [])
 
-  useEffect(() => {
-    const handleRouteChange = (url) => {
-      setLoading(true)
-    }
+  // useEffect(() => {
+  //   const handleRouteChange = (url) => {
+  //     setLoading(true)
+  //   }
 
-    const handleRouteChangeComplete = () => {
-      setLoading(false)
-    }
+  //   const handleRouteChangeComplete = () => {
+  //     setLoading(false)
+  //   }
 
-    router.events.on('routeChangeStart', handleRouteChange)
-    router.events.on('routeChangeComplete', handleRouteChangeComplete)
+  //   router.events.on('routeChangeStart', handleRouteChange)
+  //   router.events.on('routeChangeComplete', handleRouteChangeComplete)
 
-    return () => {
-      router.events.off('routeChangeStart', handleRouteChange)
-      router.events.off('routeChangeComplete', handleRouteChangeComplete)
-    }
-  }, [router.events])
+  //   return () => {
+  //     router.events.off('routeChangeStart', handleRouteChange)
+  //     router.events.off('routeChangeComplete', handleRouteChangeComplete)
+  //   }
+  // }, [router.events])
 
-  if (loading) return <Loader />
+  // if (loading) return <Loader />
 
   return (
     <QueryClientProvider client={queryClient}>
