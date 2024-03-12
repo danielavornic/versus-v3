@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import clsx from 'clsx'
 import { gsap } from 'gsap'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useLayoutEffect } from 'react'
 import Div100vh from 'react-div-100vh'
