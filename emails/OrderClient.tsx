@@ -171,7 +171,7 @@ export const OrderClientEmail = (props: OrderClientEmailProps) => {
           fontFamily="Unbounded"
           fallbackFontFamily="Verdana"
           webFont={{
-            url: 'https://versus-v3.vercel.app/fonts/Unbounded-Regular.woff2',
+            url: 'https://versusartist.com/fonts/Unbounded-Regular.woff2',
             format: 'woff2',
           }}
           fontWeight={400}
@@ -212,7 +212,7 @@ export const OrderClientEmail = (props: OrderClientEmailProps) => {
       <Body>
         <Container className="bg-[#E0E4EA] text-[#050505] max-w-[900px] w-full px-[3vw] pt-10 pb-[60px]">
           <Img
-            src="https://versus-v3.vercel.app/versus-logo-text-black.png"
+            src="https://versusartist.com/versus-logo-text-black.png"
             alt="Versus Logo"
             className="w-[150px] block mx-auto mb-10"
           />
@@ -238,7 +238,7 @@ export const OrderClientEmail = (props: OrderClientEmailProps) => {
                   key={index}
                 >
                   <a
-                    href={`https://versus-v3.vercel.app/shop/${product.artist?.toLowerCase()}/${
+                    href={`https://versusartist.com/shop/${product.artist?.toLowerCase()}/${
                       product.slug.current
                     }`}
                     target="_blank"
@@ -253,7 +253,7 @@ export const OrderClientEmail = (props: OrderClientEmailProps) => {
 
                   <div className="ml-6 max-w-[100px] md:max-w-none product-text">
                     <Link
-                      href={`https://versus-v3.vercel.app/shop/${product.artist?.toLowerCase()}/${
+                      href={`https://versusartist.com/shop/${product.artist?.toLowerCase()}/${
                         product.slug.current
                       }`}
                       target="_blank"
@@ -332,7 +332,7 @@ export const OrderClientEmail = (props: OrderClientEmailProps) => {
                 rel="noreferrer"
               >
                 <img
-                  src="https://versus-v3.vercel.app/images/email/insta.png"
+                  src="https://versusartist.com/images/email/insta.png"
                   alt="Instagram"
                 />
               </a>
@@ -343,7 +343,7 @@ export const OrderClientEmail = (props: OrderClientEmailProps) => {
                 rel="noreferrer"
               >
                 <img
-                  src="https://versus-v3.vercel.app/images/email/fb.png"
+                  src="https://versusartist.com/images/email/fb.png"
                   alt="Facebook"
                 />
               </a>
@@ -354,7 +354,7 @@ export const OrderClientEmail = (props: OrderClientEmailProps) => {
                 rel="noreferrer"
               >
                 <img
-                  src="https://versus-v3.vercel.app/images/email/youtube.png"
+                  src="https://versusartist.com/images/email/youtube.png"
                   alt="Youtube"
                 />
               </a>
@@ -365,7 +365,7 @@ export const OrderClientEmail = (props: OrderClientEmailProps) => {
                 rel="noreferrer"
               >
                 <img
-                  src="https://versus-v3.vercel.app/images/email/tiktok.png"
+                  src="https://versusartist.com/images/email/tiktok.png"
                   alt="TikTok"
                 />
               </a>

@@ -46,7 +46,7 @@ export const BookingEmail = ({
           fontFamily="Unbounded"
           fallbackFontFamily="sans-serif"
           webFont={{
-            url: 'https://versus-v3.vercel.app/fonts/Unbounded-Regular.woff2',
+            url: 'https://versusartist.com/fonts/Unbounded-Regular.woff2',
             format: 'woff2',
           }}
           fontWeight={400}
@@ -66,7 +66,7 @@ export const BookingEmail = ({
       <Tailwind>
         <Container className="bg-[#050505] max-w-[768px] w-full px-[6vw] pt-10 pb-[60px]">
           <Img
-            src="https://versus-v3.vercel.app/versus-logo-text-white.png"
+            src="https://versusartist.com/versus-logo-text-white.png"
             alt="Versus Logo"
             className="w-[150px] block mx-auto mb-10"
           />

@@ -47,7 +47,7 @@ export const BookingEmailClient = ({
             fontFamily="Unbounded"
             fallbackFontFamily="Verdana"
             webFont={{
-              url: 'https://versus-v3.vercel.app/fonts/Unbounded-Regular.woff2',
+              url: 'https://versusartist.com/fonts/Unbounded-Regular.woff2',
               format: 'woff2',
             }}
             fontWeight={400}
@@ -87,7 +87,7 @@ export const BookingEmailClient = ({
         </Head>
         <Container className="bg-[#050505] max-w-[768px] w-full px-[6vw] pt-10 pb-[60px]">
           <Img
-            src="https://versus-v3.vercel.app/versus-logo-text-white.png"
+            src="https://versusartist.com/versus-logo-text-white.png"
             alt="Versus Logo"
             className="w-[150px] block mx-auto mb-10"
           />
@@ -163,7 +163,7 @@ export const BookingEmailClient = ({
                 rel="noreferrer"
               >
                 <img
-                  src="https://versus-v3.vercel.app/images/email/insta.png"
+                  src="https://versusartist.com/images/email/insta.png"
                   alt="Instagram"
                 />
               </a>
@@ -174,7 +174,7 @@ export const BookingEmailClient = ({
                 rel="noreferrer"
               >
                 <img
-                  src="https://versus-v3.vercel.app/images/email/fb.png"
+                  src="https://versusartist.com/images/email/fb.png"
                   alt="Facebook"
                 />
               </a>
@@ -185,7 +185,7 @@ export const BookingEmailClient = ({
                 rel="noreferrer"
               >
                 <img
-                  src="https://versus-v3.vercel.app/images/email/youtube.png"
+                  src="https://versusartist.com/images/email/youtube.png"
                   alt="Youtube"
                 />
               </a>
@@ -196,7 +196,7 @@ export const BookingEmailClient = ({
                 rel="noreferrer"
               >
                 <img
-                  src="https://versus-v3.vercel.app/images/email/tiktok.png"
+                  src="https://versusartist.com/images/email/tiktok.png"
                   alt="TikTok"
                 />
               </a>
