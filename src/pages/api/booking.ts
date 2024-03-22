@@ -28,7 +28,7 @@ export default async function handler(
     const emailData = JSON.parse(req.body)
 
     const { data: dataNewBooking, error: error2 } = await resend.emails.send({
-      from: 'Versus Artist <contact@versusartist.com>',
+      from: 'Versus Artist <versus@brmg.md>',
       to: process.env.ORDER_EMAIL_RECIPIENT,
       subject: 'Versus New Booking',
       react: BookingEmail(emailData),
@@ -39,7 +39,7 @@ export default async function handler(
     }
 
     const { data: dataClient, error } = await resend.emails.send({
-      from: 'Versus Artist <contact@versusartist.com>',
+      from: 'Versus Artist <versus@brmg.md>',
       to: emailData.email,
       subject: 'Versus Artist Booking Confirmation',
       react: BookingEmailClient(emailData),
