@@ -84,7 +84,7 @@ export interface Product {
   price: number
   variants: ProductVariant[]
   relatedProducts?: Product[]
-  category: 'tshirt' | 'hoodie' | 'longsleeve'
+  category: 'tshirt' | 'hoodie' | 'longsleeve' | 'Album CD' | 'Carnet'
   color: 'black' | 'green' | 'white' | 'pink'
 }
 

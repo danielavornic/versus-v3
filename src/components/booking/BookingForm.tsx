@@ -341,7 +341,8 @@ const BookingForm = ({ artist, setArtist }) => {
         </p>
       </div>
       <a
-        href={`${process.env.NEXT_PUBLIC_HOST}/#booking`}
+        // href={`${process.env.NEXT_PUBLIC_HOST}/#booking`}
+        href="https://versusartist.com/#booking"
         className={clsx(
           'underline uppercase w-fit lg:fixed text-center left-0 right-0 z-10 mx-auto bottom-[70px] xl:bottom-[30px] 1.5xl:bottom-[20px] 3xl:bottom-[115px] font-medium duration-500 text-lg hidden text-alm-white hover:text-white active:text-alm-white transition-all',
           {

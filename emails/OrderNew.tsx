@@ -262,14 +262,19 @@ export const OrderNew = (props: OrderNewProps) => {
                           {product.title}
                         </h4>
                       </Link>
-                      <span className="text-[9px] font-bold mb-[10px] block">
-                        Mărimea
-                      </span>
-                      <div className="m-0 w-[30px] text-[12px] text-center font-semibold h-[30px] uppercase border border-solid border-[#E0E4EA]">
-                        <span className="align-middle block mt-[8px]">
-                          {size}
-                        </span>
-                      </div>
+                      {product.category !== 'Album CD' &&
+                        product.category !== 'Carnet' && (
+                          <>
+                            <span className="text-[9px] font-bold mb-[10px] block">
+                              Mărimea
+                            </span>
+                            <div className="m-0 w-[30px] text-[12px] text-center font-semibold h-[30px] uppercase border border-solid border-[#E0E4EA]">
+                              <span className="align-middle block mt-[8px]">
+                                {size}
+                              </span>
+                            </div>
+                          </>
+                        )}
                       <span className="text-[9px] font-bold mt-[16px] mb-[10px] block">
                         Cantitatea
                       </span>

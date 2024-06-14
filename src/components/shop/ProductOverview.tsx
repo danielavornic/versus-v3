@@ -39,15 +39,15 @@ const ProductOverview = ({ product }: { product: Product }) => {
               {title}
             </h1>
             <span className="text-xl leading-[1]">{price}.0 MDL</span>
-
             <ProductVariantsControls
               product={product}
               qty={qty}
               setQty={setQty}
               artist={artist}
+              showVariants={!(category === 'Album CD' || category === 'Carnet')}
             />
 
-            <div className="space-y-[28px]">
+            <div className="space-y-[28px] mt-[42px]">
               <h3 className="text-xl font-bold text-center lg:text-left">
                 Pick-up
               </h3>

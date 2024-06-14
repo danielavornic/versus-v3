@@ -13,6 +13,7 @@ interface ProductVariantsControlsProps {
   qty: number
   artist: string
   setQty: (qty: number) => void
+  showVariants?: boolean
 }
 
 const PropertyOptions = ({
@@ -70,6 +71,7 @@ const ProductVariantsControls = ({
   qty,
   setQty,
   artist,
+  showVariants = true,
 }: ProductVariantsControlsProps) => {
   const { variants, color: selectedColor, slug } = product
 
@@ -81,11 +83,15 @@ const ProductVariantsControls = ({
   const availableSizes = Object.values(ProductSize)
 
   const availableColors = []
-  variants.forEach((variant) => {
-    if (!availableColors.includes(variant.color)) {
-      availableColors.push(variant.color)
+  if (showVariants) {
+    if (variants) {
+      variants.forEach((variant) => {
+        if (!availableColors.includes(variant.color)) {
+          availableColors.push(variant.color)
+        }
+      })
     }
-  })
+  }
 
   const decreaseQty = () => {
     if (qty > 1) {
@@ -113,6 +119,8 @@ const ProductVariantsControls = ({
     const product = variants.find((variant) => variant.color === color).product
 
     if (!product) return
+
+    console.log(product)
 
     push({
       pathname: `/shop/${artist}/${product.slug.current}`,
@@ -144,22 +152,28 @@ const ProductVariantsControls = ({
   // }, [product])
 
   return (
-    <div className="my-[42px] space-y-[28px]">
-      <PropertyOptions
-        title="Size"
-        options={availableSizes}
-        selectedOption={selectedSize}
-        onClick={handleSizeClick}
-        isOnlyOption={availableSizes.length === 1}
-      />
+    <div className="mt-[42px] space-y-[28px]">
+      {showVariants && (
+        <>
+          <PropertyOptions
+            title="Size"
+            options={availableSizes}
+            selectedOption={selectedSize}
+            onClick={handleSizeClick}
+            isOnlyOption={availableSizes.length === 1}
+          />
 
-      <PropertyOptions
-        title="Color"
-        options={availableColors}
-        selectedOption={selectedColor}
-        onClick={handleColorClick}
-        isOnlyOption={availableColors.length === 1}
-      />
+          {variants && (
+            <PropertyOptions
+              title="Color"
+              options={availableColors}
+              selectedOption={selectedColor}
+              onClick={handleColorClick}
+              isOnlyOption={availableColors.length === 1}
+            />
+          )}
+        </>
+      )}
 
       <div className="space-y-[15px] flex flex-col items-center lg:items-start">
         <span className="text-xl font-semibold uppercase">Quantity</span>

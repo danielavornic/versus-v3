@@ -39,7 +39,7 @@ export default async function handler(
     }
 
     const { data: dataClient, error } = await resend.emails.send({
-      from: 'Versus Artist <versus@brmg.md>',
+      from: 'Versus Artist <shop@versusartist.com>',
       to: emailData.email,
       subject: 'Versus Artist Merch',
       react: OrderClientEmail(emailData),

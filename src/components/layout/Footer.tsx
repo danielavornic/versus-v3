@@ -56,7 +56,8 @@ const Footer = ({ desktopHidden = false, hideDesktopLinks = false }) => {
               {footerLinks.map(({ name, link }) => (
                 <li key={name}>
                   <a
-                    href={`${process.env.NEXT_PUBLIC_HOST}/${link}`}
+                    // href={`${process.env.NEXT_PUBLIC_HOST}/${link}`}
+                    href={`https://versusartist.com${link}`}
                     className="text-[18px] font-semibold uppercase lg:text-[20px] hover:text-[#CBD2DC] transition-all revealing-words"
                   >
                     {name}

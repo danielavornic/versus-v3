@@ -5,14 +5,12 @@ import { useSwipeable } from 'react-swipeable'
 
 import { urlForImage } from '~/lib/sanity.image'
 import { decreaseQty, increaseQty, removeFromCart } from '~/store/cartSlice'
-import { useAppDispatch, useAppSelector } from '~/store/hooks'
-import { CartItem } from '~/types/product'
+import { useAppDispatch } from '~/store/hooks'
+import { CartItem as CartItemI } from '~/types/product'
 
-const CartItem = ({ item }: { item: CartItem }) => {
+const CartItem = ({ item }: { item: CartItemI }) => {
   const { product, quantity, size } = item
   const { title, slug, artist, category, mainImage } = product
-
-  const cart = useAppSelector((state) => state.cart)
 
   const [isMobileDeleteOpen, setIsMobileDeleteOpen] = useState(false)
 
@@ -58,10 +56,16 @@ const CartItem = ({ item }: { item: CartItem }) => {
               {title}
             </h4>
           </Link>
-          <span className="text-[9px] font-bold mb-[10px] block">Mărimea</span>
-          <div className="w-[30px] text-[12px] font-medium h-[30px] uppercase border border-alm-white flex items-center justify-center">
-            {size}
-          </div>
+          {category !== 'Album CD' && category !== 'Carnet' && (
+            <>
+              <span className="text-[9px] font-bold mb-[10px] block">
+                Mărimea
+              </span>
+              <div className="w-[30px] text-[12px] font-medium h-[30px] uppercase border border-alm-white flex items-center justify-center">
+                {size}
+              </div>
+            </>
+          )}
           <span className="text-[9px] font-bold my-[10px] block">
             Cantitatea
           </span>
@@ -87,7 +91,7 @@ const CartItem = ({ item }: { item: CartItem }) => {
 
       <div className="hidden lg:group-hover:block absolute top-[10px] right-[20px]">
         <button
-          onClick={() => dispatch(removeFromCart(item))}
+          onClick={() => dispatch(removeFromCart(item as any))}
           className="w-5 h-5 bg-black hover:bg-red flex items-center justify-center"
         >
           <svg
@@ -116,7 +120,7 @@ const CartItem = ({ item }: { item: CartItem }) => {
         )}
       >
         <button
-          onClick={() => dispatch(removeFromCart(item))}
+          onClick={() => dispatch(removeFromCart(item as any))}
           className="w-[34px] h-[34px] bg-black hover:bg-red flex items-center justify-center"
         >
           <svg

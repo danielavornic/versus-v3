@@ -9,5 +9,5 @@ export enum ProductSize {
 export interface CartItem {
   product: Product
   quantity: number
-  size: string
+  size?: string
 }
