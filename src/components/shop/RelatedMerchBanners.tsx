@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 interface RelatedMerchBannerProps {
   artist: 'satoshi' | 'dara' | 'csd' | 'magnat-feoctist'
@@ -8,6 +9,24 @@ interface RelatedMerchBannerProps {
 const artists = ['satoshi', 'dara', 'csd', 'magnat-feoctist']
 
 const Banner = ({ artist }: { artist: string }) => {
+  const [currArtist, setCurrArtist] = useState(
+    artist === 'magnat-feoctist' ? 'magnat' : artist,
+  )
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrArtist((currArtist) =>
+        currArtist === 'magnat'
+          ? 'feoctist'
+          : artist === 'magnat-feoctist'
+            ? 'magnat'
+            : artist,
+      )
+    }, 2000)
+
+    return () => clearInterval(intervalId)
+  }, [])
+
   const name =
     artist === 'csd'
       ? "Carla's"
@@ -22,7 +41,7 @@ const Banner = ({ artist }: { artist: string }) => {
       <div
         className="w-full md:hidden h-[320px] bg-cover bg-top flex justify-center flex-wrap items-center"
         style={{
-          backgroundImage: `url(/images/shop/${artist}-banner.png)`,
+          backgroundImage: `url(/images/shop/${currArtist}-banner.png)`,
         }}
       >
         <h3 className="text-xl text-center uppercase text-white font-semibold">
@@ -34,7 +53,7 @@ const Banner = ({ artist }: { artist: string }) => {
         <div
           className="w-1/3 bg-top bg-cover h-[230px] lg:h-[200px] 1.5xl:h-[240px] 3xl:h-[300px] hidden md:block"
           style={{
-            backgroundImage: `url(/images/shop/${artist}-banner.png)`,
+            backgroundImage: `url(/images/shop/${currArtist}-banner.png)`,
           }}
         />
         <div
