@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { useState } from 'react'
 
 import { urlForImage } from '~/lib/sanity.image'
@@ -6,10 +7,27 @@ import { Product } from '~/lib/sanity.queries'
 import ProductVariantsControls from './ProductVariantsControls'
 
 const ProductOverview = ({ product }: { product: Product }) => {
-  const { title, price, category, mainImage, backImage, artist } = product
+  const {
+    title,
+    price,
+    category,
+    mainImage,
+    backImage,
+    artist,
+    inStock,
+    inStockS,
+    inStockM,
+    inStockL,
+  } = product
 
   const [isHovered, setIsHovered] = useState(false)
   const [qty, setQty] = useState(1)
+
+  const isInStock =
+    ((category === 'Album CD' || category === 'Carnet') && inStock) ||
+    (category !== 'Album CD' &&
+      category !== 'Carnet' &&
+      (inStockS || inStockM || inStockL))
 
   return (
     <section className="pb-[120px]">
@@ -47,7 +65,11 @@ const ProductOverview = ({ product }: { product: Product }) => {
               showVariants={!(category === 'Album CD' || category === 'Carnet')}
             />
 
-            <div className="space-y-[28px] mt-[42px]">
+            <div
+              className={clsx('space-y-[28px] mt-[42px]', {
+                'h-0 opacity-0': !isInStock,
+              })}
+            >
               <h3 className="text-xl font-bold text-center lg:text-left">
                 Pick-up
               </h3>

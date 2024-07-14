@@ -72,12 +72,34 @@ export default defineType({
       },
       validation: (Rule) => Rule.required(),
     }),
-    // defineField({
-    //   name: 'variants',
-    //   title: 'Variants',
-    //   type: 'array',
-    //   of: [{ type: 'productVariant' }],
-    // }),
+    defineField({
+      name: 'inStock',
+      title: 'In stock',
+      type: 'boolean',
+      hidden: ({ document }) =>
+        !['Album CD', 'Carnet'].includes(document.category as string),
+    }),
+    defineField({
+      name: 'inStockS',
+      title: 'In stock (S)',
+      type: 'boolean',
+      hidden: ({ document }) =>
+        ['Album CD', 'Carnet'].includes(document.category as string),
+    }),
+    defineField({
+      name: 'inStockM',
+      title: 'In stock (M)',
+      type: 'boolean',
+      hidden: ({ document }) =>
+        ['Album CD', 'Carnet'].includes(document.category as string),
+    }),
+    defineField({
+      name: 'inStockL',
+      title: 'In stock (L)',
+      type: 'boolean',
+      hidden: ({ document }) =>
+        ['Album CD', 'Carnet'].includes(document.category as string),
+    }),
     defineField({
       name: 'color',
       title: 'Color',
@@ -90,7 +112,17 @@ export default defineType({
           { title: 'Roz', value: 'pink' },
         ],
       },
+      hidden: ({ document }) =>
+        ['Album CD', 'Carnet'].includes(document.category as string),
       // validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'variants',
+      title: 'Variants',
+      type: 'array',
+      of: [{ type: 'productVariant' }],
+      hidden: ({ document }) =>
+        ['Album CD', 'Carnet'].includes(document.category as string),
     }),
     defineField({
       name: 'relatedProducts',

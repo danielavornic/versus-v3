@@ -25,7 +25,7 @@ const Banner = ({ artist }: { artist: string }) => {
     }, 2000)
 
     return () => clearInterval(intervalId)
-  }, [])
+  }, [artist])
 
   const name =
     artist === 'csd'

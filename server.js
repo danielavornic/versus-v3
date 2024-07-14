@@ -1,6 +1,9 @@
 const { createServer } = require('http')
 const { parse } = require('url')
 const next = require('next')
+const EventEmitter = require('events')
+
+EventEmitter.defaultMaxListeners = 20 // Set the limit to 20 or any number you need
 
 const dev = process.env.NODE_ENV !== 'production'
 const hostname = 'localhost'

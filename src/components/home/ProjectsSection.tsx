@@ -6,8 +6,10 @@ const projects: IProject[] = [
   {
     name: 'UNSESSION',
     image: '/images/unsession.png',
-    video: '/videos/unsession.mp4',
-    videoMobile: '/videos/unsession-mobile.mp4',
+    video:
+      'https://res.cloudinary.com/vornic/video/upload/f_auto:video,q_auto/wsdxzqxurni3v7l3btci',
+    videoMobile:
+      'https://res.cloudinary.com/vornic/video/upload/f_auto:video,q_auto/gayzcgxduxqrzx8a8ggi',
     color: '#D7FF55',
     content: (
       <>
@@ -17,8 +19,12 @@ const projects: IProject[] = [
           <br />
           <br />
           Subscribe la{' '}
-          <a href="https://www.youtube.com/@versusartists" target="_blank">
-            canalul de YouToube Versus Artist
+          <a
+            href="https://www.youtube.com/@versusartist"
+            target="_blank"
+            className="hover:underline"
+          >
+            canalul de YouTube Versus Artist
           </a>{' '}
           și urmărește cele mai bune lansări.
         </p>

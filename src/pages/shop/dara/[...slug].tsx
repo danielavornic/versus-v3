@@ -27,20 +27,22 @@ export const getServerSideProps: GetServerSideProps<
   )
   const relatedProducts = await Promise.all(relatedProductsPromises || [])
 
-  const productVariantsPromises = product?.variants.map(
-    async (variant: any) => {
-      return await getProductById(client, variant.product._ref)
-    },
-  )
-
-  const productVariants = await Promise.all(productVariantsPromises || [])
-
-  product.variants.forEach((variant: any) => {
-    const product = productVariants.find(
-      (product) => product._id === variant.product._ref,
+  if (product?.variants) {
+    const productVariantsPromises = product?.variants.map(
+      async (variant: any) => {
+        return await getProductById(client, variant.product._ref)
+      },
     )
-    variant.product = product
-  })
+
+    const productVariants = await Promise.all(productVariantsPromises || [])
+
+    product.variants.forEach((variant: any) => {
+      const product = productVariants.find(
+        (product) => product._id === variant.product._ref,
+      )
+      variant.product = product
+    })
+  }
 
   return {
     props: {

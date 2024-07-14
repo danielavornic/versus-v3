@@ -15,8 +15,7 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@mailchimp/mailchimp_marketing": "^3.0.80",
-    "@mux/mux-player-react": "^2.3.3",
+    "@gsap/react": "^2.1.1",
     "@portabletext/react": "^3.0.11",
     "@portabletext/to-html": "^2.0.5",
     "@react-email/button": "^0.0.13",
@@ -40,7 +39,6 @@
     "next": "14.0.3",
     "next-progress": "^2.3.1",
     "next-sanity": "5.5.10",
-    "node-sass": "^9.0.0",
     "react": "18.2.0",
     "react-datepicker": "^4.25.0",
     "react-div-100vh": "^0.7.0",

@@ -90,8 +90,6 @@ const BookingForm = ({ artist, setArtist }) => {
     } else {
       setShowLoadingBtn(false)
     }
-
-    console.log(errors)
   }, [errors, isTermsChecked, eventInfo, name, email, phone, mediaLink])
 
   return (

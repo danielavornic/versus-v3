@@ -86,6 +86,10 @@ export interface Product {
   relatedProducts?: Product[]
   category: 'tshirt' | 'hoodie' | 'longsleeve' | 'Album CD' | 'Carnet'
   color: 'black' | 'green' | 'white' | 'pink'
+  inStock?: boolean
+  inStockS?: boolean
+  inStockM?: boolean
+  inStockL?: boolean
 }
 
 export interface Artist {

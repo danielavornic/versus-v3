@@ -1,6 +1,7 @@
+import { useGSAP } from '@gsap/react'
 import { useWindowSize } from '@uidotdev/usehooks'
 import { gsap } from 'gsap'
-import { useEffect, useLayoutEffect } from 'react'
+import { useRef } from 'react'
 import Div100vh from 'react-div-100vh'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -8,119 +9,70 @@ import { Release } from '~/lib/sanity.queries'
 
 import ReleaseCard from './ReleaseCard'
 
-const randomX = (direction: number) => {
-  return direction * (Math.random() * 10 + 350)
-}
-
-const randomY = (direction: number) => {
-  return direction * (Math.random() * 10 + 30)
-}
-
-const randomDelay = (direction: number) => {
-  return direction * (Math.random() * 1)
-}
-
-const randomTime = (direction: number) => {
-  return direction * (Math.random() * 3 + 5)
-}
-
-const randomTime2 = (direction: number) => {
-  return direction * (Math.random() * 5 + 15)
-}
-
-const randomAngle = (direction: number) => {
-  return direction * (Math.random() * 7)
-}
+gsap.registerPlugin(useGSAP)
 
 const ReleasesSection = ({ releases }: { releases: Release[] }) => {
   const { width: windowWidth } = useWindowSize()
+  const container = useRef<HTMLDivElement>(null)
+  const containerMobile = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    if (windowWidth < 1024) return
+  useGSAP(
+    () => {
+      if (windowWidth < 1024 || !container?.current) return
 
-    let ctx = gsap.context(() => {
-      const releases = document.querySelectorAll('.release')
+      const containerRect = container.current.getBoundingClientRect()
 
-      gsap.config({
-        nullTargetWarn: false,
+      function moveMe(target, initialPosition) {
+        const newPos = {
+          x: Math.max(
+            0,
+            Math.min(
+              gsap.utils.random(
+                initialPosition.x - 150,
+                initialPosition.x + 150,
+              ),
+              containerRect.width - target.offsetWidth,
+            ),
+          ),
+          y: Math.max(
+            80,
+            Math.min(
+              gsap.utils.random(
+                initialPosition.y - 50,
+                initialPosition.y + 100,
+              ),
+              containerRect.height - 200,
+            ),
+          ),
+        }
+
+        gsap.to(target, {
+          x: newPos.x - initialPosition.x,
+          y: newPos.y - initialPosition.y,
+          duration: gsap.utils.random(2, 4.5),
+          ease: 'none',
+          onComplete: moveMe,
+          onCompleteParams: [target, initialPosition],
+        })
+      }
+
+      gsap.utils.toArray('.release-desktop').forEach((el: any) => {
+        const rect = el.getBoundingClientRect()
+        const initialPosition = {
+          x: rect.left - containerRect.left,
+          y: rect.top - containerRect.top,
+        }
+        moveMe(el, initialPosition)
       })
-
-      const animations = new Map()
-
-      const moveX = (element, direction) => {
-        const anim = gsap.to(element, {
-          x: randomX(direction),
-          duration: randomTime(direction),
-          delay: randomDelay(direction),
-          ease: 'power1.inOut',
-          onComplete: () => moveX(element, -direction),
-        })
-        return anim
-      }
-
-      const moveY = (element, direction) => {
-        const anim = gsap.to(element, {
-          y: randomY(direction),
-          duration: randomTime2(direction),
-          delay: randomDelay(direction),
-          ease: 'power1.inOut',
-          onComplete: () => moveY(element, -direction),
-        })
-        return anim
-      }
-
-      const rotate = (element, direction) => {
-        const anim = gsap.to(element, {
-          rotation: randomAngle(direction),
-          duration: randomTime(direction),
-          delay: randomDelay(direction),
-          ease: 'power1.inOut',
-          onComplete: () => rotate(element, -direction),
-        })
-        return anim
-      }
-
-      releases.forEach((release) => {
-        gsap.set(release, {
-          x: randomX(-1),
-          y: randomY(1),
-          rotation: randomAngle(-1),
-        })
-
-        const anims = [
-          moveX(release, 1),
-          moveY(release, -1),
-          rotate(release, 1),
-        ]
-        animations.set(release, anims)
-
-        release.addEventListener('mouseenter', () => {
-          gsap.to(release, {
-            scale: 1.25,
-            duration: 0.1,
-            ease: 'power1.out',
-          })
-        })
-
-        release.addEventListener('mouseleave', () => {
-          gsap.to(release, {
-            scale: 1,
-            duration: 0.1,
-            ease: 'power1.out',
-          })
-        })
-      })
-
-      return () => {
-        ctx?.revert()
-      }
-    }, [windowWidth, releases])
-  })
+    },
+    { dependencies: [releases, windowWidth, container], scope: container },
+  )
 
   if (windowWidth < 1024) {
     return (
       <section
         id="releases-mobile"
+        ref={containerMobile}
         className="relative lg:hidden text-white lg:pt-[80px] my-[150px] lg:h-screen lg:min-h-screen lg:my-[165px] lg:px-[50px] 3xl:my-[230px]"
       >
         <h2 className="overflow-hidden lg:pt-[80px] mb-[42px] lg:mb-0 mobile-title text-center lg:text-left lg:text-[57px] xl:text-[62px] container lg:px-0 lg:w-auto !leading-tight">
@@ -161,7 +113,8 @@ const ReleasesSection = ({ releases }: { releases: Release[] }) => {
   return (
     <Div100vh
       id="releases"
-      className="relative hidden lg:block text-white lg:pt-[80px] my-[150px] lg:h-screen lg:min-h-screen lg:my-[165px] lg:px-[50px] 3xl:my-[230px]"
+      ref={container}
+      className="relative hidden lg:block text-white lg:pt-[80px] my-[150px] lg:h-screen lg:min-h-screen lg:my-[165px] lg:px-[50px] 3xl:mt-[230px]"
     >
       <h2 className="overflow-hidden revealing-line lg:inline relative z-10 mb-[42px] lg:mb-0 mobile-title text-center lg:text-left lg:text-[57px] xl:text-[62px] container lg:px-0 lg:w-auto !leading-tight">
         DON&apos;T STAY <br />
@@ -171,7 +124,12 @@ const ReleasesSection = ({ releases }: { releases: Release[] }) => {
       </h2>
 
       {releases.map((release, index) => (
-        <ReleaseCard release={release} index={index} key={index} />
+        <ReleaseCard
+          release={release}
+          index={index}
+          key={index}
+          className="release-desktop"
+        />
       ))}
     </Div100vh>
   )

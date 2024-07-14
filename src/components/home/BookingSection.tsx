@@ -1,65 +1,42 @@
+import { useGSAP } from '@gsap/react'
 import { useWindowSize } from '@uidotdev/usehooks'
 import clsx from 'clsx'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import Link from 'next/link'
-import { useLayoutEffect, useState } from 'react'
+import { useState } from 'react'
 import Div100vh from 'react-div-100vh'
 import SplitType from 'split-type'
+
+gsap.registerPlugin(useGSAP)
 
 const BookingSection = () => {
   const [isReadMore, setIsReadMore] = useState(false)
   const { width: windowWidth } = useWindowSize()
 
-  useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-      gsap.registerPlugin(ScrollTrigger)
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger)
 
-      const bookingTexts = document.querySelectorAll('.booking-text')
-      bookingTexts.forEach((text, textIdx) => {
-        const split = new SplitType(text as HTMLElement, {
-          types: 'chars',
-        })
-
-        split.chars.forEach((c, i) => {
-          gsap.fromTo(
-            c,
-            { yPercent: 100 },
-            {
-              yPercent: 0,
-              duration: 0.75,
-              ease: 'power2.out',
-              stagger: 0.05,
-              delay: i * 0.025 + textIdx * 0.15,
-              scrollTrigger: {
-                trigger: c,
-                start: 'top 90%',
-                end: 'top 50%',
-                scrub: false,
-                toggleActions: 'play play reverse reverse',
-              },
-            },
-          )
-        })
+    const bookingTexts = document.querySelectorAll('.booking-text')
+    bookingTexts.forEach((text, textIdx) => {
+      const split = new SplitType(text as HTMLElement, {
+        types: 'chars',
       })
 
-      const bookingTextLine = document.querySelector('.booking-text-line')
-      const split = new SplitType(bookingTextLine as HTMLElement, {
-        types: 'lines',
-      })
-      split.lines.forEach((line) => {
+      split.chars.forEach((c, i) => {
         gsap.fromTo(
-          line,
+          c,
           { yPercent: 100 },
           {
             yPercent: 0,
-            duration: 1,
+            duration: 0.75,
             ease: 'power2.out',
             stagger: 0.05,
+            delay: i * 0.025 + textIdx * 0.15,
             scrollTrigger: {
-              trigger: bookingTextLine,
+              trigger: c,
               start: 'top 90%',
-              end: 'top 80%',
+              end: 'top 50%',
               scrub: false,
               toggleActions: 'play play reverse reverse',
             },
@@ -68,8 +45,30 @@ const BookingSection = () => {
       })
     })
 
-    return () => ctx?.revert()
-  }, [windowWidth])
+    const bookingTextLine = document.querySelector('.booking-text-line')
+    const split = new SplitType(bookingTextLine as HTMLElement, {
+      types: 'lines',
+    })
+    split.lines.forEach((line) => {
+      gsap.fromTo(
+        line,
+        { yPercent: 100 },
+        {
+          yPercent: 0,
+          duration: 1,
+          ease: 'power2.out',
+          stagger: 0.05,
+          scrollTrigger: {
+            trigger: bookingTextLine,
+            start: 'top 90%',
+            end: 'top 80%',
+            scrub: false,
+            toggleActions: 'play play reverse reverse',
+          },
+        },
+      )
+    })
+  })
 
   return (
     <Div100vh
@@ -96,7 +95,10 @@ const BookingSection = () => {
                   poster="/videos/booking-poster.png"
                   className="w-full object-cover h-[95vh] absolute top-[50%] right-0 z-0 left-0 hidden 3xl:block -translate-y-1/2"
                 >
-                  <source src="/videos/booking-xl.mp4" type="video/mp4" />
+                  <source
+                    src="https://res.cloudinary.com/vornic/video/upload/f_auto:video,q_auto/l4vl32cxtsoocttvtynt"
+                    type="video/mp4"
+                  />
                 </video>
               )}{' '}
               {windowWidth >= 768 && (
@@ -108,7 +110,10 @@ const BookingSection = () => {
                   poster="/videos/booking-poster.png"
                   className="w-full object-cover md:h-[80vh] lg:h-[95vh] absolute top-[50%] right-0 z-0 left-0 hidden md:block -translate-y-1/2"
                 >
-                  <source src="/videos/booking-mid.mp4" type="video/mp4" />
+                  <source
+                    src="https://res.cloudinary.com/vornic/video/upload/f_auto:video,q_auto/v0vl4xbbxyjq8g2q6z2u"
+                    type="video/mp4"
+                  />
                 </video>
               )}{' '}
               {windowWidth < 768 && (
@@ -120,7 +125,10 @@ const BookingSection = () => {
                   poster="/videos/booking-mobile-poster.png"
                   className="w-full object-cover h-[95vh] absolute top-[50%] right-0 z-0 left-0  md:hidden -translate-y-1/2"
                 >
-                  <source src="/videos/booking-mobile.mp4" type="video/mp4" />
+                  <source
+                    src="https://res.cloudinary.com/vornic/video/upload/f_auto:video,q_auto/tnnpri7rscorj9hqlqre"
+                    type="video/mp4"
+                  />
                 </video>
               )}
             </>

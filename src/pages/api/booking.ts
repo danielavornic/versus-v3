@@ -1,3 +1,4 @@
+import { render } from '@react-email/components'
 import BookingEmail from 'emails/Booking'
 import BookingEmailClient from 'emails/BookingClient'
 import { JWT } from 'google-auth-library'
@@ -11,7 +12,7 @@ const SPREADSHEET_ID = process.env.SPREADSHEET_ID
 
 const serviceAccountAuth = new JWT({
   email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-  key: process.env.GOOGLE_SERVICE_PRIVATE_KEY,
+  key: process.env.GOOGLE_SERVICE_PRIVATE_KEY.replace(/\\n/g, '\n'),
   scopes: [
     'https://www.googleapis.com/auth/spreadsheets',
     'https://www.googleapis.com/auth/drive.file',
@@ -24,14 +25,14 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  if (req.method === 'POST') {
+  try {
     const emailData = JSON.parse(req.body)
 
     const { data: dataNewBooking, error: error2 } = await resend.emails.send({
       from: 'Versus Artist <shop@versusartist.com>',
-      to: process.env.ORDER_EMAIL_RECIPIENT,
+      to: [process.env.ORDER_EMAIL_RECIPIENT],
       subject: 'Versus New Booking',
-      react: BookingEmail(emailData),
+      html: render(BookingEmail(emailData)),
     })
 
     if (error2) {
@@ -40,9 +41,9 @@ export default async function handler(
 
     const { data: dataClient, error } = await resend.emails.send({
       from: 'Versus Artist <shop@versusartist.com>',
-      to: emailData.email,
+      to: [emailData.email],
       subject: 'Versus Artist Booking Confirmation',
-      react: BookingEmailClient(emailData),
+      html: render(BookingEmailClient(emailData)),
     })
 
     if (error) {
@@ -71,9 +72,7 @@ export default async function handler(
     await sheet.addRow(formattedRow)
 
     res.status(200).json({ dataClient, dataNewBooking })
-  } else {
-    // if the request method is not POST
-    res.setHeader('Allow', ['POST'])
-    res.status(405).json({ message: `Method ${req.method} is not allowed` })
+  } catch (error) {
+    res.status(400).json(error)
   }
 }

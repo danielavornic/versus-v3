@@ -1,13 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
+import { useGSAP } from '@gsap/react'
 import clsx from 'clsx'
 import { gsap } from 'gsap'
 import { useRouter } from 'next/router'
-import { useLayoutEffect } from 'react'
 import Div100vh from 'react-div-100vh'
 
 import { Facebook, Instagram, TikTok, YouTube } from '~/icons'
 import { useAppDispatch } from '~/store/hooks'
 import { hideMenu } from '~/store/menuSlice'
+
+gsap.registerPlugin(useGSAP)
 
 const menuLinks = [
   {
@@ -44,10 +46,10 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
 
   const dispatch = useAppDispatch()
 
-  useLayoutEffect(() => {
-    if (!isOpen) return
+  useGSAP(
+    () => {
+      if (!isOpen) return
 
-    let ctx = gsap.context(() => {
       const tl = gsap.timeline()
 
       tl.fromTo(
@@ -73,10 +75,9 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
         },
         '>',
       )
-    })
-
-    return () => ctx?.revert()
-  }, [isOpen])
+    },
+    { dependencies: [isOpen] },
+  )
 
   return (
     <Div100vh
@@ -113,7 +114,10 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
               poster="/images/home-video-poster.png"
               className="absolute bottom-0 left-0 right-0 top-0 z-0 w-[calc(100vw-60px)] md:w-[calc(100vw-80px)] lg:w-[calc(100vw-100px)] block mx-auto h-screen object-cover"
             >
-              <source src="/videos/home-video-bw.mp4" type="video/mp4" />
+              <source
+                src="https://res.cloudinary.com/vornic/video/upload/f_auto:video,q_auto/f8bfuzgaxcokaugycw8h"
+                type="video/mp4"
+              />
             </video>
           </div>
         )}

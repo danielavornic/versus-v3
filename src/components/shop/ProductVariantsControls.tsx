@@ -73,7 +73,22 @@ const ProductVariantsControls = ({
   artist,
   showVariants = true,
 }: ProductVariantsControlsProps) => {
-  const { variants, color: selectedColor, slug } = product
+  const {
+    variants,
+    color: selectedColor,
+    slug,
+    inStock,
+    inStockS,
+    inStockM,
+    inStockL,
+    category,
+  } = product
+
+  const isInStock =
+    ((category === 'Album CD' || category === 'Carnet') && inStock) ||
+    (category !== 'Album CD' &&
+      category !== 'Carnet' &&
+      (inStockS || inStockM || inStockL))
 
   const dispatch = useAppDispatch()
 
@@ -120,8 +135,6 @@ const ProductVariantsControls = ({
 
     if (!product) return
 
-    console.log(product)
-
     push({
       pathname: `/shop/${artist}/${product.slug.current}`,
     })
@@ -153,55 +166,78 @@ const ProductVariantsControls = ({
 
   return (
     <div className="mt-[42px] space-y-[28px]">
-      {showVariants && (
+      {!isInStock ? (
+        <div className="space-y-7">
+          <div className="bg-gray transition-all font-medium w-[230px] h-[44px] text-white flex items-center justify-center text-lg !leading-[1]">
+            Stoc epuizat
+          </div>
+        </div>
+      ) : (
         <>
-          <PropertyOptions
-            title="Size"
-            options={availableSizes}
-            selectedOption={selectedSize}
-            onClick={handleSizeClick}
-            isOnlyOption={availableSizes.length === 1}
-          />
+          {showVariants && (
+            <>
+              <PropertyOptions
+                title="Size"
+                options={availableSizes}
+                selectedOption={selectedSize}
+                onClick={handleSizeClick}
+                isOnlyOption={availableSizes.length === 1}
+              />
 
-          {variants && (
-            <PropertyOptions
-              title="Color"
-              options={availableColors}
-              selectedOption={selectedColor}
-              onClick={handleColorClick}
-              isOnlyOption={availableColors.length === 1}
-            />
+              {variants && (
+                <PropertyOptions
+                  title="Color"
+                  options={availableColors}
+                  selectedOption={selectedColor}
+                  onClick={handleColorClick}
+                  isOnlyOption={availableColors.length === 1}
+                />
+              )}
+            </>
+          )}
+
+          {inStock ||
+          (selectedSize === 's' && inStockS) ||
+          (selectedSize === 'm' && inStockM) ||
+          (selectedSize === 'l' && inStockL) ? (
+            <>
+              <div className="space-y-[15px] flex flex-col items-center lg:items-start">
+                <span className="text-xl font-semibold uppercase">
+                  Quantity
+                </span>
+                <div className="flex space-x-[5px]">
+                  <button
+                    className="border-[1px] w-[30px] h-[30px] border-alm-white text-[12px] uppercase"
+                    onClick={decreaseQty}
+                  >
+                    -
+                  </button>
+                  <span className="border-[1px] w-[30px] h-[30px] border-alm-white text-[12px] uppercase flex items-center justify-center">
+                    {qty}
+                  </span>
+                  <button
+                    className="border-[1px] w-[30px] h-[30px] border-alm-white text-[12px] uppercase"
+                    onClick={increaseQty}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <button
+                onClick={handleAddToCart}
+                className="bg-black hover:bg-opacity-[85%] active:bg-alm-white transition-all font-medium w-[230px] h-[44px] text-white flex items-center justify-center text-lg !leading-[1]"
+              >
+                Adaugă în coș
+              </button>
+            </>
+          ) : (
+            <div className="bg-gray transition-all font-medium w-[230px] h-[44px] text-white flex items-center justify-center text-lg !leading-[1]">
+              Stoc epuizat
+            </div>
           )}
         </>
       )}
-
-      <div className="space-y-[15px] flex flex-col items-center lg:items-start">
-        <span className="text-xl font-semibold uppercase">Quantity</span>
-        <div className="flex space-x-[5px]">
-          <button
-            className="border-[1px] w-[30px] h-[30px] border-alm-white text-[12px] uppercase"
-            onClick={decreaseQty}
-          >
-            -
-          </button>
-          <span className="border-[1px] w-[30px] h-[30px] border-alm-white text-[12px] uppercase flex items-center justify-center">
-            {qty}
-          </span>
-          <button
-            className="border-[1px] w-[30px] h-[30px] border-alm-white text-[12px] uppercase"
-            onClick={increaseQty}
-          >
-            +
-          </button>
-        </div>
-      </div>
-
-      <button
-        onClick={handleAddToCart}
-        className="bg-black hover:bg-opacity-[85%] active:bg-alm-white transition-all font-medium mx-auto w-[230px] h-[44px] text-white flex items-center justify-center text-lg !leading-[1]"
-      >
-        Adaugă în coș
-      </button>
     </div>
   )
 }

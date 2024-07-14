@@ -14,10 +14,37 @@ const ProductCard = ({
   product: Product
   hasPadding?: boolean
 }) => {
-  const { title, slug, artist, category, price, mainImage, backImage } = product
+  const {
+    title,
+    slug,
+    artist,
+    category,
+    price,
+    mainImage,
+    backImage,
+    inStock,
+    inStockS,
+    inStockM,
+    inStockL,
+  } = product
 
   const dispatch = useAppDispatch()
   const [isHovered, setIsHovered] = useState(false)
+
+  const isInStock =
+    ((category === 'Album CD' || category === 'Carnet') && inStock) ||
+    (category !== 'Album CD' &&
+      category !== 'Carnet' &&
+      (inStockS || inStockM || inStockL))
+
+  const sizeToAdd =
+    category === 'Album CD' || category === 'Carnet'
+      ? 's'
+      : inStockS
+        ? 's'
+        : inStockM
+          ? 'm'
+          : 'l'
 
   return (
     <div
@@ -29,14 +56,20 @@ const ProductCard = ({
         <div className="z-[1] bg-black opacity-0 transition-all group-hover:opacity-100 font-medium top-5 absolute left-0 w-[140px] h-[44px] text-white flex items-center justify-center text-xs">
           {price} MDL
         </div>
-
-        <button
-          onClick={() => dispatch(addToCart({ product, qty: 1, size: 's' }))}
-          className="z-[1] bg-black hover:bg-opacity-[85%] active:bg-alm-white transition-all opacity-0 group-hover:opacity-100 font-medium bottom-5 absolute mx-auto right-0 left-0 w-[230px] h-[44px] text-white flex items-center justify-center text-lg !leading-[1]"
-        >
-          Adaugă în coș
-        </button>
-
+        {!isInStock ? (
+          <div className="z-[1] bg-gray active:bg-alm-white transition-all opacity-0 group-hover:opacity-100 font-medium bottom-5 absolute mx-auto right-0 left-0 w-[230px] h-[44px] text-white flex items-center justify-center text-lg !leading-[1]">
+            Stoc epuizat
+          </div>
+        ) : (
+          <button
+            onClick={() =>
+              dispatch(addToCart({ product, qty: 1, size: sizeToAdd }))
+            }
+            className="z-[1] bg-black hover:bg-opacity-[85%] active:bg-alm-white transition-all opacity-0 group-hover:opacity-100 font-medium bottom-5 absolute mx-auto right-0 left-0 w-[230px] h-[44px] text-white flex items-center justify-center text-lg !leading-[1]"
+          >
+            Adaugă în coș
+          </button>
+        )}
         <Link href={`/shop/${artist?.toLowerCase()}/${slug.current}`}>
           <img
             src={
@@ -58,7 +91,9 @@ const ProductCard = ({
 
       <Link
         href={`/shop/${artist?.toLowerCase()}/${slug.current}`}
-        className="flex flex-col items-center space-y-[12px]"
+        className={clsx('flex flex-col items-center space-y-[12px]', {
+          'text-gray': !isInStock,
+        })}
       >
         <span className="uppercase text-xl font-semibold !leading-tight">
           {category}
