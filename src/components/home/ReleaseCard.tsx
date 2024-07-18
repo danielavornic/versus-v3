@@ -61,11 +61,19 @@ const horizontalPositions = [
   'lg:left-[10vw] top-[400px]',
   'lg:left-[20vw] top-[400px]',
   'lg:left-[30vw] top-[340px]',
-  'lg:left-[30vw] top-[340px]',
+  'lg:left-[35vw] top-[340px]',
+  'lg:right-[25vw] top-[400px]',
+  'lg:right-[20vw] top-[300px]',
+  'lg:right-[30vw] top-[300px]',
+  'lg:left-[50vw] top-[300px]',
+  'lg:left-[50vw] top-[190px]',
+  'lg:left-[5vw] top-[300px]',
+  'lg:left-[25vw] top-[450px]',
 ]
 
 const sizes = [
-  1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 2, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1,
+  1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 2, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 2, 0,
+  1, 1, 0, 1,
 ]
 
 const ReleaseCard = ({
@@ -78,13 +86,13 @@ const ReleaseCard = ({
   className?: string
 }) => {
   const { name, artist, coverImg, spotify, appleMusic, deezer } = release
-  const size = sizes[index]
+  const size = sizes[index % sizes.length]
   const sizeClassName = sizesDict[size]
 
   return (
     <div
       className={clsx(
-        horizontalPositions[index],
+        horizontalPositions[index % horizontalPositions.length],
         sizeClassName,
         className,
         'release bg-cover w-[300px] hover:z-[1000] h-[300px] bg-no-repeat bg-center lg:absolute lg:hover:transform duration-500 lg:hover:scale-[1.2] transition-all',

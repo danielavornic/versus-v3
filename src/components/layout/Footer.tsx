@@ -140,7 +140,7 @@ const Footer = ({ desktopHidden = false, hideDesktopLinks = false }) => {
                 <Facebook />
               </a>
               <a
-                href="https://www.youtube.com/@versusartists"
+                href="https://www.youtube.com/@versusartist"
                 className="w-[17px] h-auto hover:text-youtube transition-all"
                 target="_blank"
                 rel="noreferrer"

@@ -23,141 +23,6 @@ interface OrderNewProps {
   currentTime?: Date
 }
 
-const emptyValues = {
-  firstName: 'Daniela',
-  lastName: 'Vornic',
-  email: 'daniela.vornic@gmail.com',
-  phone: '45454545454',
-  cart: {
-    items: [
-      {
-        product: {
-          _updatedAt: '2024-01-24T15:18:29Z',
-          color: 'white',
-          relatedProducts: [
-            {
-              _key: '834e0509e37b',
-              _ref: 'ee67ba38-e96a-417e-a0fb-df9f1acb4cfb',
-              _type: 'reference',
-            },
-            {
-              _key: '45db4ca9134f',
-              _ref: 'dd864046-632d-446f-84ac-0bd6655b9835',
-              _type: 'reference',
-            },
-          ],
-          _type: 'product',
-          category: 'Hoodie',
-          _rev: 'GDqWO6XlliaZ7kgo9Q8sh8',
-          title: "Carla's Half Logo White",
-          backImage: {
-            _type: 'image',
-            asset: {
-              _ref: 'image-aa5e16f17b6774febb8686d299e822d3681ca7b4-1000x1000-png',
-              _type: 'reference',
-            },
-          },
-          _id: '7e10f657-2837-4fa2-8d21-d4c1e39ef6b4',
-          artist: 'csd',
-          slug: {
-            current: 'carla-s-half-logo-white',
-            _type: 'slug',
-          },
-          variants: [
-            {
-              product: {
-                _ref: 'ee67ba38-e96a-417e-a0fb-df9f1acb4cfb',
-                _type: 'reference',
-              },
-              color: 'black',
-              _type: 'productVariant',
-              _key: '1a51a7218a02',
-            },
-            {
-              product: {
-                _ref: '7e10f657-2837-4fa2-8d21-d4c1e39ef6b4',
-                _type: 'reference',
-              },
-              color: 'white',
-              _type: 'productVariant',
-              _key: 'dfc930b6c714',
-            },
-          ],
-          mainImage: {
-            _type: 'image',
-            asset: {
-              _type: 'reference',
-              _ref: 'image-aa5e16f17b6774febb8686d299e822d3681ca7b4-1000x1000-png',
-            },
-          },
-          price: 600,
-          _createdAt: '2024-01-24T15:16:23Z',
-        },
-        quantity: 1,
-        size: 's',
-      },
-      {
-        product: {
-          variants: [
-            {
-              product: {
-                _ref: 'dd864046-632d-446f-84ac-0bd6655b9835',
-                _type: 'reference',
-              },
-              color: 'black',
-              _type: 'productVariant',
-              _key: 'bb3a9baf2de9',
-            },
-          ],
-          backImage: {
-            _type: 'image',
-            asset: {
-              _ref: 'image-953f709a4488de985cb4490a9c2766cfb899ca1a-650x650-png',
-              _type: 'reference',
-            },
-          },
-          mainImage: {
-            _type: 'image',
-            asset: {
-              _ref: 'image-953f709a4488de985cb4490a9c2766cfb899ca1a-650x650-png',
-              _type: 'reference',
-            },
-          },
-          _updatedAt: '2024-01-24T15:23:53Z',
-          _rev: 'muD97JC0WY2zYZXftpfo3r',
-          relatedProducts: [
-            {
-              _type: 'reference',
-              _key: '14253dffb48a',
-              _ref: 'ee67ba38-e96a-417e-a0fb-df9f1acb4cfb',
-            },
-            {
-              _ref: '7e10f657-2837-4fa2-8d21-d4c1e39ef6b4',
-              _type: 'reference',
-              _key: '16174439d3b9',
-            },
-          ],
-          _type: 'product',
-          category: 'Hoodie',
-          slug: {
-            current: 'carla-s-new-logo',
-            _type: 'slug',
-          },
-          artist: 'csd',
-          _createdAt: '2024-01-20T09:49:46Z',
-          title: 'Carla’s New Logo',
-          price: 800,
-          _id: 'dd864046-632d-446f-84ac-0bd6655b9835',
-          color: 'black',
-        },
-        quantity: 2,
-        size: 's',
-      },
-    ],
-    total: 2200,
-  },
-}
-
 const year = new Date().getFullYear()
 // TODO: Update src url for images, font
 export const OrderNew = (props: OrderNewProps) => {
@@ -317,7 +182,9 @@ export const OrderNew = (props: OrderNewProps) => {
               <h3 className="text-[20px] md:text-[24px] font-semibold mb-6 leading-[1] mt-10">
                 Total comandă
               </h3>
-              <Text className="text-[20px] md:text-[24px]">800.0 MDL</Text>
+              <Text className="text-[20px] md:text-[24px]">
+                {cart?.total} MDL
+              </Text>
             </div>
 
             <div className="footer block mx-auto mt-[120px] md:text-center">

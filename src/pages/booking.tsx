@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import clsx from 'clsx'
-import { GetStaticProps, InferGetStaticPropsType } from 'next'
-import { useEffect, useState } from 'react'
+import { GetServerSideProps } from 'next'
+import { useState } from 'react'
 
 import ArtistsListDesktop from '~/components/booking/ArtistsListDesktop'
 import ArtistsListMobile from '~/components/booking/ArtistsListMobile'
@@ -13,7 +13,7 @@ import { getArtists } from '~/lib/sanity.queries'
 
 import { SharedPageProps } from './_app'
 
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   SharedPageProps & {
     artists: any
   }
@@ -30,11 +30,7 @@ export const getStaticProps: GetStaticProps<
   }
 }
 
-const BookingArtistsPage = (
-  props: InferGetStaticPropsType<typeof getStaticProps>,
-) => {
-  const { artists } = props
-
+const BookingArtistsPage = ({ artists }: { artists: any }) => {
   const [artist, setArtist] = useState('')
 
   return (

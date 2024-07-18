@@ -1,4 +1,4 @@
-import { GetStaticProps } from 'next'
+import { GetServerSideProps, GetStaticProps } from 'next'
 import Link from 'next/link'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -10,7 +10,7 @@ import { getProductionWorks, ProductionWork } from '~/lib/sanity.queries'
 
 import { SharedPageProps } from './_app'
 
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   SharedPageProps & {
     productionWorks: any
   }

@@ -1,9 +1,7 @@
-import type { GetStaticProps, InferGetStaticPropsType } from 'next'
+import type { GetServerSideProps } from 'next'
 
 import ArtistsGrid from '~/components/home/ArtistsGrid'
 import BookingSection from '~/components/home/BookingSection'
-import Conceptualization from '~/components/home/Conceptualization'
-import ConcertsSection from '~/components/home/ConcertsSection'
 import HomeHero from '~/components/home/HomeHero'
 import ProdSection from '~/components/home/ProdSection'
 import ProjectsSection from '~/components/home/ProjectsSection'
@@ -14,12 +12,11 @@ import { getClient } from '~/lib/sanity.client'
 import {
   getArtists,
   getProductionWorks,
-  getProjects,
   getReleases,
 } from '~/lib/sanity.queries'
 import type { SharedPageProps } from '~/pages/_app'
 
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   SharedPageProps & {
     artists: any
     releases: any
@@ -42,11 +39,15 @@ export const getStaticProps: GetStaticProps<
   }
 }
 
-export default function IndexPage(
-  props: InferGetStaticPropsType<typeof getStaticProps>,
-) {
-  const { artists, releases, productionWorks } = props
-
+export default function IndexPage({
+  artists,
+  releases,
+  productionWorks,
+}: {
+  artists: any
+  releases: any
+  productionWorks: any
+}) {
   return (
     <Layout className="bg-black">
       <HomeHero />

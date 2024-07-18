@@ -63,13 +63,13 @@ const CartCheckoutForm = () => {
       return res
     },
     onSuccess: () => {
-      reset()
-      setIsTermsChecked(undefined)
-      setIsPickupChecked(undefined)
-      setIsPaymentChecked(undefined)
       setButtonState('success')
 
       setTimeout(() => {
+        reset()
+        setIsTermsChecked(undefined)
+        setIsPickupChecked(undefined)
+        setIsPaymentChecked(undefined)
         push('/shop/checkout-sucess')
       }, 1500)
     },
@@ -192,7 +192,7 @@ const CartCheckoutForm = () => {
             Total comandă
           </h4>
           <p className="text-[20px] text-center mb-[42px]">
-            {cart.total}.0 MDL
+            {cart?.total}.0 MDL
           </p>
           <div className="w-full mx-auto flex justify-center !mb-[34px]">
             <Checkbox
