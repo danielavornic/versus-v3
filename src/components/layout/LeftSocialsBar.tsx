@@ -19,7 +19,7 @@ const socials = [
   },
   {
     icon: <YouTube />,
-    link: 'https://www.youtube.com/@versusartists',
+    link: 'https://www.youtube.com/@versusartist',
   },
 ]
 

@@ -11,7 +11,7 @@ const initialState: SocialsState = {
   tiktok: 'https://www.tiktok.com/@versusartist_musiclabel',
   insta: 'https://www.instagram.com/versusartist/',
   fb: 'https://www.facebook.com/VersusArtistsLabel/',
-  yt: 'https://www.youtube.com/@versusartists',
+  yt: 'https://www.youtube.com/@versusartist',
 }
 
 export const socialsSlice = createSlice({

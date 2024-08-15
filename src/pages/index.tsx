@@ -3,8 +3,6 @@ import type { GetServerSideProps } from 'next'
 import ArtistsGrid from '~/components/home/ArtistsGrid'
 import BookingSection from '~/components/home/BookingSection'
 import HomeHero from '~/components/home/HomeHero'
-import ProdSection from '~/components/home/ProdSection'
-import ProjectsSection from '~/components/home/ProjectsSection'
 import ReleasesSection from '~/components/home/ReleasesSection'
 import Layout from '~/components/layout'
 import { readToken } from '~/lib/sanity.api'
@@ -20,13 +18,13 @@ export const getServerSideProps: GetServerSideProps<
   SharedPageProps & {
     artists: any
     releases: any
-    productionWorks: any
+    // productionWorks: any
   }
 > = async ({ draftMode = false }) => {
   const client = getClient(draftMode ? { token: readToken } : undefined)
   const artists = await getArtists(client)
   const releases = await getReleases(client)
-  const productionWorks = await getProductionWorks(client)
+  // const productionWorks = await getProductionWorks(client)
 
   return {
     props: {
@@ -34,7 +32,7 @@ export const getServerSideProps: GetServerSideProps<
       token: draftMode ? readToken : '',
       artists,
       releases,
-      productionWorks,
+      // productionWorks,
     },
   }
 }
@@ -42,11 +40,11 @@ export const getServerSideProps: GetServerSideProps<
 export default function IndexPage({
   artists,
   releases,
-  productionWorks,
+  // productionWorks,
 }: {
   artists: any
   releases: any
-  productionWorks: any
+  // productionWorks: any
 }) {
   return (
     <Layout className="bg-black">
@@ -54,8 +52,8 @@ export default function IndexPage({
       <ArtistsGrid artists={artists} />
       <ReleasesSection releases={releases} />
       <BookingSection />
-      <ProdSection productionWorks={productionWorks} />
-      <ProjectsSection />
+      {/* <ProdSection productionWorks={pro/ductionWorks} /> */}
+      {/* <ProjectsSection /> */}
     </Layout>
   )
 }

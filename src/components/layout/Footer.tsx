@@ -16,10 +16,10 @@ const footerLinks = [
     name: 'Booking',
     link: '/#booking',
   },
-  {
-    name: 'Production & Mix/Master',
-    link: '/#production',
-  },
+  // {
+  //   name: 'Production & Mix/Master',
+  //   link: '/#production',
+  // },
   {
     name: 'Contact',
     link: '/contact',

@@ -39,7 +39,7 @@ const PropertyOptions = ({
                 'border-black':
                   (option === selectedOption && isSize) || option === 'black',
 
-                'uppercase w-[30px]': isSize,
+                uppercase: isSize,
 
                 'border-green': option === 'green',
                 'bg-green': selectedOption === 'green' && option === 'green',
@@ -58,7 +58,7 @@ const PropertyOptions = ({
               },
             )}
           >
-            {isSize ? option.slice(0, 1) : option}
+            {option}
           </button>
         ))}
       </div>
@@ -78,6 +78,7 @@ const ProductVariantsControls = ({
     color: selectedColor,
     slug,
     inStock,
+    inStockXS,
     inStockS,
     inStockM,
     inStockL,
@@ -88,14 +89,19 @@ const ProductVariantsControls = ({
     ((category === 'Album CD' || category === 'Carnet') && inStock) ||
     (category !== 'Album CD' &&
       category !== 'Carnet' &&
-      (inStockS || inStockM || inStockL))
+      (inStockS || inStockM || inStockL || inStockXS))
 
   const dispatch = useAppDispatch()
 
   const { pathname, query, push } = useRouter()
-  const [selectedSize, setSize] = useState<string | null>('s')
+  const [selectedSize, setSize] = useState<string | null>(
+    artist === 'magnat-feoctist' ? 'xs' : 's',
+  )
 
-  const availableSizes = Object.values(ProductSize)
+  let availableSizes: any[] = Object.values(ProductSize)
+  if (artist === 'magnat-feoctist') {
+    availableSizes = ['xs', 's', 'm', 'l'] as string[]
+  }
 
   const availableColors = []
   if (showVariants) {
@@ -197,6 +203,7 @@ const ProductVariantsControls = ({
           )}
 
           {inStock ||
+          (selectedSize === 'xs' && inStockXS) ||
           (selectedSize === 's' && inStockS) ||
           (selectedSize === 'm' && inStockM) ||
           (selectedSize === 'l' && inStockL) ? (

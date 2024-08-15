@@ -23,6 +23,7 @@ const ProductCard = ({
     mainImage,
     backImage,
     inStock,
+    inStockXS,
     inStockS,
     inStockM,
     inStockL,
@@ -35,16 +36,18 @@ const ProductCard = ({
     ((category === 'Album CD' || category === 'Carnet') && inStock) ||
     (category !== 'Album CD' &&
       category !== 'Carnet' &&
-      (inStockS || inStockM || inStockL))
+      (inStockS || inStockM || inStockL || inStockXS))
 
   const sizeToAdd =
     category === 'Album CD' || category === 'Carnet'
       ? 's'
-      : inStockS
-        ? 's'
-        : inStockM
-          ? 'm'
-          : 'l'
+      : inStockXS
+        ? 'xs'
+        : inStockS
+          ? 's'
+          : inStockM
+            ? 'm'
+            : 'l'
 
   return (
     <div

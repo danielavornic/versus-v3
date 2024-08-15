@@ -80,6 +80,14 @@ export default defineType({
         !['Album CD', 'Carnet'].includes(document.category as string),
     }),
     defineField({
+      name: 'inStockXS',
+      title: 'In stock (XS)',
+      type: 'boolean',
+      hidden: ({ document }) =>
+        ['Album CD', 'Carnet'].includes(document.category as string) ||
+        document.artist !== 'magnat-feoctist',
+    }),
+    defineField({
       name: 'inStockS',
       title: 'In stock (S)',
       type: 'boolean',

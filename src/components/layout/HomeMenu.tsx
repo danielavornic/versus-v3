@@ -20,18 +20,18 @@ const menuLinks = [
     title: 'Shop',
     href: '/shop',
   },
-  {
-    tite: 'Unsession',
-    href: '/unsession',
-  },
+  // {
+  //   tite: 'Unsession',
+  //   href: '/unsession',
+  // },
   {
     title: 'Booking',
     href: '/#booking',
   },
-  {
-    title: 'Production & Mix/Master',
-    href: '/#production',
-  },
+  // {
+  //   title: 'Production & Mix/Master',
+  //   href: '/#production',
+  // },
   {
     title: 'Contact',
     href: '/contact',
@@ -98,7 +98,7 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
       />
       <div
         className={clsx(
-          'w-[calc(100vw-60px)] lg:w-[calc(100vw-100px)] bg-black backdrop-blur-sm bg-opacity-70 h-[calc(100vh-80px)] flex flex-col mt-[80px] lg:mt-[8vh] bg-cover bg-center',
+          'w-[calc(100vw-60px)] lg:w-[calc(100vw-100px)] bg-black backdrop-blur-sm bg-opacity-70 flex flex-col justify-center bg-cover bg-center',
           {
             '!bg-opacity-100': isShop,
             'h-full': isOpen,
@@ -121,7 +121,7 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
             </video>
           </div>
         )}
-        <ul className="space-y-6 max-w-[280px] md:max-w-none mx-auto mt-[10vh] lg:mt-[30px] 3xl:mt-[80px]">
+        <ul className="space-y-6 max-w-[280px] md:max-w-none mx-auto -mt-[80px] lg:mt-[-8vh]">
           {menuLinks.map((link, i) => (
             <li
               key={i}
@@ -138,7 +138,7 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
           ))}
         </ul>
 
-        <div className="flex flex-col lg:flex-row space-y-[5px] menu-footer absolute bottom-[30px] md:bottom-[100px] left-0 right-0 lg:space-x-[57px] justify-center lg:space-y-0 items-center">
+        <div className="flex flex-col lg:flex-row space-y-[5px] menu-footer absolute bottom-[30px] md:bottom-[80px] left-0 right-0 lg:space-x-[57px] justify-center lg:space-y-0 items-center">
           <p className="text-[10px] lg:text-[13px] mb-5 lg:mb-0">
             © {year} VERSUSARTIST All Rights Reserved.
           </p>
@@ -167,7 +167,7 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
               <Facebook />
             </a>
             <a
-              href="https://www.youtube.com/@versusartists"
+              href="https://www.youtube.com/@versusartist"
               className="w-[17px] h-auto mr-[18px] hover:text-youtube transition-all"
               target="_blank"
               rel="noreferrer"

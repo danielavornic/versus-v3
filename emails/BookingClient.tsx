@@ -179,7 +179,7 @@ export const BookingEmailClient = ({
                 />
               </a>
               <a
-                href="https://www.youtube.com/@versusartists"
+                href="https://www.youtube.com/@versusartist"
                 className="w-[17px] h-[12px] align-middle mr-[18px] opacity-50 hover:opacity-100 transition-full"
                 target="_blank"
                 rel="noreferrer"

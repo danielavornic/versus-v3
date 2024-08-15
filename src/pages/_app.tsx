@@ -170,7 +170,7 @@ export default function App({
       if (loader) {
         setTimeout(() => {
           loader.remove()
-        }, 4000)
+        }, 3000)
       }
     }
   }, [])

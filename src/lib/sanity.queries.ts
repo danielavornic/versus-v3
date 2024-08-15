@@ -87,6 +87,7 @@ export interface Product {
   category: 'tshirt' | 'hoodie' | 'longsleeve' | 'Album CD' | 'Carnet'
   color: 'black' | 'green' | 'white' | 'pink'
   inStock?: boolean
+  inStockXS?: boolean
   inStockS?: boolean
   inStockM?: boolean
   inStockL?: boolean

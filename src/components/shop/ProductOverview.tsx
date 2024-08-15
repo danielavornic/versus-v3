@@ -15,6 +15,7 @@ const ProductOverview = ({ product }: { product: Product }) => {
     backImage,
     artist,
     inStock,
+    inStockXS,
     inStockS,
     inStockM,
     inStockL,
@@ -27,7 +28,7 @@ const ProductOverview = ({ product }: { product: Product }) => {
     ((category === 'Album CD' || category === 'Carnet') && inStock) ||
     (category !== 'Album CD' &&
       category !== 'Carnet' &&
-      (inStockS || inStockM || inStockL))
+      (inStockS || inStockM || inStockL || inStockXS))
 
   return (
     <section className="pb-[120px]">
