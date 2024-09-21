@@ -106,20 +106,18 @@ const HomeMenu = ({ isOpen }: { isOpen: boolean }) => {
         )}
       >
         {pathname !== '/' && (
-          <div className="container relative">
-            <video
-              autoPlay
-              muted
-              loop
-              poster="/images/home-video-poster.png"
-              className="absolute bottom-0 left-0 right-0 top-0 z-0 w-[calc(100vw-60px)] md:w-[calc(100vw-80px)] lg:w-[calc(100vw-100px)] block mx-auto h-screen object-cover"
-            >
-              <source
-                src="https://res.cloudinary.com/vornic/video/upload/f_auto:video,q_auto/f8bfuzgaxcokaugycw8h"
-                type="video/mp4"
-              />
-            </video>
-          </div>
+          <video
+            autoPlay
+            muted
+            loop
+            poster="/images/home-video-poster.png"
+            className="absolute bottom-0 left-0 right-0 top-0 z-0 w-[calc(100vw-60px)] md:w-[calc(100vw-80px)] lg:w-[calc(100vw-100px)] block mx-auto h-screen object-cover"
+          >
+            <source
+              src="https://res.cloudinary.com/deqfi4dkh/video/upload/f_auto:video,q_auto/l5q18p33cti6oncatemj"
+              type="video/mp4"
+            />
+          </video>
         )}
         <ul className="space-y-6 max-w-[280px] md:max-w-none mx-auto -mt-[80px] lg:mt-[-8vh]">
           {menuLinks.map((link, i) => (

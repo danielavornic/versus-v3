@@ -7,9 +7,9 @@ const projects: IProject[] = [
     name: 'UNSESSION',
     image: '/images/unsession.png',
     video:
-      'https://res.cloudinary.com/vornic/video/upload/f_auto:video,q_auto/wsdxzqxurni3v7l3btci',
+      'https://res.cloudinary.com/deqfi4dkh/video/upload/f_auto:video,q_auto/khshri8j2dtpb548xdga',
     videoMobile:
-      'https://res.cloudinary.com/vornic/video/upload/f_auto:video,q_auto/gayzcgxduxqrzx8a8ggi',
+      'https://res.cloudinary.com/deqfi4dkh/video/upload/f_auto:video,q_auto/j5qk5bhmtz2h37b6l8pk',
     color: '#D7FF55',
     content: (
       <>

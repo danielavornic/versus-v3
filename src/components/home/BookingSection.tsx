@@ -96,7 +96,7 @@ const BookingSection = () => {
                   className="w-full object-cover h-[95vh] absolute top-[50%] right-0 z-0 left-0 hidden 3xl:block -translate-y-1/2"
                 >
                   <source
-                    src="https://res.cloudinary.com/vornic/video/upload/f_auto:video,q_auto/l4vl32cxtsoocttvtynt"
+                    src="https://res.cloudinary.com/deqfi4dkh/video/upload/f_auto:video,q_auto/hvba5f90fgij46dj6qim"
                     type="video/mp4"
                   />
                 </video>
@@ -111,7 +111,7 @@ const BookingSection = () => {
                   className="w-full object-cover md:h-[80vh] lg:h-[95vh] absolute top-[50%] right-0 z-0 left-0 hidden md:block -translate-y-1/2"
                 >
                   <source
-                    src="https://res.cloudinary.com/vornic/video/upload/f_auto:video,q_auto/v0vl4xbbxyjq8g2q6z2u"
+                    src="https://res.cloudinary.com/deqfi4dkh/video/upload/f_auto:video,q_auto/ivjz1btz79j1hlitylwn"
                     type="video/mp4"
                   />
                 </video>
@@ -126,7 +126,7 @@ const BookingSection = () => {
                   className="w-full object-cover h-[95vh] absolute top-[50%] right-0 z-0 left-0  md:hidden -translate-y-1/2"
                 >
                   <source
-                    src="https://res.cloudinary.com/vornic/video/upload/f_auto:video,q_auto/tnnpri7rscorj9hqlqre"
+                    src="https://res.cloudinary.com/deqfi4dkh/video/upload/f_auto:video,q_auto/cljjtgwwwmoqfsg5icxk"
                     type="video/mp4"
                   />
                 </video>

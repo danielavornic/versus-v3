@@ -25,7 +25,7 @@ const HomeHero = () => {
               )}
             >
               <source
-                src="https://res.cloudinary.com/vornic/video/upload/f_auto:video,q_auto/cusmca19qurxavfinzi2"
+                src="https://res.cloudinary.com/deqfi4dkh/video/upload/f_auto:video,q_auto/u43xkt0hdboijvyafiv0"
                 type="video/mp4"
               />
             </video>
@@ -37,7 +37,7 @@ const HomeHero = () => {
               className="absolute bottom-0 left-0 right-0 top-0 z-0 w-[calc(100vw-60px)] md:hidden md:w-[calc(100vw-80px)] lg:w-[calc(100vw-100px)] block mx-auto h-screen object-cover"
             >
               <source
-                src="https://res.cloudinary.com/vornic/video/upload/f_auto:video,q_auto/syrhtrykj971adm9zq2l"
+                src="https://res.cloudinary.com/deqfi4dkh/video/upload/f_auto:video,q_auto/qij5868vutwngjiupaai"
                 type="video/mp4"
               />
             </video>
@@ -58,7 +58,7 @@ const HomeHero = () => {
             )}
           >
             <source
-              src="https://res.cloudinary.com/vornic/video/upload/f_auto:video,q_auto/f8bfuzgaxcokaugycw8h"
+              src="https://res.cloudinary.com/deqfi4dkh/video/upload/f_auto:video,q_auto/l5q18p33cti6oncatemj"
               type="video/mp4"
             />
           </video>
@@ -73,7 +73,7 @@ const HomeHero = () => {
             className="absolute bottom-0 left-0 right-0 top-0 hidden md:block z-0 w-[calc(100vw-60px)] md:w-[calc(100vw-80px)] lg:w-[calc(100vw-100px)] mx-auto h-screen object-cover"
           >
             <source
-              src="https://res.cloudinary.com/vornic/video/upload/f_auto:video,q_auto/k70y4bqfym7kgpwcr8wu"
+              src="https://res.cloudinary.com/deqfi4dkh/video/upload/f_auto:video,q_auto/qosve0frlewkrukavirp"
               type="video/mp4"
             />
           </video>
